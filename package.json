@@ -22,6 +22,7 @@
     "eslint": "^5.14.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^3.0.7",
+    "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
