@@ -20,10 +20,11 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "eslint": "^5.14.1",
-    "nodemon": "^1.18.7",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-app": "^3.0.7",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.7",
     "prettier": "^1.13.7"
   },
   "dependencies": {
