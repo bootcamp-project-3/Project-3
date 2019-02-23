@@ -9,7 +9,6 @@
         "ecmaVersion": 2018,
         "sourceType": "module",
         "extends": "standard",
-        "parser": "babel-eslint",
         "ecmaFeatures": {
             "jsx": true
         }
@@ -58,6 +57,10 @@
             "rules": {
               "prettier/prettier": "error"
             },
-        "extends": ["plugin:prettier/recommended"]
+        "extends": [
+            "plugin:prettier/recommended",
+            "eslint:recommended",
+            "plugin:react/recommended"
+        ]
     }
 }
