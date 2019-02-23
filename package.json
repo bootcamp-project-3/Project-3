@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "concurrently": "^4.1.0",
     "eslint": "^5.14.1",
     "eslint-config-prettier": "^2.9.0",
