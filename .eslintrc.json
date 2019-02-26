@@ -1,23 +1,32 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
         "node": true,
+        "commonjs": true,
         "es6": true
     },
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module",
-        "extends": "standard",
+        "parser": "babel-eslint",
         "ecmaFeatures": {
             "jsx": true
         }
-        
     },
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+    ],
     "rules": {
         "no-duplicate-case": "error",
         "no-empty": "error",
+        "no-console": "off",
         "no-extra-semi": "error",
+        "no-undef": "off",
         "no-func-assign": "error",
         "no-irregular-whitespace": "error",
         "no-unreachable": "error",
@@ -29,14 +38,15 @@
         "no-mixed-spaces-and-tabs": "error",
         "default-case": "error",
         "no-fallthrough": "error",
-        "no-unused-vars": "warn",
+        "no-unused-vars": "error",
         "no-use-before-define": "error",
         "no-redeclare": "error",
         "camelcase": "error",
         "brace-style": "error",
+        "prettier/prettier": "error",
         "indent": [
             "error",
-            4,
+            2,
             {
                 "SwitchCase": 1
             }
@@ -52,15 +62,7 @@
         "semi": [
             "error",
             "always"
-        ],
-        "plugins": ["prettier"],
-            "rules": {
-              "prettier/prettier": "error"
-            },
-        "extends": [
-            "plugin:prettier/recommended",
-            "eslint:recommended",
-            "plugin:react/recommended"
         ]
     }
+
 }
