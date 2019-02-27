@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
+let clientID = process.env.googleClientID;
+let clientSecret = process.env.googleClientSecret;
+
 // Define middleware here
 app.use(
     express.urlencoded({
@@ -35,8 +38,8 @@ require("./routes/api-routes.js")(app);
 passport.use(
     new GoogleStrategy(
         {
-            clientID: process.env.googleClientID,
-            clientSecret: process.env.googleClientSecret,
+            clientID: clientID,
+            clientSecret: clientSecret,
             callbackURL: "/auth/google/callback",
         },
         (accessToken, refreshToken, profile, done) => {
