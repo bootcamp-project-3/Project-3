@@ -47,18 +47,18 @@ passport.use(
             console.log("refresh token", refreshToken);
             console.log("profile:", profile);
         }
-    ),
+    )
+);
 
-    app.get(
-        "/auth/google",
-        passport.authenticate("google", {
-            scope: ["profile", "email"],
-        })
-    ),
-
-    app.get("/auth/google/callback", passport.authenticate("google")),
-
-    app.listen(PORT, () => {
-        console.log(`🌎 ==> API server now on port ${PORT}!`);
+app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+        scope: ["profile", "email"],
     })
 );
+
+app.get("/auth/google/callback", passport.authenticate("google"));
+
+app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
