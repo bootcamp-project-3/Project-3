@@ -3,7 +3,6 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,6 +16,7 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
+require("./routes/api-routes.js")(app);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
