@@ -21,6 +21,7 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
+require("./routes/api-routes.js")(app);
 
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
