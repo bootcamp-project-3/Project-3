@@ -12,14 +12,6 @@
             "jsx": true
         }
     },
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "extends": [
-        "plugin:react/recommended",
-        "plugin:prettier/recommended"
-    ],
     "rules": {
         "no-duplicate-case": "error",
         "no-empty": "error",
