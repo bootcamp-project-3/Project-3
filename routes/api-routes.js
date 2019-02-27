@@ -39,9 +39,9 @@ module.exports = function(app) {
         });
     });
     // * Adds new post to db
-    app.post("/api/posts", function(req, res) {
+    app.post("/api/posts", function(req) {
         Post.create(req.body, function(err, post) {
-            if (err){
+            if (err) {
                 console.log(err);
             } else {
                 console.log(post);
