@@ -12,8 +12,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "lint": "eslint \"**/*.js\"",
-    "fix": "eslint --fix .",
-    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
