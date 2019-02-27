@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LPNav from "../components/LPNav";
+import LPNav from "../components/LpNav";
 
 class HomePage extends Component {
     render() {
