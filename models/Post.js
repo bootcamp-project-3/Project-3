@@ -28,7 +28,7 @@ const PostSchema = new Schema({
     content: {
         type: String,
         trim: true,
-        required: "Post cannot be empty is required.",
+        required: "Post cannot be empty.",
     },
     createdAt: {
         type: Date,
