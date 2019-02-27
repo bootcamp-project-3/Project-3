@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const keys = require('./client/config/keys');
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +21,7 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
+require("./routes/api-routes.js")(app);
 
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
