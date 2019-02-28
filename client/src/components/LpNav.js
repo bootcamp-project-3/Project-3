@@ -11,9 +11,9 @@ const Title = Styled.h1`
 `;
 
 const LpNav = props => (
-    <Nav className="lpnav">
-        <Title>{props.children}</Title>
-    </Nav>
+  <Nav className="lpnav">
+    <Title>{props.children}</Title>
+  </Nav>
 );
 
 export default LpNav;
