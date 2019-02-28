@@ -20,6 +20,7 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:prettier/recommended"
+
     ],
     "rules": {
         "no-duplicate-case": "error",
@@ -67,7 +68,7 @@
     },
     "settings": {
         "react": {
-            "version": "16.8"
+            "version": "latest"
         }
     }
 
