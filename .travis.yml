@@ -4,9 +4,9 @@ node_js:
 branches:
   only:
   - master
-cache:
-  directories:
-    - node_modules
+# cache:
+#   directories:
+#     - node_modules
 script:
   - npm test
   - npm run build
