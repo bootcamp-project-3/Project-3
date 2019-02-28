@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 module.exports = function(app) {
     // TODO: Add security layer to authorize post request, perhaps captcha?
     // * Adds new user to db
+    // Test comment
     app.post("/api/users", function(req, res) {
         // Searches db for input email
         User.findOne({ email: req.body.email }, function(err, user) {
