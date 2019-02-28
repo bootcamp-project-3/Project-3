@@ -12,26 +12,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-<<<<<<< HEAD
    app.use(express.static("client/build"))};
 
 
 // Connect app to mongo db
 const MONGODB_URI =
    process.env.MONGODB_URI || "mongodb://localhost/neighbor-app";
-=======
-  app.use(express.static("client/build"));
-}
-// Connect app to mongo db
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/neighbor-app";
->>>>>>> 2392f98d20abe55e4b3da8d62b9ed14210cb74fc
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
 
-<<<<<<< HEAD
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // };
@@ -60,12 +51,4 @@ app.get('/auth/google/callback', passport.authenticate('google'));
 
 app.listen(PORT, () => {
    console.log(`🌎 ==> API server now on port ${PORT}!`)
-=======
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
->>>>>>> 2392f98d20abe55e4b3da8d62b9ed14210cb74fc
 });
