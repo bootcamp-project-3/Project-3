@@ -25,8 +25,9 @@ module.exports = function(app) {
                   console.log(err);
                 } else {
                   console.log(post);
+                  req.session.user = post._id
                 }
-                res.end();
+                res.sendStatus(200);
               });
             }
           });
@@ -39,12 +40,17 @@ module.exports = function(app) {
     });
   });
   // * Adds new post to db
-  app.post("/api/posts", function(req) {
+  app.post("/api/posts", function(req, res) {
+    if (!req.session.user){
+      res.sendStatus(401);
+      return
+    }
     Post.create(req.body, function(err, post) {
       if (err) {
         console.log(err);
       } else {
         console.log(post);
+        res.sendStatus(200);
       }
     });
   });
