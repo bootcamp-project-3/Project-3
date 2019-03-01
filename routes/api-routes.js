@@ -25,7 +25,7 @@ module.exports = function(app) {
                   console.log(err);
                 } else {
                   console.log(post);
-                  req.session.user = post._id
+                  req.session.user = post._id;
                 }
                 res.sendStatus(200);
               });
@@ -39,11 +39,40 @@ module.exports = function(app) {
       }
     });
   });
+  // *Sign in request
+  app.get("/api/signin", function(req, res) {
+    User.findOne({ email: req.body.email }, function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        if (user === null) {
+          res.send("No user exists with this email.");
+        } else {
+          console.log(user);
+          bcrypt.compare(req.body.password, user.password, function(
+            err,
+            result
+          ) {
+            if (err) {
+              console.log(err);
+            }
+            if (!result) {
+              res.sendStatus(401);
+            }
+            if (result) {
+              req.session.user = user._id;
+              res.sendStatus(200);
+            }
+          });
+        }
+      }
+    });
+  });
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
-    if (!req.session.user){
+    if (!req.session.user) {
       res.sendStatus(401);
-      return
+      return;
     }
     Post.create(req.body, function(err, post) {
       if (err) {
