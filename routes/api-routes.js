@@ -47,6 +47,7 @@ module.exports = function(app) {
       } else {
         if (user === null) {
           res.send("No user exists with this email.");
+          return;
         } else {
           console.log(user);
           bcrypt.compare(req.body.password, user.password, function(
@@ -58,6 +59,7 @@ module.exports = function(app) {
             }
             if (!result) {
               res.sendStatus(401);
+              return;
             }
             if (result) {
               req.session.user = user._id;
@@ -82,5 +84,19 @@ module.exports = function(app) {
         res.sendStatus(200);
       }
     });
+  });
+  app.get("/api/posts", function(req, res) {
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    }
+    else{
+      Post.find(function(err, posts){
+        if(err){
+          console.log(err);
+        }
+        res.send(posts);
+      });
+    }
   });
 };
