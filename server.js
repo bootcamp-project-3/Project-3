@@ -33,6 +33,7 @@ mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true
 });
 
+// Middleware
 app.use(session({secret: secret, resave: false, saveUninitialized: true}));
 
 // Define API routes here
