@@ -31,6 +31,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Define API routes here
 require("./routes/api-routes.js")(app);
 
+
 passport.use(
     new GoogleStrategy(
     {
@@ -55,9 +56,9 @@ app.get(
 
 app.get("/auth/google/callback", passport.authenticate("google"));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.listen(PORT, () => {
    console.log(`🌎 ==> API server now on port ${PORT}!`)
