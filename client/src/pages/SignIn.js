@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
 
@@ -13,14 +12,14 @@ class SignIn extends Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/auth/google' />
+      window.location = "/auth/google"
     }
   }
   render () {
     return (
        <div>
         {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Sign in w/ Google</button>
+        <button onClick={this.setRedirect}>Sign in w/ Go</button>
        </div>
     )
   }
