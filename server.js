@@ -4,8 +4,9 @@ const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const mongoose = require("mongoose");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+require("./services/passport");
+require("./routes/authRoutes")(app);
 
 let clientID = process.env.ClientID;
 
@@ -38,30 +39,6 @@ app.use(session({secret: secret, resave: false, saveUninitialized: true}));
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
-
-
-passport.use(
-    new GoogleStrategy({
-            clientID: clientID,
-            clientSecret: clientSecret,
-            callbackURL: "/auth/google/callback",
-        },
-        (accessToken, refreshToken, profile, done) => {
-            console.log("access token", accessToken);
-            console.log("refresh token", refreshToken);
-            console.log("profile:", profile);
-        }
-    )
-);
-
-app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-        scope: ["profile", "email"],
-    })
-);
-
-app.get("/auth/google/callback", passport.authenticate("google"));
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
