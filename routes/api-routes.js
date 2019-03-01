@@ -45,9 +45,13 @@ module.exports = function(app) {
       if (err) {
         console.log(err);
       } else {
+        // Checks to see if there is a user with the submitted email
         if (user === null) {
+          console.log(user);
           res.send("No user exists with this email.");
+          return;
         } else {
+          // If email matches to valid user, compare input password to hased password stored
           console.log(user);
           bcrypt.compare(req.body.password, user.password, function(
             err,
@@ -56,9 +60,12 @@ module.exports = function(app) {
             if (err) {
               console.log(err);
             }
+            // If bad password, send 401
             if (!result) {
               res.sendStatus(401);
+              return;
             }
+            // If good, allow assign session and send code 200
             if (result) {
               req.session.user = user._id;
               res.sendStatus(200);
@@ -70,10 +77,12 @@ module.exports = function(app) {
   });
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
+    // Checks for a session, if none return 401
     if (!req.session.user) {
       res.sendStatus(401);
       return;
     }
+    // If signed in, create new post with req data
     Post.create(req.body, function(err, post) {
       if (err) {
         console.log(err);
@@ -82,5 +91,24 @@ module.exports = function(app) {
         res.sendStatus(200);
       }
     });
+  });
+  // * Gets the last 10 posts from the db if the user is signed in
+  app.get("/api/posts", function(req, res) {
+    // Checks for session, if none, return 401
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    } else {
+      // If signed in, return last 10 posts
+      const find = Post.find()
+        .sort({createdAt: -1})
+        .limit(10);
+      find.exec(function(err, posts) {
+        if (err) {
+          console.log(err);
+        }
+        res.send(posts);
+      });
+    }
   });
 };
