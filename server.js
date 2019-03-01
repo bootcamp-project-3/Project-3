@@ -1,11 +1,12 @@
 require('dotenv').config();
 const express = require("express");
+require("./services/passport");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const mongoose = require("mongoose");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+require("./routes/authRoutes")(app);
 
 let clientID = process.env.ClientID;
 
@@ -47,18 +48,9 @@ passport.use(
     )
 );
 
-app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-        scope: ["profile", "email"],
-    })
-);
-
-app.get("/auth/google/callback", passport.authenticate("google"));
-
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+ });
 
 app.listen(PORT, () => {
    console.log(`🌎 ==> API server now on port ${PORT}!`)
