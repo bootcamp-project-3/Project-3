@@ -33,8 +33,11 @@ class SignIn extends Component {
   }
   addUser = (event) => {
 event.preventDefault();
-axios.post("/api/users", (req, res)=>{
-console.log(req.body)
+axios.post("/api/users", (data)=>{
+console.log(data)
+    }).then(console.log("it got here"))
+    .catch(err=>{
+      console.log(err);
     })
   }
 
