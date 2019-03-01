@@ -1,22 +1,26 @@
 require('dotenv').config();
 const express = require("express");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const mongoose = require("mongoose");
 var bodyParser = require('body-parser')
 
+require("./models/User");
 require("./services/passport");
-require(".models/User");
 require("./routes/authRoutes")(app);
 
 let ClientID = process.env.ClientID;
 
 let ClientSecret = process.env.ClientSecret;
 
+let cookieKey = process.env.CookieKey;
+
 const session = require("express-session");
 
-const secret = process.env.SESSION_SECRET || "testsecret"
+const secret = process.env.SESSION_SECRET || "testsecret";
 // Define middleware here
 app.use(
   express.urlencoded({
@@ -35,6 +39,16 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
+
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: cookieKey
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect app to mongo db
 const MONGODB_URI =
