@@ -11,6 +11,9 @@ let clientID = process.env.ClientID;
 
 let clientSecret = process.env.ClientSecret;
 
+const session = require("express-session");
+
+const secret = process.env.SESSION_SECRET || "testsecret"
 // Define middleware here
 app.use(
   express.urlencoded({
@@ -29,6 +32,8 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true
 });
+
+app.use(session({secret: secret, resave: false, saveUninitialized: true}));
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
