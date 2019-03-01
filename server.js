@@ -6,11 +6,12 @@ const app = express();
 const mongoose = require("mongoose");
 
 require("./services/passport");
+require(".models/User");
 require("./routes/authRoutes")(app);
 
-let clientID = process.env.ClientID;
+let ClientID = process.env.ClientID;
 
-let clientSecret = process.env.ClientSecret;
+let ClientSecret = process.env.ClientSecret;
 
 const session = require("express-session");
 
