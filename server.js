@@ -7,9 +7,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-let clientID = process.env.googleClientID;
+let clientID = process.env.ClientID;
 
-let clientSecret = process.env.googleClientSecret;
+let clientSecret = process.env.ClientSecret;
 
 // Define middleware here
 app.use(
