@@ -1,16 +1,18 @@
 require('dotenv').config();
 const express = require("express");
+
 require("./services/passport");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const mongoose = require("mongoose");
 
-require("./routes/authRoutes")(app);
 
 let clientID = process.env.ClientID;
 
 let clientSecret = process.env.ClientSecret;
+
+
 
 // Define middleware here
 app.use(
@@ -33,24 +35,12 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 require("./routes/api-routes.js")(app);
 
 
-passport.use(
-    new GoogleStrategy(
-    {
-      clientID: clientID,
-      clientSecret: clientSecret,
-      callbackURL: "/auth/google/callback",
-        },
-        (accessToken, refreshToken, profile, done) => {
-            console.log("access token", accessToken);
-            console.log("refresh token", refreshToken);
-            console.log("profile:", profile);
-        }
-    )
-);
-
 app.get("*", (req, res) => {
    res.sendFile(path.join(__dirname, "./client/build/index.html"));
  });
+
+require("./routes/authRoutes")(app);
+
 
 app.listen(PORT, () => {
    console.log(`🌎 ==> API server now on port ${PORT}!`)
