@@ -71,13 +71,18 @@ const styles = theme => ({
   },
 });
 
+// const openDrawer = () => {
+//   this.props.toggleDrawer("left", true);
+// }
+
 function Nav(props) {
   const { classes } = props;
+  console.log(props)
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+          <IconButton className={classes.menuButton} color="inherit" onClick={props.openDrawer} aria-label="Open drawer">
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>

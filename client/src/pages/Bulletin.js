@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import ThemeProvider from "../components/Nav/ThemeProvider";
+import SideBar from "../components/Nav/SideBar/SideBar";
 
 class Bulletin extends Component {
   render() {
     return (
       <main>
-       <ThemeProvider />
+        
+        <SideBar >
+        </SideBar>
       </main>
     );
   }
