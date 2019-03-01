@@ -23,6 +23,7 @@ const styles = {
 class SideBar extends React.Component {
   state = {
     left: false,
+    keyword: "",
   };
 
   toggleDrawer = (side, open) => () => {
@@ -37,6 +38,14 @@ class SideBar extends React.Component {
     this.setState({
       left: true,
     });
+  };
+
+  handleOnChange = event => {
+    let keyword = event.target.value;
+    this.setState({ 
+      keyword: keyword,
+    });
+    console.log(this.state.keyword);
   }
 
   render() {
@@ -96,7 +105,7 @@ class SideBar extends React.Component {
 
     return (
       <div>
-        <Nav openDrawer={this.openDrawer}/>
+        <Nav openDrawer={this.openDrawer} onChange={this.handleOnChange} keyword={this.state.keyword} />
         {/* Put this button as the dropdown on navbar */}
         <Drawer
           open={this.state.left}
