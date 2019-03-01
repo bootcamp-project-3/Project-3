@@ -32,12 +32,14 @@
     "prettier": "^1.16.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
-    "google": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "google": "^2.1.0",
     "if-env": "^1.0.4",
     "mongoose": "^5.4.14",
     "npm": "^6.8.0",
