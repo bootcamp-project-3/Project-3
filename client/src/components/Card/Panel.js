@@ -35,33 +35,11 @@ class Panel extends React.Component {
   };
 
   renderPanels = () => {
-    const tempData = [
-      {
-        name: "Gerrald Ford",
-        title: "Need a ride to work.",
-        message: "Hello this is a test.",
-      },
-      {
-        name: "Leonard Neemoy",
-        title: "Looking for a baber sitter",
-        message: "This is also a test.",
-      },
-      {
-        name: "Gerrald Ford",
-        title: "Need a ride to work.",
-        message: "Hello this is a test.",
-      },
-      {
-        name: "Leonard Neemoy",
-        title: "Looking for a baber sitter",
-        message: "This is also a test.",
-      },
-    ];
 
     const { classes } = this.props;
     const { expanded } = this.state;
 
-    return tempData.map((panel, index) => {
+    return this.props.posts.map((panel, index) => {
       return (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}
