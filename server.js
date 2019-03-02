@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
 
-const secret = process.env.SESSION_SECRET || "testsecret"
+const secret = process.env.SESSION_SECRET || "testsecret";
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,7 +19,7 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Middleware
-app.use(session({secret: secret, resave: false, saveUninitialized: true}));
+app.use(session({ secret: secret, resave: false, saveUninitialized: true }));
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
