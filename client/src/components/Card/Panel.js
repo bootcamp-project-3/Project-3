@@ -7,6 +7,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SimpleCard from "./SimpleCard";
+import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -35,29 +36,38 @@ class Panel extends React.Component {
   };
 
   renderPanels = () => {
+    axios
+      .get("http://localhost:3001/api/posts")
+      .then(response => {
+        this.props.updatePosts(response.data);
+        const { classes } = this.props;
+        const { expanded } = this.state;
 
-    const { classes } = this.props;
-    const { expanded } = this.state;
-
-    return this.props.posts.map((panel, index) => {
-      return (
-        <ExpansionPanel
-          expanded={expanded === `panel${index}`}
-          onChange={this.handleChange(`panel${index}`)}
-          key={index}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>{panel.title}</Typography>
-            <Typography className={classes.secondaryHeading}>
-              {panel.name}
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>{panel.message}</Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      );
-    });
+        return this.props.posts.map((panel, index) => {
+          return (
+            <ExpansionPanel
+              expanded={expanded === `panel${index}`}
+              onChange={this.handleChange(`panel${index}`)}
+              key={index}
+            >
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography className={classes.heading}>
+                  {panel.title}
+                </Typography>
+                <Typography className={classes.secondaryHeading}>
+                  {panel.name}
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>{panel.message}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          );
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
