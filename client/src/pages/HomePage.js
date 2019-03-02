@@ -4,7 +4,7 @@ import LpNav from "../components/LandingPage/LpNav";
 import Wrapper from "../components/LandingPage/Wrapper";
 import Button from "../components/LandingPage/LpButton";
 import Styled from "styled-components";
-import Image from "../components/LandingPage/assets/Image.jpg";
+import Image from "../components/LandingPage/assets/neighborhood.jpg";
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;
