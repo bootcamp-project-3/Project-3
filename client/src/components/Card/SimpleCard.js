@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Styled from "styled-components";
+import SubmitModal from "./SubmitModal";
 
 const styles = {
   card: {
@@ -40,14 +41,18 @@ function SimpleCard(props) {
   // const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <WrapperDiv>
-      <Card className={classes.card}>
-        <Typography variant="h6" color="inherit" align="center">
-          Community Needs
-        </Typography>
-        <CardContent>{props.renderPanels()}</CardContent>
-      </Card>
-    </WrapperDiv>
+    <div>
+      <WrapperDiv>
+        <Card className={classes.card}>
+          <Typography variant="h6" color="inherit" align="center">
+            {props.category}
+          </Typography>
+          <CardContent>{props.renderPanels()}</CardContent>
+          <SubmitModal category={props.category} posts={props.posts} />
+        </Card>
+      </WrapperDiv>
+      {/* <Button onClick={this.handleOpen}>Open Modal</Button> */}
+    </div>
   );
 }
 

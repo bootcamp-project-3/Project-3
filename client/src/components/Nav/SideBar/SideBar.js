@@ -30,14 +30,12 @@ class SideBar extends React.Component {
   };
 
   toggleDrawer = (side, open) => () => {
-    console.log("Working");
     this.setState({
       [side]: open,
     });
   };
 
   openDrawer = () => {
-    console.log("Hello");
     this.setState({
       left: true,
     });
