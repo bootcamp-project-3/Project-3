@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Styled from "styled-components";
+import axios from "axios";
 
 const styles = theme => ({
   container: {
@@ -44,6 +45,21 @@ class TextFields extends React.Component {
     console.log(this.state.name);
     console.log(this.state.body);
     console.log(this.state.category);
+    const newPost = {
+      user: this.state.name,
+      userId: 1234,
+      title: this.state.title,
+      content: this.state.body,
+    };
+
+    axios
+      .post("http://localhost:3001/api/posts", newPost)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
