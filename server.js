@@ -11,7 +11,7 @@ require("./routes/authRoutes")(app);
 
 const session = require("express-session");
 
-const secret = process.env.SESSION_SECRET || "testsecret"
+const secret = process.env.SESSION_SECRET || "testsecret";
 // Define middleware here
 app.use(
   express.urlencoded({
@@ -39,7 +39,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Middleware
-app.use(session({secret: secret, resave: false, saveUninitialized: true}));
+app.use(session({ secret: secret, resave: false, saveUninitialized: true }));
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
