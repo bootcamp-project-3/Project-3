@@ -7,25 +7,13 @@ import HomePage from "./pages/HomePage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-<<<<<<< HEAD
-// import green from "@material-ui/core/colors/green";
-// import white from "@material-ui/core/colors/white";
+
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#66bb6a',
     },
-    // secondary: white, // Indigo is probably a good match with pink
-=======
-import teal from "@material-ui/core/colors/teal";
-import cyan from "@material-ui/core/colors/cyan";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: teal,
-    secondary: cyan, 
->>>>>>> 2d8f12fcb16aa580f6c5b39dd837c2cc92556547
   },
 });
 
