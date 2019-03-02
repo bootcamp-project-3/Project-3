@@ -7,13 +7,15 @@ import HomePage from "./pages/HomePage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import pink from "@material-ui/core/colors";
+// import green from "@material-ui/core/colors/green";
+// import white from "@material-ui/core/colors/white";
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: pink, // Indigo is probably a good match with pink
+    primary: {
+      main: '#66bb6a',
+    },
+    // secondary: white, // Indigo is probably a good match with pink
   },
 });
 

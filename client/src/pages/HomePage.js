@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import LPNav from "../components/LpNav";
+import LpNav from "../components/LandingPage/LpNav";
+import SimpleSlide from "../components/LandingPage/Jumbotron";
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <LPNav title="Around The Corner" />
-      </div>
+        <LpNav/>
+        <SimpleSlide/>
+        </div>
+
     );
   }
 }
