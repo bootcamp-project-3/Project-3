@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import Styled from "styled-components";
-import Image from "../LandingPage/assets/Image.jpg";
+import Image from "../LandingPage/assets/be-neighborly.png";
 
 
 
@@ -36,6 +36,11 @@ const Font = Styled.h1`
     margin:auto;
 `;
 
+// const Logo = Styled.img`
+//     background: url(${Image}) no-repeat center center fixed;
+// `;
+
+
 
 
 
@@ -54,7 +59,7 @@ function LpNav(props) {
             Menu
           </Typography>
           <Typography align="center" variant="h6" color="inherit" className={classes.grow}>
-           <Font>Neighborly </Font>
+           <img alt="" src={Image}  width= "40%"/>
           </Typography>
           <Typography align="right" variant="h6" color="inherit" className={classes.grow} >
            <a  href="/sign-in">Sign In</a>
