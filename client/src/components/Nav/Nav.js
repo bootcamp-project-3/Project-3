@@ -93,7 +93,7 @@ function Nav(props) {
             color="inherit"
             noWrap
           >
-            Material-UI
+            Neighborly
           </Typography>
           <div className={classes.grow} />
           <div className={classes.search}>
