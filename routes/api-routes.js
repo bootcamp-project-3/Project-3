@@ -83,4 +83,8 @@ module.exports = function(app) {
       }
     });
   });
+  // * Get session data
+  app.get("/api/session", function(req, res) {
+    res.send(req.session);
+  })
 };
