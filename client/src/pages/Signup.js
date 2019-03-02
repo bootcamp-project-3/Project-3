@@ -40,6 +40,7 @@ class SignUp extends Component {
       .post("http://localhost:5000/api/users", newUser)
       .then(function(response){
         console.log(response);
+        window.location = "/bulletin"
       })
       .catch(err => {
         console.log(err);

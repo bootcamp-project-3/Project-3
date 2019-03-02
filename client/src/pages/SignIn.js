@@ -31,11 +31,17 @@ class SignIn extends Component {
       email: this.state.inputEmail,
       password: this.state.inputPass,
     };
+    console.log(user);
     event.preventDefault();
     axios
-      .get("http://localhost:5000/api/signin", user)
+      .post("http://localhost:5000/api/signin", user)
       .then(function(response) {
         console.log(response);
+        if (response.status === 200) {
+          window.location = "/bulletin";
+        } else {
+          console.log("Invalid username or password");
+        }
       })
       .catch(err => {
         console.log(err);

@@ -40,7 +40,7 @@ module.exports = function(app) {
     });
   });
   // *Sign in request
-  app.get("/api/signin", function(req, res) {
+  app.post("/api/signin", function(req, res) {
     User.findOne({ email: req.body.email }, function(err, user) {
       if (err) {
         console.log(err);
@@ -48,7 +48,7 @@ module.exports = function(app) {
         // Checks to see if there is a user with the submitted email
         if (user === null) {
           console.log(user);
-          res.send("No user exists with this email.");
+          res.sendStatus(401);
           return;
         } else {
           // If email matches to valid user, compare input password to hased password stored
