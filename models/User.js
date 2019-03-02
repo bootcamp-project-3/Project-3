@@ -10,6 +10,10 @@ db.once("open", function() {
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  googleID: {
+    type: String,
+    trim: true,
+  },
   name: {
     type: String,
     trim: true,
