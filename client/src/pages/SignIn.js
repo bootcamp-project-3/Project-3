@@ -32,10 +32,10 @@ class SignIn extends Component {
  event.preventDefault();
  axios.post("/api/users", 
  {
-  "name": this.state.inputName,
-	"email": this.state.inputEmail,
-	"zip": this.state.inputZipcode,
-	"password": this.state.inputPass
+  "Name": this.state.inputName,
+	"Email": this.state.inputEmail,
+	"Zip": this.state.inputZipcode,
+	"Password": this.state.inputPass
  }
   )
  .then(function(response){
