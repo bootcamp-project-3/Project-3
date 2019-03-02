@@ -53,14 +53,20 @@ class TextFields extends React.Component {
     };
 
     axios
-      .post("http://localhost:5000/api/posts", newPost)
+      .post("/api/posts", newPost)
       .then(response => {
         console.log(response);
-        axios.get("http://localhost:5000/api/posts").then(posts => {
-          console.log(posts.data);
-          this.props.updatePosts(posts.data);
-        });
-        console.log(this.props)
+        fetch("/api/posts")
+          .then(res => res.json())
+          .then(
+            result => {
+              console.log(result);
+              this.props.updatePosts(result);
+            },
+            error => {
+              console.log(error);
+            }
+          );
       })
       .catch(error => {
         console.log(error);

@@ -7,7 +7,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SimpleCard from "./SimpleCard";
-import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -28,15 +27,6 @@ class Panel extends React.Component {
   state = {
     expanded: null,
   };
-
-  componentDidMount() {
-    axios
-    .get("http://localhost:5000/api/posts")
-    .then(response => {
-      console.log(response.data);
-      this.props.updatePosts(response.data);
-    });
-  }
 
   handleChange = panel => (event, expanded) => {
     this.setState({
