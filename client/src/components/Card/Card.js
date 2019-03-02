@@ -24,9 +24,6 @@ const styles = theme => ({
   },
 });
 
-const panelWrapper = Styled.div`
-  width: 400px;
-`;
 
 class Card extends React.Component {
   state = {
