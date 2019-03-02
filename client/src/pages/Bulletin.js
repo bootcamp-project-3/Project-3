@@ -2,48 +2,47 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 
-const tempData = [
-  {
-    name: "Gerrald Ford",
-    title: "Need a ride to work.",
-    message: "Hello this is a test.",
-    category: "Community Needs",
-  },
-  {
-    name: "Leonard Neemoy",
-    title: "Looking for a baber sitter",
-    message: "This is also a test.",
-    category: "Community Needs",
-  },
-  {
-    name: "Gerrald Ford",
-    title: "Need a ride to work.",
-    message: "Hello this is a test.",
-    category: "Community Needs",
-  },
-  {
-    name: "Leonard Neemoy",
-    title: "Looking for a baber sitter",
-    message: "This is also a test.",
-    category: "Community Needs",
-  },
-];
-
 class Bulletin extends Component {
   state = {
-    posts: tempData,
+    posts: [
+      {
+        name: "Gerrald Ford",
+        title: "Need a ride to work.",
+        message: "Hello this is a test.",
+      },
+      {
+        name: "Leonard Neemoy",
+        title: "Looking for a baber sitter",
+        message: "This is also a test.",
+      },
+      {
+        name: "Gerrald Ford",
+        title: "Need a ride to work.",
+        message: "Poop.",
+      },
+      {
+        name: "Leonard Neemoy",
+        title: "Looking for a baber sitter",
+        message: "This is also a test.",
+      },
+    ],
   };
 
-  renderPanels = () => {
-    const posts = this.state.posts;
-    console.log(`Posts: ${posts}`);
+  updatePosts = posts => {
+    this.setState({
+      posts: posts,
+    });
   };
 
   render() {
     return (
       <main>
         <SideBar />
-        <Panel category="Community Needs" posts={this.state.posts} />
+        <Panel
+          category="Community Needs"
+          posts={this.state.posts}
+          updatePosts={this.updatePosts}
+        />
       </main>
     );
   }
