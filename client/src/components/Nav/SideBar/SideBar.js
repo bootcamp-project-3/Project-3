@@ -9,6 +9,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import EventIcon from "@material-ui/icons/Event";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 import Nav from "../Nav";
 
 const styles = {
@@ -34,7 +37,7 @@ class SideBar extends React.Component {
   };
 
   openDrawer = () => {
-    console.log("Hello")
+    console.log("Hello");
     this.setState({
       left: true,
     });
@@ -42,11 +45,23 @@ class SideBar extends React.Component {
 
   handleOnChange = event => {
     let keyword = event.target.value;
-    this.setState({ 
+    this.setState({
       keyword: keyword,
     });
     console.log(this.state.keyword);
-  }
+  };
+
+  renderIcons = index => {
+    if (index === 0) {
+      return <InboxIcon />;
+    } else if (index === 1) {
+      return <EventIcon />;
+    } else if (index === 2) {
+      return <AccountBoxIcon />;
+    } else {
+      return <ListAltIcon />;
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -57,7 +72,8 @@ class SideBar extends React.Component {
           {["Inbox", "Bulletin", "Profile", "Posts"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {/* {index === 0 ? <InboxIcon /> : <MailIcon />} */}
+                {this.renderIcons(index)}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -65,33 +81,7 @@ class SideBar extends React.Component {
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["About Us", "Terms Of Service", "Contact Us"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -105,7 +95,11 @@ class SideBar extends React.Component {
 
     return (
       <div>
-        <Nav openDrawer={this.openDrawer} onChange={this.handleOnChange} keyword={this.state.keyword} />
+        <Nav
+          openDrawer={this.openDrawer}
+          onChange={this.handleOnChange}
+          keyword={this.state.keyword}
+        />
         {/* Put this button as the dropdown on navbar */}
         <Drawer
           open={this.state.left}
@@ -118,34 +112,6 @@ class SideBar extends React.Component {
             onKeyDown={this.toggleDrawer("left", false)}
           >
             {sideList}
-          </div>
-        </Drawer>
-        <Drawer
-          anchor="top"
-          open={this.state.top}
-          onClose={this.toggleDrawer("top", false)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer("top", false)}
-            onKeyDown={this.toggleDrawer("top", false)}
-          >
-            {fullList}
-          </div>
-        </Drawer>
-        <Drawer
-          anchor="bottom"
-          open={this.state.bottom}
-          onClose={this.toggleDrawer("bottom", false)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer("bottom", false)}
-            onKeyDown={this.toggleDrawer("bottom", false)}
-          >
-            {fullList}
           </div>
         </Drawer>
         <Drawer
