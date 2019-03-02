@@ -23,8 +23,7 @@ const styles = theme => ({
   },
 });
 
-
-class Card extends React.Component {
+class Panel extends React.Component {
   state = {
     expanded: null,
   };
@@ -62,7 +61,7 @@ class Card extends React.Component {
     const { classes } = this.props;
     const { expanded } = this.state;
 
-    return tempData.map((card, index) => {
+    return tempData.map((panel, index) => {
       return (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}
@@ -70,13 +69,13 @@ class Card extends React.Component {
           key={index}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>{card.title}</Typography>
+            <Typography className={classes.heading}>{panel.title}</Typography>
             <Typography className={classes.secondaryHeading}>
-              {card.name}
+              {panel.name}
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{card.message}</Typography>
+            <Typography>{panel.message}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       );
@@ -90,14 +89,18 @@ class Card extends React.Component {
     return (
       <div className={classes.root}>
         {/* {this.renderPanels()} */}
-        <SimpleCard renderPanels={this.renderPanels} />
+        <SimpleCard
+          posts={this.props.posts}
+          category={this.props.category}
+          renderPanels={this.renderPanels}
+        />
       </div>
     );
   }
 }
 
-Card.propTypes = {
+Panel.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(Panel);

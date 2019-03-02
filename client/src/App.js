@@ -7,13 +7,13 @@ import HomePage from "./pages/HomePage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-import teal from "@material-ui/core/colors/teal";
-import cyan from "@material-ui/core/colors/cyan";
+
 
 const theme = createMuiTheme({
   palette: {
-    primary: teal,
-    secondary: cyan, 
+    primary: {
+      main: '#66bb6a',
+    },
   },
 });
 
