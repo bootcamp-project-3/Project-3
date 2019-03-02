@@ -2,68 +2,69 @@ import React, { Component } from "react";
 import axios from "axios";
 import LpNav from "../components/LandingPage/LpNav";
 
-
 class SignIn extends Component {
-
   state = {
     redirect: false,
     inputEmail: "",
     inputPass: "",
-    inputName: "",
-    inputZipcode: ""
-  }
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   setRedirect = () => {
     this.setState({
-      redirect: true
-    })
-  }
+      redirect: true,
+    });
+  };
   renderRedirect = () => {
     if (this.state.redirect) {
-      window.location = "/auth/google"
+      window.location = "/auth/google";
     }
-  }
-  getUser =  (event) => {
- event.preventDefault();
- axios.post("/api/users", 
- {
-  "Name": this.state.inputName,
-	"Email": this.state.inputEmail,
-	"Zip": this.state.inputZipcode,
-	"Password": this.state.inputPass
- }
-  )
- .then(function(response){
-   console.log(response)
- })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
+  };
+  getUser = event => {
+    const user = {
+      email: this.state.inputEmail,
+      password: this.state.inputPass,
+    };
+    event.preventDefault();
+    axios
+      .get("http://localhost:5000/api/signin", user)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-  render () {
+  render() {
     return (
-       <div>
-         <LpNav />
+      <div>
+        <LpNav />
         {this.renderRedirect()}
         <button onClick={this.setRedirect}>Sign in w/ Gooogle</button>
         <form onSubmit={this.getUser}>
-          <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
-          <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>
-          <input value={this.state.inputName} name="inputName" onChange={this.handleInputChange} placeholder="Name"></input>
-          <input value={this.state.inputZipcode} name="inputZipcode" onChange={this.handleInputChange} placeholder="Zipcode"></input>
-
-          <button >Submit</button>
-          </form>
-       </div>
-    )
+          <input
+            value={this.state.inputEmail}
+            name="inputEmail"
+            onChange={this.handleInputChange}
+            placeholder="Email"
+          />
+          <input
+            value={this.state.inputPass}
+            name="inputPass"
+            onChange={this.handleInputChange}
+            placeholder="Password"
+          />
+          <button>Submit</button>
+        </form>
+      </div>
+    );
   }
 }
 
