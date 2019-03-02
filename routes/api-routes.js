@@ -78,10 +78,10 @@ module.exports = function(app) {
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
     // Checks for a session, if none return 401
-    // if (!req.session.user) {
-    //   res.sendStatus(401);
-    //   return;
-    // }
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    }
     // If signed in, create new post with req data
     Post.create(req.body, function(err, post) {
       if (err) {

@@ -40,7 +40,7 @@ class SignIn extends Component {
         if (response.status === 200) {
           window.location = "/bulletin";
         } else {
-          console.log("Invalid username or password");
+          console("Invalid username or password");
         }
       })
       .catch(err => {
