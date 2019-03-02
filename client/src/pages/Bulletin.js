@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 
-const tempData =[
+const tempData = [
   {
     name: "Gerrald Ford",
     title: "Need a ride to work.",
@@ -29,23 +29,22 @@ const tempData =[
   },
 ];
 
-
-
 class Bulletin extends Component {
   state = {
-    posts: tempData
-  }
+    posts: tempData,
+  };
 
   renderPanels = () => {
     const posts = this.state.posts;
-  }
+    console.log(`Posts: ${posts}`);
+  };
 
   render() {
     return (
-        <main>
-          <SideBar />
-          <Panel category="Community Needs" posts={this.state.posts} />
-        </main>
+      <main>
+        <SideBar />
+        <Panel category="Community Needs" posts={this.state.posts} />
+      </main>
     );
   }
 }

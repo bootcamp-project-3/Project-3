@@ -73,7 +73,10 @@ class SubmitModal extends React.Component {
             <Typography align="center" variant="h4">
               Post
             </Typography>
-            <TextFields category={this.props.category} posts={this.props.posts} />
+            <TextFields
+              category={this.props.category}
+              posts={this.props.posts}
+            />
           </div>
         </Modal>
       </div>
