@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,7 +17,7 @@ function ContainedButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button variant="contained" color="primary" className={classes.button} align="center">
+      <Button variant="contained" color="primary" className={classes.button} align="center" onClick={() => {window.location = "./bulletin";}}>
         Sign Up
       </Button>
       <input
