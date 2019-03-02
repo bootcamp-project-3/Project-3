@@ -27,18 +27,22 @@ class Bulletin extends Component {
       },
     ],
   };
-  
+
   updatePosts = posts => {
     this.setState({
       posts: posts,
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <main>
         <SideBar />
-        <Panel category="Community Needs" posts={this.state.posts} updatePosts={this.updatePosts}/>
+        <Panel
+          category="Community Needs"
+          posts={this.state.posts}
+          updatePosts={this.updatePosts}
+        />
       </main>
     );
   }

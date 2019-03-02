@@ -29,6 +29,15 @@ class Panel extends React.Component {
     expanded: null,
   };
 
+  componentDidMount() {
+    axios
+    .get("http://localhost:3001/api/posts")
+    .then(response => {
+      console.log(response.data);
+      this.props.updatePosts(response.data);
+    });
+  }
+
   handleChange = panel => (event, expanded) => {
     this.setState({
       expanded: expanded ? panel : false,
@@ -36,10 +45,6 @@ class Panel extends React.Component {
   };
 
   renderPanels = () => {
-    axios
-      .get("http://localhost:3001/api/posts")
-      .then(response => {
-        this.props.updatePosts(response.data);
         const { classes } = this.props;
         const { expanded } = this.state;
 
@@ -55,19 +60,19 @@ class Panel extends React.Component {
                   {panel.title}
                 </Typography>
                 <Typography className={classes.secondaryHeading}>
-                  {panel.name}
+                  {panel.user}
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography>{panel.message}</Typography>
+                <Typography>{panel.content}</Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           );
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // });
   };
 
   render() {
@@ -86,6 +91,7 @@ class Panel extends React.Component {
     );
   }
 }
+
 
 Panel.propTypes = {
   classes: PropTypes.object.isRequired,
