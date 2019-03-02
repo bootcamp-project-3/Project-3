@@ -92,6 +92,10 @@ module.exports = function(app) {
       }
     });
   });
+  // * Get session data
+  app.get("/api/session", function(req, res) {
+    res.send(req.session);
+  })
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
     // Checks for session, if none, return 401
