@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
