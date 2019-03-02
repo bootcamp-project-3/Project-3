@@ -6,20 +6,17 @@ class SignIn extends Component {
   state = {
     redirect: false,
     inputEmail: "",
-    inputPass: ""
+    inputPass: "",
+    inputName: "",
+    inputZipcode: ""
   }
 
-  inputEmail = (event) => {
+  handleInputChange = event => {
+    const { name, value } = event.target;
     this.setState({
-      inputEmail: event.target.value,
-    })
-  }
-
-  inputPass = (event) => {
-    this.setState({
-      inputPass: event.target.value
-    })
-  }
+      [name]: value
+    });
+  };
 
   setRedirect = () => {
     this.setState({
@@ -31,11 +28,19 @@ class SignIn extends Component {
       window.location = "/auth/google"
     }
   }
-  addUser = (event) => {
-event.preventDefault();
-axios.post("/api/users", (data)=>{
-console.log(data)
-    }).then(console.log("it got here"))
+  addUser =  (event) => {
+ event.preventDefault();
+ axios.post("/api/users", 
+ {
+  "name": this.state.inputName,
+	"email": this.state.inputEmail,
+	"zip": this.state.inputZipcode,
+	"password": this.state.inputPass
+ }
+  )
+ .then(function(response){
+   console.log(response)
+ })
     .catch(err=>{
       console.log(err);
     })
@@ -46,9 +51,14 @@ console.log(data)
        <div>
         {this.renderRedirect()}
         <button onClick={this.setRedirect}>Sign in w/ Gooogle</button>
-          <input value={this.state.inputEmail} name="email" onChange={this.inputEmail} placeholder="Email"></input>
-          <input value={this.state.inputPass} name="password" onChange={this.inputPass} placeholder="Password"></input>
-          <button onClick={this.addUser}>Submit</button>
+        <form onSubmit={this.addUser}>
+          <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
+          <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>
+          <input value={this.state.inputName} name="inputName" onChange={this.handleInputChange} placeholder="Name"></input>
+          <input value={this.state.inputZipcode} name="inputZipcode" onChange={this.handleInputChange} placeholder="Zipcode"></input>
+
+          <button >Submit</button>
+          </form>
        </div>
     )
   }
