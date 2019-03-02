@@ -30,11 +30,11 @@ const styles = theme => ({
   
 });
 
-const Font = Styled.h1`
-    font-family: 'Ranchers',cursive;
-    color: white;
-    margin:auto;
-`;
+// const Font = Styled.h1`
+//     font-family: 'Ranchers',cursive;
+//     color: white;
+//     margin:auto;
+// `;
 
 // const Logo = Styled.img`
 //     background: url(${Image}) no-repeat center center fixed;
@@ -59,7 +59,7 @@ function LpNav(props) {
             Menu
           </Typography>
           <Typography align="center" variant="h6" color="inherit" className={classes.grow}>
-           <img alt="" src={Image}  width= "40%"/>
+           <img alt="" src={Image}  width= "25%"/>
           </Typography>
           <Typography align="right" variant="h6" color="inherit" className={classes.grow} >
            <a  href="/sign-in">Sign In</a>

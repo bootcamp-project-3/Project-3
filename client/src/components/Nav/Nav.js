@@ -72,11 +72,7 @@ const styles = theme => ({
   },
 });
 
-const Font = Styled.h1`
-    font-family: 'Ranchers',cursive;
-    color: white;
-    margin:auto;
-`;
+
 
 function Nav(props) {
   const { classes } = props;
@@ -102,7 +98,7 @@ function Nav(props) {
             noWrap
             align="justify"
           >
-           <img alt="" src={Image}  width= "40%" onClick={() => {window.location = "./bulletin";}}/>
+           <img alt="" src={Image}  width= "35%" onClick={() => {window.location = "./bulletin";}}/>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
