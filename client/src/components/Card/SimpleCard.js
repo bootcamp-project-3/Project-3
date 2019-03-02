@@ -2,11 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-// import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Styled from "styled-components";
 import SubmitModal from "./SubmitModal";
 
 const styles = {
@@ -27,14 +24,6 @@ const styles = {
   },
 };
 
-const WrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  justify-items: center;
-  align-items: center;
-  max-width: 80%;
-  margin: 30px auto;
-`;
 
 function SimpleCard(props) {
   const { classes } = props;
@@ -42,15 +31,13 @@ function SimpleCard(props) {
 
   return (
     <div>
-      <WrapperDiv>
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" align="center">
             {props.category}
           </Typography>
           <CardContent>{props.renderPanels()}</CardContent>
-          <SubmitModal category={props.category} posts={props.posts} />
+          <SubmitModal category={props.category} posts={props.posts} updatePosts={props.updatePosts} />
         </Card>
-      </WrapperDiv>
       {/* <Button onClick={this.handleOpen}>Open Modal</Button> */}
     </div>
   );
