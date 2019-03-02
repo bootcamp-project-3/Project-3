@@ -46,7 +46,7 @@ function LpNav(props) {
             Around The Block
           </Typography>
           <Typography align="right" variant="h6" color="inherit" className={classes.grow} >
-           Sign In
+           <a  href="/sign-in">Sign In</a>
           </Typography>
         </Toolbar>
       </AppBar>

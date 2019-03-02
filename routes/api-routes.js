@@ -103,16 +103,16 @@ module.exports = function(app) {
     //   res.sendStatus(401);
     //   return;
     // } else {
-      // If signed in, return last 10 posts
-      const find = Post.find()
-        .sort({ createdAt: -1 })
-        .limit(10);
-      find.exec(function(err, posts) {
-        if (err) {
-          console.log(err);
-        }
-        res.send(posts);
-      });
+    // If signed in, return last 10 posts
+    const find = Post.find()
+      .sort({ createdAt: -1 })
+      .limit(10);
+    find.exec(function(err, posts) {
+      if (err) {
+        console.log(err);
+      }
+      res.send(posts);
+    });
     // }
   });
 };
