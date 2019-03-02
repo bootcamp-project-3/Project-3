@@ -9,6 +9,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import Styled from "styled-components";
 
 const styles = theme => ({
   root: {
@@ -70,11 +71,15 @@ const styles = theme => ({
   },
 });
 
-
+const Font = Styled.h1`
+    font-family: 'Ranchers',cursive;
+    color: white;
+    margin:auto;
+`;
 
 function Nav(props) {
   const { classes } = props;
-  
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -92,8 +97,9 @@ function Nav(props) {
             variant="h6"
             color="inherit"
             noWrap
+            align="justify"
           >
-            Neighborly
+            <Font>Neighborly</Font>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.search}>
