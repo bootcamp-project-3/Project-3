@@ -39,11 +39,14 @@ function LpNav(props) {
           <IconButton className={classes.menuButton} color="inherit" onClick={props.openDrawer} aria-label="Open drawer">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit">
+          <Typography variant="h6" color="inherit" className={classes.grow}>
             Menu
           </Typography>
-          <Typography align="center" variant="h6" color="inherit" >
+          <Typography align="center" variant="h6" color="inherit" className={classes.grow} >
             Around The Block
+          </Typography>
+          <Typography align="right" variant="h6" color="inherit" className={classes.grow} >
+           Sign In
           </Typography>
         </Toolbar>
       </AppBar>
