@@ -50,7 +50,7 @@ class SignUp extends Component {
     return (
        <div>
         {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Sign in w/ Gooogle</button>
+        <button onClick={this.setRedirect}>Sign up with Google</button>
         <form onSubmit={this.addUser}>
           <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
           <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>

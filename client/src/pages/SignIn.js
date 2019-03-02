@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import LpNav from "../components/LandingPage/LpNav";
+
 
 class SignIn extends Component {
 
@@ -28,7 +30,7 @@ class SignIn extends Component {
       window.location = "/auth/google"
     }
   }
-  addUser =  (event) => {
+  getUser =  (event) => {
  event.preventDefault();
  axios.post("/api/users", 
  {
@@ -49,9 +51,10 @@ class SignIn extends Component {
   render () {
     return (
        <div>
+         <LpNav />
         {this.renderRedirect()}
         <button onClick={this.setRedirect}>Sign in w/ Gooogle</button>
-        <form onSubmit={this.addUser}>
+        <form onSubmit={this.getUser}>
           <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
           <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>
           <input value={this.state.inputName} name="inputName" onChange={this.handleInputChange} placeholder="Name"></input>
