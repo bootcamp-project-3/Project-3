@@ -53,9 +53,14 @@ class TextFields extends React.Component {
     };
 
     axios
-      .post("http://localhost:3001/api/posts", newPost)
+      .post("http://localhost:5000/api/posts", newPost)
       .then(response => {
         console.log(response);
+        axios.get("http://localhost:5000/api/posts").then(posts => {
+          console.log(posts.data);
+          this.props.updatePosts(posts.data);
+        });
+        console.log(this.props)
       })
       .catch(error => {
         console.log(error);
@@ -103,7 +108,10 @@ class TextFields extends React.Component {
               variant="contained"
               component="span"
               className={classes.button}
-              onClick={this.handleSubmit}
+              onClick={() => {
+                this.handleSubmit();
+                this.props.closeModal();
+              }}
             >
               Submit
             </Button>

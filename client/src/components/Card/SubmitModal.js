@@ -76,6 +76,8 @@ class SubmitModal extends React.Component {
             <TextFields
               category={this.props.category}
               posts={this.props.posts}
+              closeModal={this.handleClose}
+              updatePosts={this.props.updatePosts}
             />
           </div>
         </Modal>

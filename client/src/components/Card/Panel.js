@@ -31,7 +31,7 @@ class Panel extends React.Component {
 
   componentDidMount() {
     axios
-    .get("http://localhost:3001/api/posts")
+    .get("http://localhost:5000/api/posts")
     .then(response => {
       console.log(response.data);
       this.props.updatePosts(response.data);
@@ -86,6 +86,7 @@ class Panel extends React.Component {
           posts={this.props.posts}
           category={this.props.category}
           renderPanels={this.renderPanels}
+          updatePosts={this.props.updatePosts}
         />
       </div>
     );
