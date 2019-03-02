@@ -102,7 +102,7 @@ function Nav(props) {
             noWrap
             align="justify"
           >
-           <img alt="" src={Image}  width= "40%" onClick={() => {window.location = "./";}}/>
+           <img alt="" src={Image}  width= "40%" onClick={() => {window.location = "./bulletin";}}/>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
