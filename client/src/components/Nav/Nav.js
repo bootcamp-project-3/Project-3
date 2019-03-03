@@ -10,7 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 // import Styled from "styled-components";
-import Image from "../LandingPage/assets/be-neighborly.png";
+import Image from "../LandingPage/assets/neighborlyFinal.png";
 
 const styles = theme => ({
   root: {
@@ -86,6 +86,7 @@ function Nav(props) {
             color="inherit"
             onClick={props.openDrawer}
             aria-label="Open drawer"
+            align="left"
           >
             <MenuIcon />
           </IconButton>
@@ -98,7 +99,7 @@ function Nav(props) {
             noWrap
             align="justify"
           >
-           <img alt="" src={Image}  width= "35%" onClick={() => {window.location = "./bulletin";}}/>
+           <img alt=""  src={Image} width= "35%" onClick={() => {window.location = "./bulletin";}}/>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
