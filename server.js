@@ -58,7 +58,7 @@ app.use(passport.session());
 
 // Connect app to mongo db
 const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/neighbor-app";
+  process.env.MONGODB_URI || "mongodb://localhost/project3";
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
 });
