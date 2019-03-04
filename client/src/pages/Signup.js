@@ -37,10 +37,10 @@ class SignUp extends Component {
       password: this.state.inputPass,
     };
     axios
-      .post("http://localhost:5000/api/users", newUser)
-      .then(function(response){
+      .post("/api/users", newUser)
+      .then(function(response) {
         console.log(response);
-        window.location = "/bulletin"
+        window.location = "/bulletin";
       })
       .catch(err => {
         console.log(err);

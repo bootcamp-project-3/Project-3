@@ -34,7 +34,7 @@ class SignIn extends Component {
     console.log(user);
     event.preventDefault();
     axios
-      .post("http://localhost:5000/api/signin", user)
+      .post("/api/signin", user)
       .then(function(response) {
         console.log(response);
         if (response.status === 200) {

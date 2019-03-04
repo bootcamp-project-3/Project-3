@@ -72,8 +72,6 @@ const styles = theme => ({
   },
 });
 
-
-
 function Nav(props) {
   const { classes } = props;
 
@@ -89,16 +87,23 @@ function Nav(props) {
           >
             <MenuIcon />
           </IconButton>
-         
+
           <div className={classes.grow} />
-           <Typography
+          <Typography
             className={classes.title}
             variant="h6"
             color="inherit"
             noWrap
             align="justify"
           >
-           <img alt="" src={Image}  width= "35%" onClick={() => {window.location = "./bulletin";}}/>
+            <img
+              alt=""
+              src={Image}
+              width="35%"
+              onClick={() => {
+                window.location = "./bulletin";
+              }}
+            />
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

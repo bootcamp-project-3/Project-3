@@ -53,7 +53,7 @@ class TextFields extends React.Component {
     };
 
     axios
-      .post("http://localhost:5000/api/posts", newPost)
+      .post("/api/posts", newPost)
       .then(response => {
         console.log(response);
         fetch("/api/posts")
