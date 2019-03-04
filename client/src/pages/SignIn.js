@@ -53,7 +53,7 @@ class SignIn extends Component {
       <div>
         <LpNav />
         {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Sign in w/ Gooogle</button>
+        <button onClick={this.setRedirect}>Sign in w/ Google</button>
         <form onSubmit={this.getUser}>
           <input
             value={this.state.inputEmail}

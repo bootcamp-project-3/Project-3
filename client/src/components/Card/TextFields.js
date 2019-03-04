@@ -56,6 +56,17 @@ class TextFields extends React.Component {
       .post("http://localhost:5000/api/posts", newPost)
       .then(response => {
         console.log(response);
+        fetch("/api/posts")
+          .then(res => res.json())
+          .then(
+            result => {
+              console.log(result);
+              this.props.updatePosts(result);
+            },
+            error => {
+              console.log(error);
+            }
+          );
       })
       .catch(error => {
         console.log(error);
@@ -103,7 +114,10 @@ class TextFields extends React.Component {
               variant="contained"
               component="span"
               className={classes.button}
-              onClick={this.handleSubmit}
+              onClick={() => {
+                this.handleSubmit();
+                this.props.closeModal();
+              }}
             >
               Submit
             </Button>

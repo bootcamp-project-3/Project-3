@@ -7,7 +7,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SimpleCard from "./SimpleCard";
-import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -86,6 +85,7 @@ class Panel extends React.Component {
           posts={this.props.posts}
           category={this.props.category}
           renderPanels={this.renderPanels}
+          updatePosts={this.props.updatePosts}
         />
       </div>
     );

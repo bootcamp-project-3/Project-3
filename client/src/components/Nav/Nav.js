@@ -9,6 +9,8 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+// import Styled from "styled-components";
+import Image from "../LandingPage/assets/be-neighborly.png";
 
 const styles = theme => ({
   root: {
@@ -74,7 +76,7 @@ const styles = theme => ({
 
 function Nav(props) {
   const { classes } = props;
-  
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -87,15 +89,17 @@ function Nav(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
+         
+          <div className={classes.grow} />
+           <Typography
             className={classes.title}
             variant="h6"
             color="inherit"
             noWrap
+            align="justify"
           >
-            Neighborly
+           <img alt="" src={Image}  width= "35%" onClick={() => {window.location = "./bulletin";}}/>
           </Typography>
-          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

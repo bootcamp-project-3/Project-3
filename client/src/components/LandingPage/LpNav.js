@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import Image from "../LandingPage/assets/be-neighborly.png";
 
 
 
@@ -28,6 +29,20 @@ const styles = theme => ({
   
 });
 
+// const Font = Styled.h1`
+//     font-family: 'Ranchers',cursive;
+//     color: white;
+//     margin:auto;
+// `;
+
+// const Logo = Styled.img`
+//     background: url(${Image}) no-repeat center center fixed;
+// `;
+
+
+
+
+
 
 function LpNav(props) {
   const { classes } = props;
@@ -42,8 +57,8 @@ function LpNav(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Menu
           </Typography>
-          <Typography align="center" variant="h6" color="inherit" className={classes.grow} >
-            Around The Block
+          <Typography align="center" variant="h6" color="inherit" className={classes.grow}>
+           <img alt="" src={Image}  width= "25%"/>
           </Typography>
           <Typography align="right" variant="h6" color="inherit" className={classes.grow} >
            <a  href="/sign-in">Sign In</a>
