@@ -101,7 +101,6 @@ class Panel extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* {this.renderPanels()} */}
         <SimpleCard
           posts={this.props.posts}
           category={this.props.category}

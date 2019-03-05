@@ -36,6 +36,12 @@ function SimpleCard(props) {
   return (
     <div>
       <Card className={classes.card}>
+       <img
+            className={classes.tack}
+            alt=""
+            image={thumbtackRed}
+            width="15%"            
+          />
         <Typography variant="h6" color="inherit" align="center">
           {props.category}
         </Typography>
@@ -43,12 +49,6 @@ function SimpleCard(props) {
           {props.posts.length ? props.renderPanels() : <LoadingCircle />}
         </CardContent>
         <div>
-          <img
-            className={classes.tack}
-            alt=""
-            src={thumbtackRed}
-            width="15%"            
-          />
         </div>
         <SubmitModal
           category={props.category}
