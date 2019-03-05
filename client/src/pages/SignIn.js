@@ -1,43 +1,43 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Image from "../components/LandingPage/assets/neighborlyFinal.png";
-
 
 const styles = theme => ({
   main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
   },
   submit: {
@@ -46,21 +46,20 @@ const styles = theme => ({
 });
 
 const Logo = withStyles({
-  root:{
-    background: "grey"
-  }
-})(Button)
+  root: {
+    background: "grey",
+  },
+})(Button);
 
-const getUser =  (event) => {
+const getUser = event => {
   event.preventDefault();
   console.log(event.target.email.value);
-  console.log(event.target.password.value)
+  console.log(event.target.password.value);
   let data = {
-    email: event.target.email.value.toLowerCase(),  
+    email: event.target.email.value.toLowerCase(),
     password: event.target.password.value,
-  }
-  fetch("/api/signin", 
-  {
+  };
+  fetch("/api/signin", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -72,16 +71,17 @@ const getUser =  (event) => {
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data), // body data type must match "Content-Type" header
-})
-  .then(function(response){
-    console.log(response);
-      window.location="./bulletin"
-      })
-  .catch(err=>{
-    console.log(err)
   })
-}
-
+    .then(function(response) {
+      console.log(response);
+      if (response.status === 200) {
+        window.location = "./bulletin";
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 function SignIn(props) {
   const { classes } = props;
@@ -90,20 +90,31 @@ function SignIn(props) {
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        <Logo align="center" className={classes.grow} onClick={()=>{window.location="./"}}>
-           <img alt="" src={Image}  width= "75%"/>
-          </Logo>
+        <Logo
+          align="center"
+          className={classes.grow}
+          onClick={() => {
+            window.location = "./";
+          }}
+        >
+          <img alt="" src={Image} width="75%" />
+        </Logo>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form } onSubmit={getUser}>
+        <form className={classes.form} onSubmit={getUser}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -121,15 +132,17 @@ function SignIn(props) {
         </form>
       </Paper>
       <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            onClick={()=>{window.location="./auth/google"}}
-          >
-            Sign in with Google
-          </Button>
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="secondary"
+        className={classes.submit}
+        onClick={() => {
+          window.location = "./auth/google";
+        }}
+      >
+        Sign in with Google
+      </Button>
     </main>
   );
 }
@@ -138,4 +151,4 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);  
+export default withStyles(styles)(SignIn);

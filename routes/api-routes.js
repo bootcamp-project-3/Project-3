@@ -70,6 +70,7 @@ module.exports = function(app) {
             if (result) {
               req.session.user = user._id;
               req.session.loc = user.zip;
+              req.session.name = user.name;
               console.log(req.session.user);
               res.sendStatus(200);
             }

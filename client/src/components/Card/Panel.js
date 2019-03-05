@@ -27,7 +27,38 @@ const styles = theme => ({
 class Panel extends React.Component {
   state = {
     expanded: null,
+    id: "",
+    location: ""
   };
+
+  componentDidMount = () => {
+    fetch("/api/session", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          console.log(result.data)
+          this.setState({
+            id: result.data.user,
+            location: result.data.loc
+          });
+        },
+        error => {
+          console.log(error)
+        }
+      );
+  }
 
   handleChange = panel => (event, expanded) => {
     this.setState({
@@ -49,7 +80,7 @@ class Panel extends React.Component {
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>{panel.title}</Typography>
             <Typography className={classes.secondaryHeading}>
-              {panel.user}
+              {panel.name}
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
