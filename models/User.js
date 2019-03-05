@@ -7,10 +7,13 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
   console.log("Connected to db!");
 });
-
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  googleID: {
+    type: String,
+    trim: true,
+  },
   name: {
     type: String,
     trim: true,

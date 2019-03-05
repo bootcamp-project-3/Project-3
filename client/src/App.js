@@ -3,17 +3,18 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import pink from "@material-ui/core/colors";
+
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: pink, // Indigo is probably a good match with pink
+    primary: {
+      main: '#66bb6a',
+    },
   },
 });
 
@@ -27,6 +28,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/sign-in" component={SignIn} />
+                <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/bulletin" component={Bulletin} />
                 <Route component={NoMatch} />
               </Switch>
