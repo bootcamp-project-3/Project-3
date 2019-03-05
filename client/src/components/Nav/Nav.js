@@ -10,7 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 // import Styled from "styled-components";
-import Image from "../LandingPage/assets/be-neighborly.png";
+import Image from "../LandingPage/assets/neighborlyFinal.png";
 
 const styles = theme => ({
   root: {
@@ -18,6 +18,10 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  image: {
+    width: "50%",
+    align: "justify",
   },
   menuButton: {
     marginLeft: -12,
@@ -72,8 +76,6 @@ const styles = theme => ({
   },
 });
 
-
-
 function Nav(props) {
   const { classes } = props;
 
@@ -86,19 +88,21 @@ function Nav(props) {
             color="inherit"
             onClick={props.openDrawer}
             aria-label="Open drawer"
+            align="left"
           >
             <MenuIcon />
           </IconButton>
-         
-          <div className={classes.grow} />
-           <Typography
-            className={classes.title}
-            variant="h6"
-            color="inherit"
-            noWrap
-            align="justify"
-          >
-           <img alt="" src={Image}  width= "35%" onClick={() => {window.location = "./bulletin";}}/>
+
+          <div className={classes.image} />
+          <Typography className={classes.image}>
+            <img
+              alt=""
+              src={Image}
+              width="25%"
+              onClick={() => {
+                window.location = "./bulletin";
+              }}
+            />
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

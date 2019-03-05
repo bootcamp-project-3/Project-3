@@ -6,8 +6,12 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import SubmitModal from "./SubmitModal";
 import LoadingCircle from "../EventCard/LoadingCircle";
+import thumbtackRed from "../Card/assets/thumbtackred.png";
 
 const styles = {
+  tack: {
+    margin:"auto",
+  },
   card: {
     minWidth: 275,
     width: 500,
@@ -38,6 +42,14 @@ function SimpleCard(props) {
         <CardContent>
           {props.posts.length ? props.renderPanels() : <LoadingCircle />}
         </CardContent>
+        <div>
+          <img
+            className={classes.tack}
+            alt=""
+            src={thumbtackRed}
+            width="15%"            
+          />
+        </div>
         <SubmitModal
           category={props.category}
           posts={props.posts}

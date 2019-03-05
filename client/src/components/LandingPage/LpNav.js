@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import Image from "../LandingPage/assets/be-neighborly.png";
+import Image from "../LandingPage/assets/neighborlyFinal.png";
 
 
 
