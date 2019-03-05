@@ -40,15 +40,16 @@ module.exports = function(app) {
     });
   });
   // *Sign in request
-  app.get("/api/signin", function(req, res) {
+  app.post("/api/signin", function(req, res) {
     User.findOne({ email: req.body.email }, function(err, user) {
+      console.log(req.body);
       if (err) {
         console.log(err);
       } else {
         // Checks to see if there is a user with the submitted email
         if (user === null) {
           console.log(user);
-          res.send("No user exists with this email.");
+          res.sendStatus(401);
           return;
         } else {
           // If email matches to valid user, compare input password to hased password stored
@@ -65,9 +66,11 @@ module.exports = function(app) {
               res.sendStatus(401);
               return;
             }
-            // If good, allow assign session and send code 200
+            // If good, assign session and send code 200
             if (result) {
-              req.session.user = "User Test Session";
+              req.session.user = user._id;
+              req.session.loc = user.zip;
+              console.log(req.session.user);
               res.sendStatus(200);
             }
           });
@@ -78,10 +81,10 @@ module.exports = function(app) {
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
     // Checks for a session, if none return 401
-    // if (!req.session.user) {
-    //   res.sendStatus(401);
-    //   return;
-    // }
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    }
     // If signed in, create new post with req data
     Post.create(req.body, function(err, post) {
       if (err) {
@@ -100,10 +103,10 @@ module.exports = function(app) {
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
     // Checks for session, if none, return 401
-    // if (!req.session.user) {
-    //   res.sendStatus(401);
-    //   return;
-    // } else {
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    } else {
     // If signed in, return last 10 posts
     const find = Post.find()
       .sort({ createdAt: -1 })
@@ -114,6 +117,6 @@ module.exports = function(app) {
       }
       res.send(JSON.stringify(posts));
     });
-    // }
+    }
   });
 };

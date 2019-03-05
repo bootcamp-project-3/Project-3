@@ -49,7 +49,7 @@ const saveUser =  (event) => {
   console.log(event.target.email.value);
   console.log(event.target.password.value)
   let data = {
-    email: event.target.email.value,  
+    email: event.target.email.value.toLowerCase(),  
     password: event.target.password.value,
     name: event.target.name.value,
     zip: event.target.zipcode.value
