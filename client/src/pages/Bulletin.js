@@ -25,6 +25,8 @@ const LargeWrapperDiv = Styled.div`
 class Bulletin extends Component {
   state = {
     posts: [],
+    id: "",
+    location: "",
   };
 
   componentDidMount() {
@@ -69,6 +71,10 @@ class Bulletin extends Component {
           result => {
             console.log(result);
             console.log(result.data)
+            this.setState({
+              id: result.data.user,
+              location: result.data.loc
+            });
           },
           error => {
             console.log(error)
