@@ -1,75 +1,58 @@
 {
-    "env": {
-        "browser": true,
-        "node": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module",
-        "parser": "babel-eslint",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "extends": [
-        "plugin:react/recommended",
-        "plugin:prettier/recommended"
-
-    ],
-    "rules": {
-        "no-duplicate-case": "error",
-        "no-empty": "error",
-        "no-console": "off",
-        "no-extra-semi": "error",
-        "no-undef": "off",
-        "no-func-assign": "error",
-        "no-irregular-whitespace": "error",
-        "no-unreachable": "error",
-        "curly": "error",
-        "dot-notation": "error",
-        "eqeqeq": "error",
-        "no-empty-function": "error",
-        "no-multi-spaces": "error",
-        "no-mixed-spaces-and-tabs": "error",
-        "default-case": "error",
-        "no-fallthrough": "error",
-        "no-unused-vars": "error",
-        "no-use-before-define": "error",
-        "no-redeclare": "error",
-        "camelcase": "error",
-        "brace-style": "error",
-        "prettier/prettier": "error",
-        "react/version": "latest",
-        "indent": [
-            "error",
-            2,
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "linebreak-style": [
-            "off",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    },
-    "settings": {
-        "react": {
-            "version": "latest"
-        }
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "parser": "babel-eslint",
+    "ecmaFeatures": {
+      "jsx": true
     }
-
+  },
+  "plugins": ["react", "prettier"],
+  "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "no-duplicate-case": "error",
+    "no-empty": "error",
+    "no-console": "off",
+    "no-extra-semi": "error",
+    "no-undef": "off",
+    "no-func-assign": "error",
+    "no-irregular-whitespace": "error",
+    "no-unreachable": "error",
+    "curly": "error",
+    "dot-notation": "error",
+    "eqeqeq": "error",
+    "no-empty-function": "error",
+    "no-multi-spaces": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "default-case": "error",
+    "no-fallthrough": "error",
+    "no-unused-vars": "error",
+    "no-use-before-define": "error",
+    "no-redeclare": "error",
+    "camelcase": "error",
+    "brace-style": "error",
+    "prettier/prettier": "error",
+    "react/version": "999.999",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": ["off", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"]
+  },
+  "settings": {
+    "react": {
+      "version": "999.999"
+    }
+  }
 }

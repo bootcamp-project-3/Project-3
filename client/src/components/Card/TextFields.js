@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Styled from "styled-components";
-import axios from "axios";
+// import axios from "axios";
 
 const styles = theme => ({
   container: {
@@ -52,25 +52,50 @@ class TextFields extends React.Component {
       content: this.state.body,
     };
 
-    axios
-      .post("/api/posts", newPost)
-      .then(response => {
-        console.log(response);
-        fetch("/api/posts")
-          .then(res => res.json())
-          .then(
-            result => {
-              console.log(result);
-              this.props.updatePosts(result);
-            },
-            error => {
-              console.log(error);
-            }
-          );
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // axios
+    //   .post("/api/posts", newPost)
+    //   .then(response => {
+    //     console.log(response);
+    //     fetch("/api/posts")
+    //       .then(res => res.json())
+    //       .then(
+    //         result => {
+    //           console.log(result);
+    //           this.props.updatePosts(result);
+    //         },
+    //         error => {
+    //           console.log(error);
+    //         }
+    //       );
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+    fetch("/api/posts", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "no-referrer", // no-referrer, *client
+      body: JSON.stringify(newPost), // body data type must match "Content-Type" header
+    }).then(response => {
+      fetch("/api/posts")
+        .then(res => res.json())
+        .then(
+          result => {
+            console.log(result);
+            this.props.updatePosts(result);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    });
   };
 
   render() {
@@ -111,7 +136,8 @@ class TextFields extends React.Component {
         <label htmlFor="contained-button-file">
           <ButtonWrapper>
             <Button
-              variant="contained"
+              color="primary"
+              variant="outlined"
               component="span"
               className={classes.button}
               onClick={() => {
