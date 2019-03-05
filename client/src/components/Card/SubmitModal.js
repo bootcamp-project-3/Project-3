@@ -32,7 +32,7 @@ const styles = theme => ({
     outline: "none",
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit, 
   },
 });
 
@@ -59,7 +59,7 @@ class SubmitModal extends React.Component {
     return (
       <div>
         <ButtonWrapper>
-          <Button onClick={this.handleOpen} align="justify">
+          <Button onClick={this.handleOpen} align="justify" color="primary" variant="outlined">
             Add Post
           </Button>
         </ButtonWrapper>
