@@ -33,7 +33,7 @@ class Bulletin extends Component {
       method: "Get", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      credentials: "include", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
         // "Content-Type": "application/x-www-form-urlencoded",
@@ -51,6 +51,29 @@ class Bulletin extends Component {
           console.log(error)
         }
       );
+
+      fetch("/api/session", {
+        method: "Get", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "include", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "client", // no-referrer, *client
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            console.log(result);
+            console.log(result.data)
+          },
+          error => {
+            console.log(error)
+          }
+        );
   }
 
   updatePosts = posts => {

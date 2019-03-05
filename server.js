@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
 const passport = require("passport");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
@@ -16,7 +16,7 @@ let cookieKey = process.env.CookieKey;
 
 const session = require("express-session");
 
-const secret = process.env.SESSION_SECRET || "testsecret";
+// const secret = process.env.SESSION_SECRET || "testsecret";
 // Define middleware here
 app.use(
   express.urlencoded({
@@ -46,12 +46,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: cookieKey,
-  })
-);
+app.use(session({ secret: cookieKey, cookie: { maxAge: 60000 } }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,7 +59,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Middleware
-app.use(session({ secret: secret, resave: false, saveUninitialized: true }));
+// app.use(session({ secret: secret, resave: false, saveUninitialized: true }));
 
 // Define API routes here
 require("./routes/api-routes.js")(app);
