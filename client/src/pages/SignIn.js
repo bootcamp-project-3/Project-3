@@ -1,70 +1,151 @@
-import React, { Component } from "react";
-import axios from "axios";
-import LpNav from "../components/LandingPage/LpNav";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Image from "../components/LandingPage/assets/be-neighborly.png";
 
 
-class SignIn extends Component {
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit,
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3,
+  },
+});
 
-  state = {
-    redirect: false,
-    inputEmail: "",
-    inputPass: "",
-    inputName: "",
-    inputZipcode: ""
+const Logo = withStyles({
+  root:{
+    background: "grey"
   }
+})(Button)
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
+const getUser =  (event) => {
+  event.preventDefault();
+  console.log(event.target.email.value);
+  console.log(event.target.password.value)
+  let data = {
+    email: event.target.email.value,  
+    password: event.target.password.value,
+    name: event.target.name.value,
+    zip: event.target.zipcode.value
   }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      window.location = "/auth/google"
-    }
-  }
-  getUser =  (event) => {
- event.preventDefault();
- axios.post("/api/users", 
- {
-  "Name": this.state.inputName,
-	"Email": this.state.inputEmail,
-	"Zip": this.state.inputZipcode,
-	"Password": this.state.inputPass
- }
-  )
- .then(function(response){
-   console.log(response)
- })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
-  render () {
-    return (
-       <div>
-         <LpNav />
-        {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Sign in w/ Google</button>
-        <form onSubmit={this.getUser}>
-          <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
-          <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>
-          <input value={this.state.inputName} name="inputName" onChange={this.handleInputChange} placeholder="Name"></input>
-          <input value={this.state.inputZipcode} name="inputZipcode" onChange={this.handleInputChange} placeholder="Zipcode"></input>
-
-          <button >Submit</button>
-          </form>
-       </div>
-    )
-  }
+  fetch("/api/users", 
+  {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+})
+  .then(function(response){
+    console.log(response);
+      window.location="./bulletin"
+      })
+  .catch(err=>{
+    console.log(err)
+  })
 }
 
-export default SignIn;
+
+function SignIn(props) {
+  const { classes } = props;
+
+  return (
+    <main className={classes.main}>
+      <CssBaseline />
+      <Paper className={classes.paper}>
+        <Logo align="center" className={classes.grow} onClick={()=>{window.location="./"}}>
+           <img alt="" src={Image}  width= "75%"/>
+          </Logo>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form } onSubmit={getUser}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="name">Name</InputLabel>
+            <Input name="name" id="name" autoComplete="name" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
+            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
+          </FormControl>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign in
+          </Button>
+        </form>
+      </Paper>
+      <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={()=>{window.location="./auth/google"}}
+          >
+            Sign in with Google
+          </Button>
+    </main>
+  );
+}
+
+SignIn.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SignIn);  
