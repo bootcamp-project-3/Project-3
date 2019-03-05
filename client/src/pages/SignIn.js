@@ -57,18 +57,27 @@ const getUser =  (event) => {
   console.log(event.target.password.value)
   let data = {
     email: event.target.email.value,  
-    password: event.target.password.value
+    password: event.target.password.value,
+    name: event.target.name.value,
+    zip: event.target.zipcode.value
   }
   fetch("/api/users", 
   {
-    body: JSON.stringify(data),
-    method: "POST",
-    headers:{
-      'Content-Type': 'application/json'
-    }
-  })
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+})
   .then(function(response){
     console.log(response);
+      window.location="./bulletin"
       })
   .catch(err=>{
     console.log(err)
@@ -98,6 +107,14 @@ function SignIn(props) {
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="name">Name</InputLabel>
+            <Input name="name" id="name" autoComplete="name" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
+            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
+          </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -108,7 +125,6 @@ function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>{window.location="./bulletin"}}
           >
             Sign in
           </Button>

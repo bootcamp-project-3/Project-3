@@ -44,20 +44,33 @@ const styles = theme => ({
   },
 });
 
-const getUser =  (event) => {
+const saveUser =  (event) => {
   event.preventDefault();
   console.log(event.target.email.value);
   console.log(event.target.password.value)
-  fetch("/api/users", 
-  {
+  let data = {
     email: event.target.email.value,  
     password: event.target.password.value,
     name: event.target.name.value,
-    zipcode: event.target.zipcode.value
+    zip: event.target.zipcode.value
   }
-  )
+  fetch("/api/users", 
+  {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+})
   .then(function(response){
     console.log(response);
+      window.location="./sign-in"
       })
   .catch(err=>{
     console.log(err)
@@ -83,7 +96,7 @@ function SignUp(props) {
         <Typography component="h1" variant="h5" align="center">
           Create an account with Neighborly
         </Typography>
-        <form className={classes.form } onSubmit={getUser}>
+        <form className={classes.form } onSubmit={saveUser}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus />
@@ -110,7 +123,6 @@ function SignUp(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>{window.location="./bulletin"}}
           >
             Create account
           </Button>
