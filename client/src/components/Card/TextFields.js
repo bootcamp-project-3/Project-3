@@ -127,7 +127,7 @@ class TextFields extends React.Component {
             label="Post"
             multiline
             rowsMax="8"
-            value={this.state.multiline}
+            value={this.state.body}
             onChange={this.handleChange("body")}
             className={classes.textField}
             margin="normal"

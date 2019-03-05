@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import SubmitModal from "./SubmitModal";
+import LoadingCircle from "../EventCard/LoadingCircle";
 
 const styles = {
   card: {
@@ -24,20 +25,25 @@ const styles = {
   },
 };
 
-
 function SimpleCard(props) {
   const { classes } = props;
   // const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
-        <Card className={classes.card}>
-          <Typography variant="h6" color="inherit" align="center">
-            {props.category}
-          </Typography>
-          <CardContent>{props.renderPanels()}</CardContent>
-          <SubmitModal category={props.category} posts={props.posts} updatePosts={props.updatePosts} />
-        </Card>
+      <Card className={classes.card}>
+        <Typography variant="h6" color="inherit" align="center">
+          {props.category}
+        </Typography>
+        <CardContent>
+          {props.posts.length ? props.renderPanels() : <LoadingCircle />}
+        </CardContent>
+        <SubmitModal
+          category={props.category}
+          posts={props.posts}
+          updatePosts={props.updatePosts}
+        />
+      </Card>
       {/* <Button onClick={this.handleOpen}>Open Modal</Button> */}
     </div>
   );
