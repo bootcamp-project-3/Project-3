@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SimpleCard from "./SimpleCard";
 
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -35,34 +36,32 @@ class Panel extends React.Component {
   };
 
   renderPanels = () => {
-        const { classes } = this.props;
-        const { expanded } = this.state;
+    const { classes } = this.props;
+    const { expanded } = this.state;
 
-        return this.props.posts.map((panel, index) => {
-          return (
-            <ExpansionPanel
-              expanded={expanded === `panel${index}`}
-              onChange={this.handleChange(`panel${index}`)}
-              key={index}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>
-                  {panel.title}
-                </Typography>
-                <Typography className={classes.secondaryHeading}>
-                  {panel.user}
-                </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>{panel.content}</Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        });
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // });
+    return this.props.posts.map((panel, index) => {
+      return (
+        <ExpansionPanel
+          expanded={expanded === `panel${index}`}
+          onChange={this.handleChange(`panel${index}`)}
+          key={index}
+        >
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.heading}>{panel.title}</Typography>
+            <Typography className={classes.secondaryHeading}>
+              {panel.user}
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{panel.content}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      );
+    });
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // });
   };
 
   render() {
@@ -82,7 +81,6 @@ class Panel extends React.Component {
     );
   }
 }
-
 
 Panel.propTypes = {
   classes: PropTypes.object.isRequired,

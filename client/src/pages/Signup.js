@@ -10,7 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Image from "../components/LandingPage/assets/be-neighborly.png";
+import Image from "../components/LandingPage/assets/neighborlyFinal.png";
 
 const styles = theme => ({
   main: {
