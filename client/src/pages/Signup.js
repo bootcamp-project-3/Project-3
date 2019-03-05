@@ -1,67 +1,137 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Image from "../components/LandingPage/assets/be-neighborly.png";
 
-class SignUp extends Component {
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit,
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3,
+  },
+});
 
-  state = {
-    redirect: false,
-    inputEmail: "",
-    inputPass: "",
-    inputName: "",
-    inputZipcode: ""
+const getUser =  (event) => {
+  event.preventDefault();
+  console.log(event.target.email.value);
+  console.log(event.target.password.value)
+  fetch("/api/users", 
+  {
+    email: event.target.email.value,  
+    password: event.target.password.value,
+    name: event.target.name.value,
+    zipcode: event.target.zipcode.value
   }
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      window.location = "/auth/google"
-    }
-  }
-  addUser =  (event) => {
- event.preventDefault();
- axios.post("/api/users", 
- {
-  "Name": this.state.inputName,
-	"Email": this.state.inputEmail,
-	"Zip": this.state.inputZipcode,
-	"Password": this.state.inputPass
- }
   )
- .then(function(response){
-   console.log(response)
- })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
-  render () {
-    return (
-       <div>
-        {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Sign up with Google</button>
-        <form onSubmit={this.addUser}>
-          <input value={this.state.inputEmail} name="inputEmail" onChange={this.handleInputChange} placeholder="Email"></input>
-          <input value={this.state.inputPass} name="inputPass" onChange={this.handleInputChange} placeholder="Password"></input>
-          <input value={this.state.inputName} name="inputName" onChange={this.handleInputChange} placeholder="Name"></input>
-          <input value={this.state.inputZipcode} name="inputZipcode" onChange={this.handleInputChange} placeholder="Zipcode"></input>
-
-          <button >Submit</button>
-          </form>
-       </div>
-    )
-  }
+  .then(function(response){
+    console.log(response);
+      })
+  .catch(err=>{
+    console.log(err)
+  })
 }
 
-export default SignUp;
+const Logo = withStyles({
+  root:{
+    background: "grey"
+  }
+})(Button)
+
+function SignUp(props) {
+  const { classes } = props;
+
+  return (
+    <main className={classes.main}>
+      <CssBaseline />
+      <Paper className={classes.paper}>
+      <Logo align="center" className={classes.grow} onClick={()=>{window.location="./"}}>
+           <img alt="" src={Image}  width= "75%"/>
+      </Logo>
+        <Typography component="h1" variant="h5" align="center">
+          Create an account with Neighborly
+        </Typography>
+        <form className={classes.form } onSubmit={getUser}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="name">Name</InputLabel>
+            <Input name="name" id="name" autoComplete="name" />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
+            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
+          </FormControl>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={()=>{window.location="./bulletin"}}
+          >
+            Create account
+          </Button>
+        </form>
+      </Paper>
+      <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={()=>{window.location="./auth/google"}}
+          >
+            Sign up with Google
+          </Button>
+    </main>
+  );
+}
+
+SignUp.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SignUp);  
