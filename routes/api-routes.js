@@ -67,7 +67,7 @@ module.exports = function(app) {
             }
             // If good, allow assign session and send code 200
             if (result) {
-              req.session.user = user._id;
+              req.session.user = "User Test Session";
               res.sendStatus(200);
             }
           });
@@ -94,7 +94,8 @@ module.exports = function(app) {
   });
   // * Get session data
   app.get("/api/session", function(req, res) {
-    res.send(req.session);
+    console.log(`Session cookie is ${req.session.user}`);
+    res.send(JSON.stringify({ data: req.session }));
   });
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
@@ -111,7 +112,7 @@ module.exports = function(app) {
       if (err) {
         console.log(err);
       }
-      res.send(posts);
+      res.send(JSON.stringify(posts));
     });
     // }
   });
