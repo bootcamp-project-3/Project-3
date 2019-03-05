@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
+import Styled from "styled-components";
 
+const ContainerDiv = Styled.div`
+display: grid;
+grid-template:;
+`;
 class Dashboard extends Component {
     state = {
 
@@ -8,11 +13,12 @@ class Dashboard extends Component {
 
     render() {
         return(
-            <main>
+            <ContainerDiv>
             <SideBar />
+            <main>
             <p>Test</p>
-
             </main>
+            </ContainerDiv>
         )
     }
 }
