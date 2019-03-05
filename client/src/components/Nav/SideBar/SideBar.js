@@ -67,8 +67,8 @@ class SideBar extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {["Inbox", "Bulletin", "Profile", "Posts"].map((text, index) => (
-            <ListItem button key={text}>
+          {["Inbox", "Bulletin", "Dashboard", "Posts"].map((text, index) => (
+            <ListItem button key={text} onClick={()=>{window.location="./"+text}}>
               <ListItemIcon>
                 {/* {index === 0 ? <InboxIcon /> : <MailIcon />} */}
                 {this.renderIcons(index)}

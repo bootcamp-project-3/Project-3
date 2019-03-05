@@ -77,7 +77,7 @@ const getUser =  (event) => {
 })
   .then(function(response){
     console.log(response);
-      window.location="./bulletin"
+      window.location="./Dashboard"
       })
   .catch(err=>{
     console.log(err)
