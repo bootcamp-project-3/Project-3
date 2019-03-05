@@ -17,7 +17,7 @@ function ContainedButtons(props) {
   return (
     <div>
 
-      <Button variant="contained" color="primary" className={classes.button} align="center" onClick={() => {window.location = "./bulletin";}}>
+      <Button variant="contained" color="primary" className={classes.button} align="center" onClick={() => {window.location = "./sign-up";}}>
 
         Sign Up
       </Button>
