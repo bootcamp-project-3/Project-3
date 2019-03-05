@@ -19,6 +19,10 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  image: {
+    width: "50%",
+    align: "justify",
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -72,8 +76,6 @@ const styles = theme => ({
   },
 });
 
-
-
 function Nav(props) {
   const { classes } = props;
 
@@ -90,16 +92,17 @@ function Nav(props) {
           >
             <MenuIcon />
           </IconButton>
-         
-          <div className={classes.grow} />
-           <Typography
-            className={classes.title}
-            variant="h6"
-            color="inherit"
-            noWrap
-            align="justify"
-          >
-           <img alt=""  src={Image} width= "35%" onClick={() => {window.location = "./bulletin";}}/>
+
+          <div className={classes.image} />
+          <Typography className={classes.image}>
+            <img
+              alt=""
+              src={Image}
+              width="25%"
+              onClick={() => {
+                window.location = "./bulletin";
+              }}
+            />
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
