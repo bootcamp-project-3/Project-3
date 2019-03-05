@@ -56,12 +56,10 @@ const getUser =  (event) => {
   console.log(event.target.email.value);
   console.log(event.target.password.value)
   let data = {
-    email: event.target.email.value,  
+    email: event.target.email.value.toLowerCase(),  
     password: event.target.password.value,
-    name: event.target.name.value,
-    zip: event.target.zipcode.value
   }
-  fetch("/api/users", 
+  fetch("/api/signin", 
   {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
@@ -106,14 +104,6 @@ function SignIn(props) {
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="name">Name</InputLabel>
-            <Input name="name" id="name" autoComplete="name" />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
-            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
