@@ -34,7 +34,7 @@ const categories = [
     value: 'Community Needs',
   },
   {
-    value: 'Comminity Events',
+    value: 'Community Events',
   },
 ];
 
