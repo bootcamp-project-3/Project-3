@@ -1,24 +1,16 @@
 const mongoose = require("mongoose");
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/project3";
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {
-  console.log("Connected to db!");
-});
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-  user: {
-    type: String,
-    trim: true,
-    required: "Username is required.",
-  },
   userId: {
     type: String,
     trim: true,
     required: "ID is required.",
+  },
+  name: {
+    type: String,
+    trim: true,
+    required: "Username is required",
   },
   title: {
     type: String,
@@ -29,6 +21,16 @@ const PostSchema = new Schema({
     type: String,
     trim: true,
     required: "Post cannot be empty.",
+  },
+  location: {
+    type: String,
+    trim: true,
+    required: "A location is required",
+  },
+  category: {
+    type: String,
+    trim: true,
+    default: "General",
   },
   createdAt: {
     type: Date,
