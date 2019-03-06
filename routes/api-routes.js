@@ -141,7 +141,7 @@ module.exports = function(app) {
             _id: newMessage.senderId,
           },
           { $push: { messages: messageId } },
-          function(err, sender) {
+          function(err) {
             if (err) {
               res.sendStatus(500);
               console.log(err);
@@ -151,7 +151,7 @@ module.exports = function(app) {
                   _id: newMessage.recipientId,
                 },
                 { $push: { messages: messageId } },
-                function(err, recipient) {
+                function(err) {
                   if (err) {
                     res.sendStatus(500);
                     console.log(err);
