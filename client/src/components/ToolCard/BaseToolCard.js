@@ -5,11 +5,11 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
-import EventCard from "./EventCard";
 import Typography from "@material-ui/core/Typography";
-import LoadingCircle from "./LoadingCircle";
+import LoadingCircle from "../EventCard/LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
+import ToolCard from "./ToolCard.js";
 
 const styles = theme => ({
   card: {
@@ -37,14 +37,14 @@ const ImageWrapper = Styled.div`
   max-width: 100%;
 `;
 
-class BaseEventCard extends Component {
+class BaseToolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
     return posts
-      .filter(post => post.category === "Community Events")
+      .filter(post => post.category === "Community Equipment")
       .map((post, index) => {
         return (
-          <EventCard
+          <ToolCard
             key={index}
             name={post.name}
             title={post.title}
@@ -78,8 +78,8 @@ class BaseEventCard extends Component {
   }
 }
 
-BaseEventCard.propTypes = {
+BaseToolCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BaseEventCard);
+export default withStyles(styles)(BaseToolCard);

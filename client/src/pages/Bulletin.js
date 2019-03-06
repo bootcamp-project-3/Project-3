@@ -5,6 +5,7 @@ import Styled from "styled-components";
 import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
+import BaseToolCard from "../components/ToolCard/BaseToolCard";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
@@ -109,6 +110,11 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
+          <BaseToolCard
+            category="Community Equipment"
+            posts={this.state.posts}
+            updatePosts={this.updatePosts}
+          />
         </SmallWrapperDiv>
         <LargeWrapperDiv>
           <BaseGeneralCard
@@ -123,7 +129,7 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-           <BaseSkillsCard
+          <BaseSkillsCard
             category="Skills/Services"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
