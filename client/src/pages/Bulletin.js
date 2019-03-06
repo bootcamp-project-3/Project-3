@@ -136,7 +136,7 @@ class Bulletin extends Component {
             updatePosts={this.updatePosts}
           />
           <BaseSkillsCard
-            category="Community Skills/Services"
+            category="Skills/Services"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
