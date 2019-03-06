@@ -10,7 +10,7 @@ const PostSchema = new Schema({
   name: {
     type: String,
     trim: true,
-    required: "Username is required"
+    required: "Username is required",
   },
   title: {
     type: String,
@@ -25,12 +25,12 @@ const PostSchema = new Schema({
   location: {
     type: String,
     trim: true,
-    required: "A location is required"
+    required: "A location is required",
   },
   category: {
     type: String,
     trim: true,
-    default: "General"
+    default: "General",
   },
   createdAt: {
     type: Date,

@@ -7,10 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import SubmitModal from "./SubmitModal";
 import LoadingCircle from "../EventCard/LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
+import Styled from "styled-components";
 
 const styles = {
   tack: {
-    margin:"auto",
+    margin: "auto",
   },
   card: {
     minWidth: 275,
@@ -29,6 +30,14 @@ const styles = {
   },
 };
 
+const ImageWrapper = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 85%;
+`;
+
 function SimpleCard(props) {
   const { classes } = props;
   // const bull = <span className={classes.bullet}>•</span>;
@@ -36,20 +45,16 @@ function SimpleCard(props) {
   return (
     <div>
       <Card className={classes.card}>
-       <img
-            className={classes.tack}
-            alt=""
-            image={thumbtackRed}
-            width="15%"            
-          />
+        <ImageWrapper>
+          <img className={classes.tack} alt="" src={thumbtackRed} width="50px" />
+        </ImageWrapper>
         <Typography variant="h6" color="inherit" align="center">
           {props.category}
         </Typography>
         <CardContent>
           {props.posts.length ? props.renderPanels() : <LoadingCircle />}
         </CardContent>
-        <div>
-        </div>
+        <div />
         <SubmitModal
           category={props.category}
           posts={props.posts}
