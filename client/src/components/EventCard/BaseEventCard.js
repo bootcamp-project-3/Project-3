@@ -4,16 +4,17 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import EventCard from "./EventCard";
 import Typography from "@material-ui/core/Typography";
 import LoadingCircle from "./LoadingCircle";
+import thumbtackRed from "../Card/assets/thumbtackred.png";
+import Styled from "styled-components";
 
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "100%"
-
+    width: "100%",
   },
   bullet: {
     display: "inline-block",
@@ -28,54 +29,57 @@ const styles = theme => ({
   },
 });
 
-class BaseCard extends Component {
+const ImageWrapper = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 100%;
+`;
+
+class BaseEventCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
-    return posts.map((post, index) => {
-      return (
-        <EventCard
-          key={index}
-          name={post.name}
-          title={post.title}
-          content={post.content}
-        />
-      );
-    });
+    return posts
+      .filter(post => post.category === "Community Events")
+      .map((post, index) => {
+        return (
+          <EventCard
+            key={index}
+            name={post.name}
+            title={post.title}
+            content={post.content}
+          />
+        );
+      });
   };
 
   render() {
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
+        <ImageWrapper>
+          <img
+            className={classes.tack}
+            alt=""
+            src={thumbtackRed}
+            width="50px"
+          />
+        </ImageWrapper>
         <Typography variant="h6" color="inherit" align="center">
           {this.props.category}
         </Typography>
         <CardContent>
-          {this.props.posts.length ? (
-            this.renderCards()
-          ) : (
-            <LoadingCircle/>
-          )}
+          {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
-        <CardActions>
-          <Button
-            onClick={() =>
-              console.log("The add post to events button is working.")
-            }
-            align="justify"
-            color="primary"
-            variant="outlined"
-          >
-            Add Post
-          </Button>
-        </CardActions>
+        <CardActions />
       </Card>
     );
   }
 }
 
-BaseCard.propTypes = {
+BaseEventCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BaseCard);
+export default withStyles(styles)(BaseEventCard);

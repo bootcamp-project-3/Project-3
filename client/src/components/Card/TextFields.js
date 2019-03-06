@@ -89,11 +89,11 @@ class TextFields extends React.Component {
     console.log(this.state.userId);
     console.log(this.state.location);
     const newPost = {
-      userId: this.state.userId,
+      userId: "testId",
       title: this.state.title,
       content: this.state.body,
-      location: this.state.location,
-      name: this.state.name,
+      location: "testLocation",
+      name: "testName",
       category: this.state.category,
     };
 
