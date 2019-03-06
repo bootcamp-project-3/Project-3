@@ -40,16 +40,18 @@ const ImageWrapper = Styled.div`
 class BaseGeneralCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
-    return posts.map((post, index) => {
-      return (
-        <GeneralCard
-          title={post.title}
-          name={post.name}
-          content={post.content}
-          key={index}
-        />
-      );
-    });
+    return posts
+      .filter(post => post.category === "General")
+      .map((post, index) => {
+        return (
+          <GeneralCard
+            title={post.title}
+            name={post.name}
+            content={post.content}
+            key={index}
+          />
+        );
+      });
   };
 
   render() {
