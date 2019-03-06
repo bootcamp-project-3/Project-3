@@ -42,7 +42,7 @@ class BaseCarPoolCard extends Component {
     const posts = this.props.posts;
     return posts.map((post, index) => {
       return (
-        <BaseCarPoolCard
+        <CarPoolCard
           key={index}
           name={post.name}
           title={post.title}
