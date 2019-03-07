@@ -28,6 +28,7 @@ const WrapperDiv = Styled.div`
   align-items: center;
   max-width: 80%;
   margin: 200px auto;
+ 
 `;
 
 function Wrapper(props) {
