@@ -5,6 +5,7 @@ import Bulletin from "./pages/Bulletin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
+import Inbox from "./pages/Inbox";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -30,6 +31,7 @@ class App extends Component {
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/bulletin" component={Bulletin} />
+                <Route exact path="/inbox" component={Inbox} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
