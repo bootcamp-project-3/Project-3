@@ -121,7 +121,9 @@ module.exports = function(app) {
       });
     }
   });
+  // *Creates a new message
   app.post("/api/messages", function(req, res) {
+    // Assigning request body to a pre built object to interface with mongoose
     const newMessage = {
       senderId: req.body.senderId,
       senderName: req.body.senderName,
@@ -129,13 +131,14 @@ module.exports = function(app) {
       recipientName: req.body.recipientName,
       content: req.body.content,
     };
-
+    // Mongoose message creation
     Message.create(newMessage, function(err, post) {
       if (err) {
         console.log(err);
         res.sendStatus(500);
       } else {
         const messageId = post._id;
+        // Finds sender and adds messageId to their object
         User.findOneAndUpdate(
           {
             _id: newMessage.senderId,
@@ -146,6 +149,7 @@ module.exports = function(app) {
               res.sendStatus(500);
               console.log(err);
             } else {
+              // Finds recipient and adds messageId to their object
               User.findOneAndUpdate(
                 {
                   _id: newMessage.recipientId,
@@ -164,6 +168,30 @@ module.exports = function(app) {
             }
           }
         );
+      }
+    });
+  });
+  // *Finds all recieved messages by id
+  app.get("/api/messages/inbox/:id", function(req, res) {
+    const user = req.params.id;
+    Message.find({ recipientId: user }, function(err, messages) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.send(JSON.stringify(messages));
+      }
+    });
+  });
+  // *Finds all sent messages by id
+  app.get("/api/messages/outbox/:id", function(req, res) {
+    const user = req.params.id;
+    Message.find({ senderId: user }, function(err, messages) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.send(JSON.stringify(messages));
       }
     });
   });
