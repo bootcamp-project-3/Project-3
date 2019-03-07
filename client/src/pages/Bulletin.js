@@ -6,11 +6,8 @@ import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
-<<<<<<< HEAD
 import SubmitModal from "../components/SubmitModal/SubmitModal";
-=======
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
->>>>>>> 519c56be4f2375d994c28c1931c7ad689f8892aa
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
