@@ -11,8 +11,6 @@ import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
 import ToolCard from "./ToolCard.js";
 
-
-
 const styles = theme => ({
   card: {
     minWidth: 600,
@@ -42,16 +40,18 @@ const ImageWrapper = Styled.div`
 class BaseToolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
-    return posts.map((post, index) => {
-      return (
-        <ToolCard
-          key={index}
-          name={post.name}
-          title={post.title}
-          content={post.content}
-        />
-      );
-    });
+    return posts
+      .filter(post => post.category === "Community Equipment")
+      .map((post, index) => {
+        return (
+          <ToolCard
+            key={index}
+            name={post.name}
+            title={post.title}
+            content={post.content}
+          />
+        );
+      });
   };
 
   render() {
@@ -59,7 +59,12 @@ class BaseToolCard extends Component {
     return (
       <Card className={classes.card}>
         <ImageWrapper>
-          <img className={classes.tack} alt="" src={thumbtackRed} width="50px" />
+          <img
+            className={classes.tack}
+            alt=""
+            src={thumbtackRed}
+            width="50px"
+          />
         </ImageWrapper>
         <Typography variant="h6" color="inherit" align="center">
           {this.props.category}
@@ -67,8 +72,7 @@ class BaseToolCard extends Component {
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
-        <CardActions>
-        </CardActions>
+        <CardActions />
       </Card>
     );
   }
