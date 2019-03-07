@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
+const Message = require("../models/Message");
 const bcrypt = require("bcrypt");
 
 module.exports = function(app) {
@@ -82,10 +83,10 @@ module.exports = function(app) {
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
     // Checks for a session, if none return 401
-    // if (!req.session.user) {
-    //   res.sendStatus(401);
-    //   return;
-    // }
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    }
     // If signed in, create new post with req data
     Post.create(req.body, function(err, post) {
       if (err) {
@@ -104,30 +105,66 @@ module.exports = function(app) {
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
     // Checks for session, if none, return 401
-    // if (!req.session.user) {
-    //   res.sendStatus(401);
-    //   return;
-    // } else {
-    //   // If signed in, return last 10 posts
-    //   const find = Post.find()
-    //     .sort({ createdAt: -1 })
-    //     .limit(10);
-    //   find.exec(function(err, posts) {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     res.send(JSON.stringify(posts));
-    //   });
-    // }
-    // If signed in, return last 10 posts
-    const find = Post.find()
-      .sort({ createdAt: -1 })
-      .limit(10);
-    find.exec(function(err, posts) {
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    } else {
+      // If signed in, return last 10 posts
+      const find = Post.find()
+        .sort({ createdAt: -1 })
+        .limit(10);
+      find.exec(function(err, posts) {
+        if (err) {
+          console.log(err);
+        }
+        res.send(JSON.stringify(posts));
+      });
+    }
+  });
+  app.post("/api/messages", function(req, res) {
+    const newMessage = {
+      senderId: req.body.senderId,
+      senderName: req.body.senderName,
+      recipientId: req.body.recipientId,
+      recipientName: req.body.recipientName,
+      content: req.body.content,
+    };
+
+    Message.create(newMessage, function(err, post) {
       if (err) {
         console.log(err);
+        res.sendStatus(500);
+      } else {
+        const messageId = post._id;
+        User.findOneAndUpdate(
+          {
+            _id: newMessage.senderId,
+          },
+          { $push: { messages: messageId } },
+          function(err) {
+            if (err) {
+              res.sendStatus(500);
+              console.log(err);
+            } else {
+              User.findOneAndUpdate(
+                {
+                  _id: newMessage.recipientId,
+                },
+                { $push: { messages: messageId } },
+                function(err) {
+                  if (err) {
+                    res.sendStatus(500);
+                    console.log(err);
+                  } else {
+                    console.log("Message successfully added!");
+                    res.sendStatus(200);
+                  }
+                }
+              );
+            }
+          }
+        );
       }
-      res.send(JSON.stringify(posts));
     });
   });
 };
