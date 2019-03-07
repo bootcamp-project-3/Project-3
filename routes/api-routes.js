@@ -105,23 +105,35 @@ module.exports = function(app) {
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
     // Checks for session, if none, return 401
-    if (!req.session.user) {
-      res.sendStatus(401);
-      return;
-    } else {
-      // If signed in, return last 10 posts
-      const find = Post.find()
-        .sort({ createdAt: -1 })
-        .limit(10);
-      find.exec(function(err, posts) {
-        if (err) {
-          console.log(err);
-        }
-        res.send(JSON.stringify(posts));
-      });
-    }
+    // if (!req.session.user) {
+    //   res.sendStatus(401);
+    //   return;
+    // } else {
+    //   // If signed in, return last 10 posts
+    //   const find = Post.find()
+    //     .sort({ createdAt: -1 })
+    //     .limit(10);
+    //   find.exec(function(err, posts) {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //     res.send(JSON.stringify(posts));
+    //   });
+    // }
+    // If signed in, return last 10 posts
+    const find = Post.find()
+      .sort({ createdAt: -1 })
+      .limit(10);
+    find.exec(function(err, posts) {
+      if (err) {
+        console.log(err);
+      }
+      res.send(JSON.stringify(posts));
+    });
   });
+  // *Creates a new message
   app.post("/api/messages", function(req, res) {
+    // Assigning request body to a pre built object to interface with mongoose
     const newMessage = {
       senderId: req.body.senderId,
       senderName: req.body.senderName,
@@ -129,13 +141,14 @@ module.exports = function(app) {
       recipientName: req.body.recipientName,
       content: req.body.content,
     };
-
+    // Mongoose message creation
     Message.create(newMessage, function(err, post) {
       if (err) {
         console.log(err);
         res.sendStatus(500);
       } else {
         const messageId = post._id;
+        // Finds sender and adds messageId to their object
         User.findOneAndUpdate(
           {
             _id: newMessage.senderId,
@@ -146,6 +159,7 @@ module.exports = function(app) {
               res.sendStatus(500);
               console.log(err);
             } else {
+              // Finds recipient and adds messageId to their object
               User.findOneAndUpdate(
                 {
                   _id: newMessage.recipientId,
@@ -164,6 +178,30 @@ module.exports = function(app) {
             }
           }
         );
+      }
+    });
+  });
+  // *Finds all recieved messages by id
+  app.get("/api/messages/inbox/:id", function(req, res) {
+    const user = req.params.id;
+    Message.find({ recipientId: user }, function(err, messages) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.send(JSON.stringify(messages));
+      }
+    });
+  });
+  // *Finds all sent messages by id
+  app.get("/api/messages/outbox/:id", function(req, res) {
+    const user = req.params.id;
+    Message.find({ senderId: user }, function(err, messages) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.send(JSON.stringify(messages));
       }
     });
   });
