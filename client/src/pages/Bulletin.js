@@ -6,6 +6,7 @@ import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
+import SubmitModal from "../components/SubmitModal/SubmitModal";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 
 const SmallWrapperDiv = Styled.div`
@@ -110,6 +111,10 @@ class Bulletin extends Component {
             category="Community Needs"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
+          />
+          <SubmitModal
+          posts={this.state.posts}
+          updatePosts={this.updatePosts}
           />
           <BaseToolCard
             category="Community Equipment"
