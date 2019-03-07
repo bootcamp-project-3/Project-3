@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Styled from "styled-components";
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button"
 import EditIcon from "@material-ui/icons/Edit";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -39,6 +39,8 @@ const styles = theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
+    display: "grid",
+    
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
@@ -117,17 +119,26 @@ margin: auto
         <Typography component="h1" variant="h5" align="center">
           Keep your account up to date here!
         </Typography>
-        <form >
+        <form>
+            <Grid container spacing={24}>
+              <Grid item xs={10}>
           <FormControl margin="normal">
-            <InputLabel htmlFor="name">Name</InputLabel>
+            <InputLabel htmlFor="name" width="100">Name</InputLabel>
             <Input name="name" id="name" autoComplete="name" />
-            <EditIcon align="right"/>
           </FormControl>
+            </Grid>
+            <Button><EditIcon/></Button>
+
           <br></br>
+          <Grid item xs={1}>
           <FormControl margin="normal">
             <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
             <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
           </FormControl>
+          </Grid>
+          <Button><EditIcon/></Button>
+
+          </Grid>
           <Button
             type="submit"
             fullWidth
