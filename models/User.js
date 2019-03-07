@@ -27,6 +27,10 @@ const UserSchema = new Schema({
     trim: true,
     required: "Password is required.",
   },
+  messages: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Message',
+  }],
   createdAt: {
     type: Date,
     default: Date.now(),

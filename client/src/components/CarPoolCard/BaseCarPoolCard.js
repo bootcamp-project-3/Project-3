@@ -5,8 +5,8 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
-import SkillsCard from "./SkillsCard";
 import Typography from "@material-ui/core/Typography";
+import CarPoolCard from "./CarPoolCard";
 import LoadingCircle from "./LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
@@ -37,21 +37,19 @@ const ImageWrapper = Styled.div`
   max-width: 100%;
 `;
 
-class BaseSkillsCard extends Component {
+class BaseCarPoolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
-    return posts
-      .filter(post => post.category === "Skills/Services")
-      .map((post, index) => {
-        return (
-          <SkillsCard
-            key={index}
-            name={post.name}
-            title={post.title}
-            content={post.content}
-          />
-        );
-      });
+    return posts.map((post, index) => {
+      return (
+        <CarPoolCard
+          key={index}
+          name={post.name}
+          title={post.title}
+          content={post.content}
+        />
+      );
+    });
   };
 
   render() {
@@ -59,12 +57,7 @@ class BaseSkillsCard extends Component {
     return (
       <Card className={classes.card}>
         <ImageWrapper>
-          <img
-            className={classes.tack}
-            alt=""
-            src={thumbtackRed}
-            width="50px"
-          />
+          <img className={classes.tack} alt="" src={thumbtackRed} width="50px" />
         </ImageWrapper>
         <Typography variant="h6" color="inherit" align="center">
           {this.props.category}
@@ -72,14 +65,15 @@ class BaseSkillsCard extends Component {
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
-        <CardActions />
+        <CardActions>
+        </CardActions>
       </Card>
     );
   }
 }
 
-BaseSkillsCard.propTypes = {
+BaseCarPoolCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BaseSkillsCard);
+export default withStyles(styles)(BaseCarPoolCard);

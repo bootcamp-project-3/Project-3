@@ -40,16 +40,18 @@ const ImageWrapper = Styled.div`
 class BaseEventCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
-    return posts.map((post, index) => {
-      return (
-        <EventCard
-          key={index}
-          name={post.name}
-          title={post.title}
-          content={post.content}
-        />
-      );
-    });
+    return posts
+      .filter(post => post.category === "Community Events")
+      .map((post, index) => {
+        return (
+          <EventCard
+            key={index}
+            name={post.name}
+            title={post.title}
+            content={post.content}
+          />
+        );
+      });
   };
 
   render() {
@@ -57,7 +59,12 @@ class BaseEventCard extends Component {
     return (
       <Card className={classes.card}>
         <ImageWrapper>
-          <img className={classes.tack} alt="" src={thumbtackRed} width="50px" />
+          <img
+            className={classes.tack}
+            alt=""
+            src={thumbtackRed}
+            width="50px"
+          />
         </ImageWrapper>
         <Typography variant="h6" color="inherit" align="center">
           {this.props.category}
@@ -65,8 +72,7 @@ class BaseEventCard extends Component {
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
-        <CardActions>
-        </CardActions>
+        <CardActions />
       </Card>
     );
   }
