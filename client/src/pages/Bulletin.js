@@ -96,8 +96,8 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-          {/* </SmallWrapperDiv>
-        <SmallWrapperDiv> */}
+          </SmallWrapperDiv>
+        <SmallWrapperDiv>
           <BaseToolCard
             category="Equipment/Tools"
             posts={this.state.posts}
@@ -127,7 +127,7 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-        </SmallWrapperDiv>
+        </MediumWrapperDiv>
       </main >
     );
   }
