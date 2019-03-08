@@ -6,7 +6,7 @@ import Styled from "styled-components";
 import BaseToolCard from "../components/ToolsCard/BaseToolCard";
 // import BaseEventCard from "../components/EventCard/BaseEventCard";
 // import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
-import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
+import BaseSkillsCard from "../components/skillsCard/BaseSkillsCard";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
