@@ -3,10 +3,10 @@ import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
 // import BaseCard from "../components/EventCard/BaseEventCard";
-import BaseToolCard from "../components/ToolsCard/BaseToolCard";
+import BaseToolCard from "../components/ToolCard/BaseToolCard";
 // import BaseEventCard from "../components/EventCard/BaseEventCard";
 // import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
-import BaseSkillsCard from "../components/skillsCard/BaseSkillsCard";
+import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
