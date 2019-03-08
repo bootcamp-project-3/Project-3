@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
-import BaseEventCard from "../components/EventCard/BaseEventCard";
-import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
-import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
+// import BaseCard from "../components/EventCard/BaseEventCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
-import SubmitModal from "../components/SubmitModal/SubmitModal";
-import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
+// import BaseEventCard from "../components/EventCard/BaseEventCard";
+// import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
+import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
@@ -18,29 +17,18 @@ const SmallWrapperDiv = Styled.div`
   margin: 30px auto;
 `;
 
-const MediumWrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  justify-items: center;
-  align-items: center;
-  max-width: 85%;
-  margin: 30px auto;
-`;
-
-const LargeWrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  justify-items: center;
-  align-items: center;
-  max-width: 85%;
-  margin: 30px auto;
-`;
+// const LargeWrapperDiv = Styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(1,1fr);
+//   justify-items: center;
+//   align-items: center;
+//   max-width: 85%;
+//   margin: 30px auto;
+// `;
 
 class Bulletin extends Component {
   state = {
     posts: [],
-    id: "",
-    location: "",
   };
 
   componentDidMount() {
@@ -64,7 +52,7 @@ class Bulletin extends Component {
           this.updatePosts(result);
         },
         error => {
-          console.log(error);
+          console.log(error)
         }
       );
 
@@ -84,14 +72,10 @@ class Bulletin extends Component {
       .then(
         result => {
           console.log(result);
-          console.log(result.data);
-          this.setState({
-            id: result.data.user,
-            location: result.data.loc,
-          });
+          console.log(result.data)
         },
         error => {
-          console.log(error);
+          console.log(error)
         }
       );
   }
@@ -112,10 +96,8 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-          <SubmitModal
-          posts={this.state.posts}
-          updatePosts={this.updatePosts}
-          />
+          {/* </SmallWrapperDiv>
+        <SmallWrapperDiv> */}
           <BaseToolCard
             category="Equipment/Tools"
             posts={this.state.posts}
@@ -145,10 +127,11 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-        </MediumWrapperDiv>
-      </main>
+        </SmallWrapperDiv>
+      </main >
     );
   }
 }
+
 
 export default Bulletin;

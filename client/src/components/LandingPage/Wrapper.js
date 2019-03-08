@@ -9,6 +9,7 @@ import Styled from "styled-components";
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -28,6 +29,7 @@ const WrapperDiv = Styled.div`
   align-items: center;
   max-width: 80%;
   margin: 200px auto;
+ 
 `;
 
 function Wrapper(props) {
