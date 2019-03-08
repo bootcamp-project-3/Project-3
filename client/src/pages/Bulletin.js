@@ -117,12 +117,12 @@ class Bulletin extends Component {
           updatePosts={this.updatePosts}
           />
           <BaseToolCard
-            category="Community Equipment"
+            category="Equipment/Tools"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
           <BaseCarPoolCard
-            category="Community Carpool"
+            category="Carpool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
@@ -136,7 +136,7 @@ class Bulletin extends Component {
         </LargeWrapperDiv>
         <MediumWrapperDiv>
           <BaseEventCard
-            category="Community Events"
+            category="Events"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
