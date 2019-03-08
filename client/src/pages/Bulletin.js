@@ -17,14 +17,14 @@ const SmallWrapperDiv = Styled.div`
   margin: 30px auto;
 `;
 
-const LargeWrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  justify-items: center;
-  align-items: center;
-  max-width: 85%;
-  margin: 30px auto;
-`;
+// const LargeWrapperDiv = Styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(1,1fr);
+//   justify-items: center;
+//   align-items: center;
+//   max-width: 85%;
+//   margin: 30px auto;
+// `;
 
 class Bulletin extends Component {
   state = {
