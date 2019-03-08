@@ -41,7 +41,7 @@ class BaseToolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
     return posts
-      .filter(post => post.category === "Community Equipment")
+      .filter(post => post.category === "Equipment/Tools")
       .map((post, index) => {
         return (
           <ToolCard

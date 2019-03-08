@@ -27,6 +27,7 @@ class SideBar extends React.Component {
   state = {
     left: false,
     keyword: "",
+    link: "",
   };
 
   toggleDrawer = (side, open) => () => {
@@ -51,13 +52,21 @@ class SideBar extends React.Component {
 
   renderIcons = index => {
     if (index === 0) {
-      return <InboxIcon />;
+      return (
+          <InboxIcon />
+      );
     } else if (index === 1) {
-      return <EventIcon />;
+      return (
+          <EventIcon />
+      );
     } else if (index === 2) {
-      return <AccountBoxIcon />;
+      return (
+          <AccountBoxIcon />
+      );
     } else {
-      return <ListAltIcon />;
+      return (
+          <ListAltIcon />
+      );
     }
   };
 
@@ -67,10 +76,10 @@ class SideBar extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {["Inbox", "Bulletin", "Dashboard", "Posts"].map((text, index) => (
-            <ListItem button key={text} onClick={()=>{window.location="./"+text}}>
+          {["Inbox", "Bulletin", "Profile", "Posts"].map((text, index) => (
+            <ListItem button component="a" href={"/" + text.toLocaleLowerCase()}>
               <ListItemIcon>
-                {/* {index === 0 ? <InboxIcon /> : <MailIcon />} */}
+                
                 {this.renderIcons(index)}
               </ListItemIcon>
               <ListItemText primary={text} />
