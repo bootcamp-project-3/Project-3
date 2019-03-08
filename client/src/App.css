@@ -31,3 +31,39 @@
     transform: rotate(360deg);
   }
 }
+
+.nameInput{
+  grid-area: nameInput;
+}
+
+.nameButton{
+  grid-area: nameButton;
+}
+
+.locationInput{
+  grid-area: location;
+}
+
+.locationButton{
+  grid-area: locationButton;
+}
+
+.submitButton{
+  grid-area: submitButton;
+}
+
+.formGrid{
+  display: grid;
+  grid-template-areas: 
+  'nameInput nameButton'
+  'location locationButton'
+  'submitButton submitButton';
+  grid-template-columns: 5fr 1fr;
+  width: 85%; 
+  margin: 0 auto
+}
+
+.dashboardHolder{
+  width:85%;
+  margin: 0 auto
+}

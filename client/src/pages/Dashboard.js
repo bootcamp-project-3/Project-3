@@ -1,158 +1,186 @@
 import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
-import Styled from "styled-components";
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Button from "@material-ui/core/Button"
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
-
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
+import "../../src/App.css";
 
 const styles = theme => ({
   main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
-    display: "grid",
-    
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
 });
 
+class Dashboard extends Component {
+  state = {
+    notName: "",
+    id: "",
+    location: "",
+    nameDisabled: true,
+    locationDisabled: true,
+    prevnotName: "",
+    prevLocation: ""
+  };
 
-const ContainerDiv = Styled.div`
-width: 75%;
-top: 30px;
-margin: auto
-`;
+  componentDidMount() {
+    fetch("/api/session", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result.data);
+          this.setState({
+            id: result.data.user,
+            prevLocation: result.data.loc,
+            prevnotName: result.data.name,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
 
-    
-    class Dashboard extends Component {
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
 
-      state = {
-        name: "",
-        id: "",
-        location: "",
-        nameDisabled: false,
-        locationDisabled: true,
-      }
+  handleClick = name => {
+    this.setState({
+      [name + "Disabled"]: !this.state[name + "Disabled"],
+    });
+    console.log(this.state[name + "Disabled"]);
+  };
 
-        componentDidMount() {
-        fetch("/api/session", {
-            method: "Get", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, cors, *same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: "include", // include, *same-origin, omit
-            headers: {
-              "Content-Type": "application/json",
-              // "Content-Type": "application/x-www-form-urlencoded",
-            },
-            redirect: "follow", // manual, *follow, error
-            referrer: "client", // no-referrer, *client
-          })
-          .then(res =>res.json())
-          .then(
-              result => {
-                console.log(result.data)
-                this.setState({
-                  id: result.data.user,
-                  location: result.data.loc,
-                  name: result.data.name,
-                });
-              },
-              error => {
-                console.log(error)
-              }
-          )
-            }
+  updateProfile = event => {
+    event.preventDefault();
+    //           let data = {
+    //             name: this.state.name,
+    //             location: this.state.location
+    //           }
+    //           fetch("/api/users",
+    //           {
+    //             method: "PUT", // *GET, POST, PUT, DELETE, etc.
+    // mode: "cors", // no-cors, cors, *same-origin
+    // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: "same-origin", // include, *same-origin, omit
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   // "Content-Type": "application/x-www-form-urlencoded",
+    // },
+    // redirect: "follow", // manual, *follow, error
+    // referrer: "no-referrer", // no-referrer, *client
+    // body: JSON.stringify(data)
+    //           })
+    //           .then(function(response){
+    //             console.log(response)
+    //           })
+    //           .catch(err=>{
+    //             console.log(err)
+    //           })
+    console.log(this.state.notName, this.state.location);
+  };
 
-            handleChange=event=>{
-              const {name, value} = event.target;
-              this.setState({
-                [name]: value
-              })
-            }
+  render() {
+    return (
+      <div>
+        <SideBar />
+        <Paper className="dashboardHolder">
 
-            handleClick = name => {
-              this.setState({
-                [name]: !this.state[name],
-              })
-              console.log(this.state[name])
-            }
-        
-    render() {
+          <Typography component="h1" variant="h5" align="center">
+            Keep your account up to date here!
+          </Typography>
 
-        return(
-            <div>
-            <SideBar />
-            <ContainerDiv>
-            <CssBaseline />
-      <Paper>
-        <Typography component="h1" variant="h5" align="center">
-          Keep your account up to date here!
-        </Typography>
-        <form>
-            <Grid container spacing={24}>
-              <Grid item xs={10}>
-          <FormControl margin="normal">
-            <InputLabel htmlFor="name" width="100">Name</InputLabel>
-            <Input name="name" id="name" autoComplete="name" />
-          </FormControl>
-            </Grid>
-            <Button><EditIcon/></Button>
+          <form className="formGrid" onSubmit={this.updateProfile}>
+            <FormControl margin="normal">
+            <Typography>
+              
+            </Typography>
+              <InputLabel  className="nameInput" htmlFor="name" width="100">
+                {this.state.prevnotName}
+              </InputLabel>
+              <Input
+                disabled={this.state.nameDisabled}
+                onChange={this.handleChange}
+                name="notName"
+                id="name"
+                autoComplete="name"
+              />
+            </FormControl>
+            <Button className="nameButton" onClick={() => this.handleClick("name")}>
+              <EditIcon />
+            </Button>
 
-          <br></br>
-          <Grid item xs={1}>
-          <FormControl margin="normal">
-            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
-            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
-          </FormControl>
-          </Grid>
-          <Button><EditIcon/></Button>
+            <FormControl  margin="normal">
+              <InputLabel className="locationInput" htmlFor="zipcode">
+              {this.state.prevLocation}
+              </InputLabel>
+              <Input
+                disabled={this.state.locationDisabled}
+                onChange={this.handleChange}
+                name="location"
+                id="zipcode"
+                autoComplete="zipcode"
+              />
+            </FormControl>
+            <Button className="locationButton" onClick={() => this.handleClick("location")}>
+              <EditIcon />
+            </Button>
 
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
+            <Button className="submitButton" type="submit" fullWidth variant="contained" color="primary">
             Submit your edits
           </Button>
-        </form>
-      </Paper>
-            </ContainerDiv>
-            </div>
-        )
-    }
+            </form>
+          
+        </Paper>
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(Dashboard);  
+export default withStyles(styles)(Dashboard);
