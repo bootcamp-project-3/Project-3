@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
-// import BaseCard from "../components/EventCard/BaseEventCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
-// import BaseEventCard from "../components/EventCard/BaseEventCard";
-// import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
+import BaseEventCard from "../components/EventCard/BaseEventCard";
+import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
+import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
@@ -17,14 +17,23 @@ const SmallWrapperDiv = Styled.div`
   margin: 30px auto;
 `;
 
-// const LargeWrapperDiv = Styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(1,1fr);
-//   justify-items: center;
-//   align-items: center;
-//   max-width: 85%;
-//   margin: 30px auto;
-// `;
+const MediumWrapperDiv = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 85%;
+  margin: 30px auto;
+`;
+
+const LargeWrapperDiv = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 85%;
+  margin: 30px auto;
+`;
 
 class Bulletin extends Component {
   state = {
@@ -52,7 +61,7 @@ class Bulletin extends Component {
           this.updatePosts(result);
         },
         error => {
-          console.log(error)
+          console.log(error);
         }
       );
 
@@ -72,10 +81,10 @@ class Bulletin extends Component {
       .then(
         result => {
           console.log(result);
-          console.log(result.data)
+          console.log(result.data);
         },
         error => {
-          console.log(error)
+          console.log(error);
         }
       );
   }
@@ -96,27 +105,41 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-          {/* </SmallWrapperDiv>
-        <SmallWrapperDiv> */}
+        </SmallWrapperDiv>
+        <SmallWrapperDiv>
           <BaseToolCard
-            category="Community Tools and Equipment"
+            category="Equipment/Tools"
+            posts={this.state.posts}
+            updatePosts={this.updatePosts}
+          />
+          <BaseCarPoolCard
+            category="Carpool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
         </SmallWrapperDiv>
-        
-
-        <SmallWrapperDiv>
+        <LargeWrapperDiv>
+          <BaseGeneralCard
+            category="General"
+            posts={this.state.posts}
+            updatePosts={this.updatePosts}
+          />
+        </LargeWrapperDiv>
+        <MediumWrapperDiv>
+          <BaseEventCard
+            category="Events"
+            posts={this.state.posts}
+            updatePosts={this.updatePosts}
+          />
           <BaseSkillsCard
             category="Skills/Services"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-        </SmallWrapperDiv>
-      </main >
+        </MediumWrapperDiv>
+      </main>
     );
   }
 }
-
 
 export default Bulletin;

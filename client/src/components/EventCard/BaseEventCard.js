@@ -41,7 +41,7 @@ class BaseEventCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
     return posts
-      .filter(post => post.category === "Community Events")
+      .filter(post => post.category === "Events")
       .map((post, index) => {
         return (
           <EventCard
