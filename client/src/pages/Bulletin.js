@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
-// import BaseCard from "../components/EventCard/BaseEventCard";
+import BaseCard from "../components/EventCard/BaseEventCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
-// import BaseEventCard from "../components/EventCard/BaseEventCard";
-// import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
+import BaseEventCard from "../components/EventCard/BaseEventCard";
+import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 
 const SmallWrapperDiv = Styled.div`
@@ -17,14 +17,14 @@ const SmallWrapperDiv = Styled.div`
   margin: 30px auto;
 `;
 
-// const LargeWrapperDiv = Styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(1,1fr);
-//   justify-items: center;
-//   align-items: center;
-//   max-width: 85%;
-//   margin: 30px auto;
-// `;
+const LargeWrapperDiv = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 85%;
+  margin: 30px auto;
+`;
 
 class Bulletin extends Component {
   state = {
