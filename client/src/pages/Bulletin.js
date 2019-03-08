@@ -2,15 +2,24 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
-import BaseCard from "../components/EventCard/BaseEventCard";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
 import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
+import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  justify-items: center;
+  align-items: center;
+  max-width: 85%;
+  margin: 30px auto;
+`;
+
+const MediumWrapperDiv = Styled.div`
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
   justify-items: center;
   align-items: center;
   max-width: 85%;
@@ -52,7 +61,7 @@ class Bulletin extends Component {
           this.updatePosts(result);
         },
         error => {
-          console.log(error)
+          console.log(error);
         }
       );
 
@@ -72,10 +81,10 @@ class Bulletin extends Component {
       .then(
         result => {
           console.log(result);
-          console.log(result.data)
+          console.log(result.data);
         },
         error => {
-          console.log(error)
+          console.log(error);
         }
       );
   }
@@ -96,7 +105,7 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-          </SmallWrapperDiv>
+        </SmallWrapperDiv>
         <SmallWrapperDiv>
           <BaseToolCard
             category="Equipment/Tools"
@@ -128,10 +137,9 @@ class Bulletin extends Component {
             updatePosts={this.updatePosts}
           />
         </MediumWrapperDiv>
-      </main >
+      </main>
     );
   }
 }
-
 
 export default Bulletin;
