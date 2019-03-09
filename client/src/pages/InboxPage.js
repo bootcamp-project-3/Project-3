@@ -3,6 +3,7 @@ import BaseInboxCard from "../components/Inbox/BaseInboxCard";
 import Sidebar from "../components/Nav/SideBar/SideBar";
 import BottomNav from "../components/Nav/BottomNav";
 import Styled from "styled-components";
+import Wrapper from "../components/LandingPage/Wrapper";
 
 const InboxWrapper = Styled.div`
   display: grid;
@@ -18,11 +19,13 @@ class InboxPage extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
-        <InboxWrapper>
-          <BaseInboxCard />
-        </InboxWrapper>
-        <BottomNav />
+        <Wrapper>
+          <Sidebar />
+          <InboxWrapper>
+            <BaseInboxCard />
+          </InboxWrapper>
+          <BottomNav />
+        </Wrapper>
       </main>
     );
   }
