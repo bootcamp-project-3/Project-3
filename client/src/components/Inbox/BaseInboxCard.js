@@ -6,13 +6,12 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Table from "./Table";
-// import Styled from "styled-components";
+import ReplyModal from "./ReplyModal";
 
 const styles = theme => ({
   card: {
     minWidth: "90%",
-    marginTop: 100, 
+    marginTop: 100,
   },
   bullet: {
     display: "inline-block",
@@ -33,6 +32,10 @@ class BaseInboxCard extends Component {
     name: "",
     location: "",
     messages: [],
+    recipientID: "",
+    recipientName: "",
+    content: "",
+    subject: "",
   };
 
   componentDidMount() {
@@ -95,11 +98,20 @@ class BaseInboxCard extends Component {
       );
   };
 
+  updateReply = (recipientID, recipientName, content, subject) => {
+    this.setState({
+      recipientID: recipientID,
+      recipientName: recipientName,
+      content: content,
+      subject: subject,
+    });
+  };
+
   render() {
     const { classes } = this.props;
     // const bull = <span className={classes.bullet}>•</span>;
     return (
-      <Card className={classes.card} square="true" >
+      <Card className={classes.card} square="true">
         <CardContent>
           <Button onClick={this.getMessages} color="primary" variant="outlined">
             Get Inbox
@@ -107,7 +119,16 @@ class BaseInboxCard extends Component {
           <Typography variant="h4" color="inherit" align="center">
             Inbox
           </Typography>
-          <Table messages={this.state.messages} />
+          <ReplyModal
+            messages={this.state.messages}
+            id={this.state.id}
+            name={this.state.name}
+            recipientID={this.state.recipientID}
+            recipientName={this.state.recipientName}
+            content={this.state.content}
+            subject={this.state.subject}
+            updateReply={this.updateReply}
+          />
         </CardContent>
         <CardActions>
           {/* <Button size="small">Learn More</Button> */}
