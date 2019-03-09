@@ -5,7 +5,7 @@ import Bulletin from "./pages/Bulletin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
-import Inbox from "./pages/Inbox";
+import InboxPage from "./pages/InboxPage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";

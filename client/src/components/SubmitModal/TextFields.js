@@ -34,8 +34,20 @@ const categories = [
     value: 'Community Needs',
   },
   {
-    value: 'Community Events',
+    value: 'Events',
   },
+  {
+    value: "Carpool",
+  },
+  {
+    value: "General"
+  },
+  {
+    value: "Equipment/Tools"
+  },
+  {
+    value: "Skills/Services"
+  }
 ];
 
 class TextFields extends React.Component {

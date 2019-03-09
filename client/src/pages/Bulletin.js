@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
 import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
+import BaseToolCard from "../components/ToolCard/BaseToolCard";
 import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
-import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard";
-import BaseToolCard from "../components/ToolCard/BaseToolCard";
-import SubmitModal from "../components/SubmitModal/SubmitModal";
+import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 
 const SmallWrapperDiv = Styled.div`
@@ -39,8 +38,6 @@ const LargeWrapperDiv = Styled.div`
 class Bulletin extends Component {
   state = {
     posts: [],
-    id: "",
-    location: "",
   };
 
   componentDidMount() {
@@ -85,10 +82,6 @@ class Bulletin extends Component {
         result => {
           console.log(result);
           console.log(result.data);
-          this.setState({
-            id: result.data.user,
-            location: result.data.loc,
-          });
         },
         error => {
           console.log(error);
@@ -112,17 +105,15 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-          <SubmitModal
-          posts={this.state.posts}
-          updatePosts={this.updatePosts}
-          />
+        </SmallWrapperDiv>
+        <SmallWrapperDiv>
           <BaseToolCard
-            category="Community Equipment"
+            category="Equipment/Tools"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
           <BaseCarPoolCard
-            category="Community Carpool"
+            category="Carpool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
@@ -136,7 +127,7 @@ class Bulletin extends Component {
         </LargeWrapperDiv>
         <MediumWrapperDiv>
           <BaseEventCard
-            category="Community Events"
+            category="Events"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
