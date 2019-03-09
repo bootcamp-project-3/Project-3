@@ -28,7 +28,7 @@ class App extends Component {
 
   componentDidMount() {
     fetch("/api/session", {
-      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      method: "get", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "include", // include, *same-origin, omit
@@ -42,6 +42,9 @@ class App extends Component {
       .then(res => res.json())
       .then(
         result => {
+          if (result.status === 401){
+            
+          }
           console.log(result);
           console.log(result.data);
           this.setState({

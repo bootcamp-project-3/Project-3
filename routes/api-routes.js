@@ -99,8 +99,12 @@ module.exports = function(app) {
   });
   // * Get session data
   app.get("/api/session", function(req, res) {
-    console.log(`Session cookie is ${req.session.user}`);
-    res.send(JSON.stringify({ data: req.session }));
+    if (!req.session.user) {
+      res.status(401).send("No user is signed in on this session");
+    } else {
+      console.log(`Session cookie is ${req.session.user}`);
+      res.send(JSON.stringify({ data: req.session }));
+    }
   });
   // * Gets the last 10 posts from the db if the user is signed in
   app.get("/api/posts", function(req, res) {
