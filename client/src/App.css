@@ -32,20 +32,13 @@
   }
 }
 
-.nameInput{
+/* Grid for display page */
+.nameForm{
   grid-area: nameInput;
 }
 
-.nameButton{
-  grid-area: nameButton;
-}
-
-.locationInput{
+.zipInput{
   grid-area: location;
-}
-
-.locationButton{
-  grid-area: locationButton;
 }
 
 .submitButton{
@@ -55,15 +48,32 @@
 .formGrid{
   display: grid;
   grid-template-areas: 
-  'nameInput nameButton'
-  'location locationButton'
-  'submitButton submitButton';
-  grid-template-columns: 5fr 1fr;
+  'nameInput'
+  'location'
+  'submitButton';
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
   width: 85%; 
-  margin: 0 auto
+  margin: 0 auto;
+  margin-top: 60px;
 }
 
 .dashboardHolder{
   width:85%;
   margin: 0 auto
 }
+
+/* Grid for profile edit cards */
+.editForm{
+  display: grid;
+  grid-template-columns: 5fr 1fr 
+}
+
+/* Grid for prof dash */
+
+.dashGrid{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  width: 80%;
+}
+

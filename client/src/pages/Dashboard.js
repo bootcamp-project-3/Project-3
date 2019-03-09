@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import SideBar from "../components/Nav/SideBar/SideBar";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import EditIcon from "@material-ui/icons/Edit";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "../../src/App.css";
+import "../components/ProfInfo/NameForm";
+import NameForm from "../components/ProfInfo/NameForm";
+import ZipForm from "../components/ProfInfo/ZipForm";
+import DashNav from "../components/ProfInfo/dashNav"
+import LpNav from "../components/LandingPage/LpNav";
+
 
 const styles = theme => ({
   main: {
@@ -51,7 +51,7 @@ class Dashboard extends Component {
     nameDisabled: true,
     locationDisabled: true,
     prevnotName: "",
-    prevLocation: ""
+    prevLocation: "",
   };
 
   componentDidMount() {
@@ -129,55 +129,45 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <SideBar />
-        <Paper className="dashboardHolder">
-
-          <Typography component="h1" variant="h5" align="center">
-            Keep your account up to date here!
-          </Typography>
+<LpNav />
+      <div className="dashGrid">
+        <DashNav />
+        <div>
+        <Typography component="h1" variant="h5" align="center">
+          Keep your account up to date here!
+        </Typography>
 
           <form className="formGrid" onSubmit={this.updateProfile}>
-            <FormControl margin="normal">
-            <Typography>
-              
-            </Typography>
-              <InputLabel  className="nameInput" htmlFor="name" width="100">
-                {this.state.prevnotName}
-              </InputLabel>
-              <Input
-                disabled={this.state.nameDisabled}
-                onChange={this.handleChange}
-                name="notName"
-                id="name"
-                autoComplete="name"
-              />
-            </FormControl>
-            <Button className="nameButton" onClick={() => this.handleClick("name")}>
-              <EditIcon />
+
+            <NameForm
+              name={this.state.prevnotName}
+              nameDisabled={this.state.nameDisabled}
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              className="nameForm"
+            />
+
+            <ZipForm
+              zip={this.state.prevLocation}
+              nameDisabled={this.state.locationDisabled}
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              className="zipInput"
+            />
+
+            <Button
+              className="submitButton"
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Submit your edits
             </Button>
 
-            <FormControl  margin="normal">
-              <InputLabel className="locationInput" htmlFor="zipcode">
-              {this.state.prevLocation}
-              </InputLabel>
-              <Input
-                disabled={this.state.locationDisabled}
-                onChange={this.handleChange}
-                name="location"
-                id="zipcode"
-                autoComplete="zipcode"
-              />
-            </FormControl>
-            <Button className="locationButton" onClick={() => this.handleClick("location")}>
-              <EditIcon />
-            </Button>
-
-            <Button className="submitButton" type="submit" fullWidth variant="contained" color="primary">
-            Submit your edits
-          </Button>
-            </form>
-          
-        </Paper>
+          </form>
+          </div>
+      </div>
       </div>
     );
   }
