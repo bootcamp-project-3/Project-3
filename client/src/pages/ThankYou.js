@@ -3,11 +3,9 @@ import SideBar from "../components/Nav/SideBar/SideBar";
 // import Styled from "styled-components";
 import Nav from "../components/Nav/Nav";
 import BottomNav from "../components/Nav/BottomNav";
-import FormControl from '@material-ui/core/FormControl';
 import Wrapper from "../components/LandingPage/Wrapper";
 import { withStyles } from '@material-ui/core/styles';
 // import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
     container: {
@@ -46,8 +44,7 @@ class OutlinedTextFields extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
-
+        
         return (
             <main>
                 <Nav />
