@@ -46,7 +46,7 @@ class BottomNav extends React.Component {
                 <BottomNavigationAction label="Terms of Service" icon={<FavoriteIcon />} onClick={() => {
                     window.location = "/TermsOfService";
                 }} />
-                <BottomNavigationAction label="Contact Us" icon={<LocationOnIcon />} onClick={ () => {window.location.href = "mailto:user@example.com?subject=Neighborly&body=message%20goes%20here";}} />
+                <BottomNavigationAction label="Contact Us" icon={<LocationOnIcon />} onClick={ () => {window.location = "/contact-us";}} />
             </BottomNavigation>
         );
     }
