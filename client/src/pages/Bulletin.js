@@ -7,6 +7,7 @@ import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
+import BottomNav from "../components/Nav/BottomNav";
 
 const SmallWrapperDiv = Styled.div`
   display: grid;
@@ -137,7 +138,9 @@ class Bulletin extends Component {
             updatePosts={this.updatePosts}
           />
         </MediumWrapperDiv>
+        <BottomNav />
       </main>
+      
     );
   }
 }
