@@ -7,7 +7,6 @@ import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
-import "../App.css"
 
 const SmallWrapperDiv = Styled.div`
   padding-top: 60px
