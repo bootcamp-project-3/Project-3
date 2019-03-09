@@ -4,7 +4,7 @@ import LpNav from "../components/LandingPage/LpNav";
 import Wrapper from "../components/LandingPage/Wrapper";
 import Button from "../components/LandingPage/LpButton";
 import Styled from "styled-components";
-import Image from "../components/LandingPage/assets/neighborhood.jpg";
+import Image from "../components/LandingPage/assets/dog.jpg";
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;
@@ -24,8 +24,10 @@ class HomePage extends Component {
         <div>
           <LpNav />
           <Wrapper>
-            Be Neighborly. Sign Up
+            Share your lawnmower, host a cookout, sell an item.
+            <h1>Be Neighborly.</h1>
             <Button />
+            <p>Have an account? <a href="./sign-in">Sign In</a></p>
           </Wrapper>
           <Spacer></Spacer>
         </div>
