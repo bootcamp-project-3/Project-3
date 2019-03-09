@@ -26,12 +26,14 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Eclair", 262, 16.0),
-  createData("Cupcake", 305, 3.7),
-  createData("Gingerbread", 356, 16.0),
+  createData("Frozen yoghurt", "A test message.", 9/12/2005),
+  createData("Ice cream sandwich", "A test message.", 9/12/2005),
+  createData("Eclair", "A test message.", 9/12/2005),
+  createData("Cupcake", "A test message.", 9/12/2005),
+  createData("Gingerbread", "A test message.", 9/12/2005),
 ];
+
+
 
 function SimpleTable(props) {
   const { classes } = props;
