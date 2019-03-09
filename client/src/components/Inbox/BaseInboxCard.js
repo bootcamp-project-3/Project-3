@@ -4,14 +4,15 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-// import Button from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Table from "./Table";
+// import Styled from "styled-components";
 
 const styles = theme => ({
   card: {
-    minWidth: 275,
-    marginTop: 100,
+    minWidth: "90%",
+    marginTop: 100, 
   },
   bullet: {
     display: "inline-block",
@@ -29,6 +30,7 @@ const styles = theme => ({
 class BaseInboxCard extends Component {
   state = {
     id: "",
+    name: "",
     location: "",
     messages: [],
   };
@@ -50,12 +52,13 @@ class BaseInboxCard extends Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(result);
-          console.log(result.data);
+          // Update the state with the users session data
           this.setState({
             id: result.data.user,
+            name: result.data.name,
             location: result.data.loc,
           });
+          console.log(this.state);
           // Get the users messages and update the state
           this.getMessages();
         },
@@ -67,9 +70,10 @@ class BaseInboxCard extends Component {
 
   getMessages = () => {
     const id = this.state.id;
+    // Query the api for the users inbox messages
     fetch("/api/messages/inbox/" + id, {
       method: "Get", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, cors, *same-origin
+      mode: "same-origin", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "include", // include, *same-origin, omit
       headers: {
@@ -82,7 +86,8 @@ class BaseInboxCard extends Component {
       .then(res => res.json())
       .then(
         result => {
-          this.setState({ messages: result.data });
+          this.setState({ messages: result });
+          console.log(this.state.messages);
         },
         error => {
           console.log(error);
@@ -94,8 +99,11 @@ class BaseInboxCard extends Component {
     const { classes } = this.props;
     // const bull = <span className={classes.bullet}>•</span>;
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} square="true" >
         <CardContent>
+          <Button onClick={this.getMessages} color="primary" variant="outlined">
+            Get Inbox
+          </Button>
           <Typography variant="h4" color="inherit" align="center">
             Inbox
           </Typography>

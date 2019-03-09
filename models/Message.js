@@ -24,6 +24,14 @@ const MessageSchema = new Schema({
     type: String,
     required: "Content is required.",
   },
+  subject: {
+    type: String,
+    required: "Content is required.",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   unread: {
     type: Boolean,
     default: true,

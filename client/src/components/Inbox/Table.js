@@ -7,6 +7,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import LoadingCircle from "../LoadingCircle/LoadingCircle";
+import Styled from "styled-components";
 
 const styles = theme => ({
   root: {
@@ -19,19 +21,11 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Eclair", 262, 16.0),
-  createData("Cupcake", 305, 3.7),
-  createData("Gingerbread", 356, 16.0),
-];
+const LoadingCircleWrapper = Styled.div`
+  margin: 0 auto;
+  justify-items: center;
+  align-items: center;
+`;
 
 function SimpleTable(props) {
   const { classes } = props;
@@ -42,21 +36,32 @@ function SimpleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell>From</TableCell>
-            <TableCell >Subject</TableCell>
+            <TableCell>Subject</TableCell>
             <TableCell align="right">Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.name}
+          {props.messages.length ? (
+            props.messages.map((message, index) => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  {message.senderName}
+                </TableCell>
+                <TableCell>{message.subject}</TableCell>
+                <TableCell align="right">{message.createdAt}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow key="0">
+              <TableCell align="left" />
+              <TableCell>
+                <LoadingCircleWrapper>
+                  <LoadingCircle />
+                </LoadingCircleWrapper>
               </TableCell>
-              <TableCell>{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              
+              <TableCell />
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </Paper>
