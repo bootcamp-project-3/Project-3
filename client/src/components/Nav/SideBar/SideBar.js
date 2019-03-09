@@ -77,7 +77,7 @@ class SideBar extends React.Component {
       <div className={classes.list}>
         <List>
           {["Inbox", "Bulletin", "Profile", "Posts"].map((text, index) => (
-            <ListItem button component="a" href={"/" + text.toLocaleLowerCase()}>
+            <ListItem button component="a" key={index} href={"/" + text.toLocaleLowerCase()}>
               <ListItemIcon>
                 
                 {this.renderIcons(index)}
