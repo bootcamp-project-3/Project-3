@@ -12,6 +12,7 @@ require("./models/User");
 require("./services/passport");
 require("./routes/authRoutes")(app);
 
+// Set the express-session secret key to the CookieKey env variable
 let cookieKey = process.env.CookieKey;
 
 const session = require("express-session");
@@ -46,7 +47,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(session({ secret: cookieKey, cookie: { maxAge: 60000 } }));
+app.use(
+  session({ secret: cookieKey, cookie: { maxAge: 60000, sameSite: true } })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -139,8 +139,10 @@ module.exports = function(app) {
       senderName: req.body.senderName,
       recipientId: req.body.recipientId,
       recipientName: req.body.recipientName,
+      subject: req.body.subject,
       content: req.body.content,
     };
+    console.log(newMessage);
     // Mongoose message creation
     Message.create(newMessage, function(err, post) {
       if (err) {
@@ -189,6 +191,8 @@ module.exports = function(app) {
         console.log(err);
         res.sendStatus(500);
       } else {
+        console.log("Received request for inbox.");
+        console.log(messages);
         res.send(JSON.stringify(messages));
       }
     });
