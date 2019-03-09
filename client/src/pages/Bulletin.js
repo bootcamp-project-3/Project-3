@@ -7,8 +7,10 @@ import BaseEventCard from "../components/EventCard/BaseEventCard";
 import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
 import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
+import "../App.css"
 
 const SmallWrapperDiv = Styled.div`
+  padding-top: 60px
   display: grid;
   grid-template-columns: repeat(3,1fr);
   justify-items: center;
@@ -98,14 +100,10 @@ class Bulletin extends Component {
   render() {
     return (
       <main>
-        <SideBar />
-        <SmallWrapperDiv>
-          <Panel
-            category="Community Needs"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-        </SmallWrapperDiv>
+        <SideBar 
+      
+        />
+        
         <SmallWrapperDiv>
           <BaseToolCard
             category="Equipment/Tools"
@@ -116,6 +114,11 @@ class Bulletin extends Component {
             category="Carpool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
+          />
+          <Panel
+          category="Community Needs"
+          posts={this.state.posts}
+          updatePosts={this.updatePosts}
           />
         </SmallWrapperDiv>
         <LargeWrapperDiv>
