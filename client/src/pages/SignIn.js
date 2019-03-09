@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Image from "../components/LandingPage/assets/neighborlyFinal.png";
+import BottomNav from "../components/Nav/BottomNav";
 
 const styles = theme => ({
   main: {
@@ -150,6 +151,7 @@ function SignIn(props) {
       >
         Sign in with Google
       </Button>
+      <BottomNav />
     </main>
   );
 }

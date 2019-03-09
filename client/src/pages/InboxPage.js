@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BaseInboxCard from "../components/Inbox/BaseInboxCard";
 import Sidebar from "../components/Nav/SideBar/SideBar";
+import BottomNav from "../components/Nav/BottomNav";
 import Styled from "styled-components";
 
 const InboxWrapper = Styled.div`
@@ -21,6 +22,7 @@ class InboxPage extends Component {
         <InboxWrapper>
           <BaseInboxCard />
         </InboxWrapper>
+        <BottomNav />
       </main>
     );
   }

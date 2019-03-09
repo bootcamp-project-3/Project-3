@@ -5,6 +5,7 @@ import Wrapper from "../components/LandingPage/Wrapper";
 import Button from "../components/LandingPage/LpButton";
 import Styled from "styled-components";
 import Image from "../components/LandingPage/assets/dog.jpg";
+import BottomNav from "../components/Nav/BottomNav";
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;
@@ -31,6 +32,7 @@ class HomePage extends Component {
           </Wrapper>
           <Spacer></Spacer>
         </div>
+        <BottomNav />
       </Background>
     );
   }
