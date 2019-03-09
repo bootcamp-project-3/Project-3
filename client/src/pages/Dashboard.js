@@ -8,6 +8,7 @@ import NameForm from "../components/ProfInfo/NameForm";
 import ZipForm from "../components/ProfInfo/ZipForm";
 import DashNav from "../components/ProfInfo/dashNav"
 import LpNav from "../components/LandingPage/LpNav";
+import FordForm from "../components/ProfInfo/fordForm";
 
 
 const styles = theme => ({
@@ -153,6 +154,13 @@ class Dashboard extends Component {
               handleClick={this.handleClick}
               handleChange={this.handleChange}
               className="zipInput"
+            />
+
+            <FordForm 
+            className="fordForm"
+            nameDisabled={this.state.locationDisabled}
+            handleClick={this.handleClick}
+            handleChange={this.handleChange}
             />
 
             <Button

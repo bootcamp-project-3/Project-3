@@ -50,6 +50,7 @@
   grid-template-areas: 
   'nameInput'
   'location'
+  'fordForm'
   'submitButton';
   grid-template-columns: 1fr;
   grid-gap: 30px;
@@ -85,6 +86,10 @@
   grid-area: editBut;
 }
 
+.formForm{
+  grid-area: fordForm;
+}
+
 .dashGrid{
   display: grid;
   grid-template-areas: 
@@ -94,3 +99,42 @@
   width: 80%;
 }
 
+/* FORD grid */
+
+.fordGrid{
+  display: grid;
+  grid-template-areas: 
+  'formTitle  formTitle'
+  'FInput  FButton'
+  'OInput  OButton'
+  'RInput  RButton'
+  'DInput  DButton';
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 10px;
+}
+
+.FInput{
+  grid-area: FInput;
+}
+.OInput{
+  grid-area: OInput;
+}
+.RInput{
+  grid-area: RInput;
+}
+.DInput{
+  grid-area: DInput;
+}
+
+.FButton{
+  grid-area: FButton;
+}
+.OButton{
+  grid-area: OButton;
+}
+.RButton{
+  grid-area: RButton;
+}
+.DButton{
+  grid-area: DButton;
+}
