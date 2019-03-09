@@ -111,7 +111,7 @@ class BaseInboxCard extends Component {
     const { classes } = this.props;
     // const bull = <span className={classes.bullet}>•</span>;
     return (
-      <Card className={classes.card} square="true">
+      <Card className={classes.card} >
         <CardContent>
           <Button onClick={this.getMessages} color="primary" variant="outlined">
             Get Inbox

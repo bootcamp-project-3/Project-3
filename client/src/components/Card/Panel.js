@@ -10,7 +10,7 @@ import SimpleCard from "./SimpleCard";
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    width: "80%",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

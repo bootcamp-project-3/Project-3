@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
-import Panel from "../components/Card/Panel";
+// import Panel from "../components/Card/Panel";
 import Styled from "styled-components";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
 import BaseEventCard from "../components/EventCard/BaseEventCard";
@@ -9,14 +9,14 @@ import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 import BottomNav from "../components/Nav/BottomNav";
 
-const SmallWrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  justify-items: center;
-  align-items: center;
-  max-width: 85%;
-  margin: 30px auto;
-`;
+// const SmallWrapperDiv = Styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(3,1fr);
+//   justify-items: center;
+//   align-items: center;
+//   max-width: 85%;
+//   margin: 30px auto;
+// `;
 
 const MediumWrapperDiv = Styled.div`
   display: grid;
@@ -100,14 +100,7 @@ class Bulletin extends Component {
     return (
       <main>
         <SideBar />
-        <SmallWrapperDiv>
-          <Panel
-            category="Community Needs"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-        </SmallWrapperDiv>
-        <SmallWrapperDiv>
+        <MediumWrapperDiv>
           <BaseToolCard
             category="Equipment/Tools"
             posts={this.state.posts}
@@ -118,7 +111,7 @@ class Bulletin extends Component {
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
-        </SmallWrapperDiv>
+        </MediumWrapperDiv>
         <LargeWrapperDiv>
           <BaseGeneralCard
             category="General"
