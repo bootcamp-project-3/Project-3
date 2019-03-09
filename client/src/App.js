@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
+import Dashboard from "./pages/Dashboard"
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
@@ -65,6 +66,7 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
+                <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" 
                 component={this.state.user ? Bulletin : NoMatch} />
                 <Route exact path="/inbox" component={InboxPage} />

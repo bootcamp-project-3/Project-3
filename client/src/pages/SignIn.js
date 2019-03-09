@@ -71,6 +71,13 @@ const getUser = event => {
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data), // body data type must match "Content-Type" header
+})
+  .then(function(response){
+    console.log(response);
+      window.location="./Bulletin"
+      })
+  .catch(err=>{
+    console.log(err)
   })
     .then(function(response) {
       console.log(response);
