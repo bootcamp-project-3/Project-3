@@ -66,13 +66,30 @@
 /* Grid for profile edit cards */
 .editForm{
   display: grid;
-  grid-template-columns: 5fr 1fr 
+  grid-template-columns: 5fr 1fr;
+  grid-template-areas: 
+  'formTitle formTitle'
+  'formInput editBut' 
 }
 
 /* Grid for prof dash */
+.formTitle{
+  grid-area: formTitle;
+}
+
+.formInput{
+  grid-area: formInput;
+}
+
+.nameButton{
+  grid-area: editBut;
+}
 
 .dashGrid{
   display: grid;
+  grid-template-areas: 
+  'formTitle formTitle'
+  'formInput editBut';
   grid-template-columns: 1fr 5fr;
   width: 80%;
 }

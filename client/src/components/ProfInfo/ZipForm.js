@@ -14,8 +14,8 @@ function ZipForm(props) {
   // const name = props.name.notName;
   return (
     <div>
-      <Typography>Edit your zipcode here</Typography>
       <Paper className="editForm">
+      <Typography className="formTitle">Edit your zipcode here</Typography>
       <FormControl margin="normal" className="formInput">
         <InputLabel className="locationInput" htmlFor="zipcode" width="100">
           {props.zip}

@@ -25,8 +25,9 @@ function NameForm(props) {
   // const name = props.name.notName;
   return (
     <div>
-      <Typography>Edit your name here</Typography>
       <Paper  className="editForm">
+      <Typography className="formTitle">Edit your name here</Typography>
+
       <FormControl margin="normal">
         <InputLabel className="nameInput" htmlFor="name" width="100">
           {props.name}
