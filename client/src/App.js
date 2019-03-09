@@ -9,7 +9,7 @@ import Inbox from "./pages/Inbox";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-
+import TermsOfService from "./pages/TermsOfService";
 
 const theme = createMuiTheme({
   palette: {
@@ -32,6 +32,7 @@ class App extends Component {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/bulletin" component={Bulletin} />
                 <Route exact path="/inbox" component={Inbox} />
+                <Route exact path="/termsofservice" component={TermsOfService}/>
                 <Route component={NoMatch} />
               </Switch>
             </div>
