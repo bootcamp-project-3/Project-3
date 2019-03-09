@@ -7,11 +7,12 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const styles = {
+const styles = theme => ({
     root: {
         width: "100%",
+        backgroundcolor: theme.primary,
     }
-};
+});
 
 
 class BottomNav extends React.Component {
@@ -33,6 +34,7 @@ class BottomNav extends React.Component {
                 onChange={this.handleChange}
                 showLabels
                 className={classes.bottomNav}
+                // color="inherit"
 
 
 
@@ -44,7 +46,7 @@ class BottomNav extends React.Component {
                 <BottomNavigationAction label="Terms of Service" icon={<FavoriteIcon />} onClick={() => {
                     window.location = "/TermsOfService";
                 }} />
-                <BottomNavigationAction label="Contact Us" icon={<LocationOnIcon />} onClick={ () => {window.location.href = "mailto:user@example.com?subject=Neighborly&body=message%20goes%20here";}} />
+                <BottomNavigationAction label="Contact Us" icon={<LocationOnIcon />} onClick={ () => {window.location = "/contact-us";}} />
             </BottomNavigation>
         );
     }
