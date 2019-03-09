@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import GeneralCard from "./GeneralCard";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
-import LoadingCircle from "../EventCard/LoadingCircle";
+import LoadingCircle from "../LoadingCircle/LoadingCircle";
 
 const styles = {
   card: {

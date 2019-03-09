@@ -9,7 +9,7 @@ import InboxPage from "./pages/InboxPage";
 import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
-
+import TermsOfService from "./pages/TermsOfService";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +20,41 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+
+  state = {
+    user: "",
+    location: "",
+  }
+
+  componentDidMount() {
+    fetch("/api/session", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          console.log(result.data);
+          this.setState({
+            user: result.data.user,
+            location: result.data.loc,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -30,8 +65,10 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
-                <Route exact path="/bulletin" component={Bulletin} />
+                <Route exact path="/bulletin" 
+                component={this.state.user ? Bulletin : NoMatch} />
                 <Route exact path="/inbox" component={InboxPage} />
+                <Route exact path="/termsofservice" component={TermsOfService}/>
                 <Route component={NoMatch} />
               </Switch>
             </div>
