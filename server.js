@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-// const cookieSession = require("cookie-session");
 const passport = require("passport");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
@@ -13,10 +12,9 @@ require("./services/passport");
 require("./routes/authRoutes")(app);
 
 // Set the express-session secret key to the CookieKey env variable
-let cookieKey = process.env.CookieKey;
-
+const sessionKey = process.env.CookieKey;
 const session = require("express-session");
-
+const MongoStore = require("connect-mongo")(session);
 // const secret = process.env.SESSION_SECRET || "testsecret";
 // Define middleware here
 app.use(
@@ -46,11 +44,6 @@ app.use(function(req, res, next) {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-app.use(
-  session({ secret: cookieKey, cookie: { maxAge: 60000, sameSite: true } })
-);
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -63,6 +56,14 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
   console.log("Connected to db!");
 });
+
+const hour = 36000000;
+app.use(
+  session({ 
+    secret: sessionKey,
+    store: new MongoStore({mongooseConnection: mongoose.connection}), 
+    cookie: { maxAge: hour, sameSite: true} })
+);
 
 // Middleware
 // app.use(session({ secret: secret, resave: false, saveUninitialized: true }));
