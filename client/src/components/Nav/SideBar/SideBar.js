@@ -2,18 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import EventIcon from "@material-ui/icons/Event";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import Nav from "../Nav";
-
+import { Link } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import Routes from "./Routes";
+import AltRoutes from "./AltRoutes";
 
 const styles = {
   list: {
@@ -29,6 +32,10 @@ class SideBar extends React.Component {
     left: false,
     keyword: "",
     link: "",
+  };
+
+  activeRoute = routeName => {
+    return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
   };
 
   toggleDrawer = (side, open) => () => {
@@ -53,21 +60,13 @@ class SideBar extends React.Component {
 
   renderIcons = index => {
     if (index === 0) {
-      return (
-          <InboxIcon />
-      );
+      return <InboxIcon />;
     } else if (index === 1) {
-      return (
-          <EventIcon />
-      );
+      return <EventIcon />;
     } else if (index === 2) {
-      return (
-          <AccountBoxIcon />
-      );
+      return <AccountBoxIcon />;
     } else {
-      return (
-          <ListAltIcon />
-      );
+      return <ListAltIcon />;
     }
   };
 
@@ -76,28 +75,43 @@ class SideBar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <List>
-          {["Inbox", "Bulletin", "Profile", "Posts"].map((text, index) => (
-            <ListItem button component="a" key={index} href={"/" + text.toLocaleLowerCase()}>
-              <ListItemIcon>
-                
-                {this.renderIcons(index)}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <MenuList>
+          {Routes.map((prop, key) => {
+            return (
+              <Link to={prop.path} style={{ textDecoration: "none" }} key={key}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <prop.icon />
+                  </ListItemIcon>
+                  <ListItemText primary={prop.sidebarName} />
+                </MenuItem>
+              </Link>
+            );
+          })}
+        </MenuList>
         <Divider />
         <List>
-          {["About Us", "Terms Of Service", "Contact Us"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {AltRoutes.map((prop, key) => {
+            return (
+              <Link to={prop.path} style={{ textDecoration: "none" }} key={key}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <prop.icon />
+                  </ListItemIcon>
+                  <ListItemText primary={prop.sidebarName} />
+                </MenuItem>
+              </Link>
+            );
+          })}
         </List>
+
+        <IconButton
+          className={classes.menuButton}
+          color="inherit"
+          onClick={classes.openDrawer}
+          aria-label="Open drawer"
+          align="left"
+        />
       </div>
     );
 
