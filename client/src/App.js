@@ -11,6 +11,8 @@ import NoMatch from "./pages/NoMatch";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
 import TermsOfService from "./pages/TermsOfService";
+import ContactUs from "./pages/ContactUs";
+import ThankYou from "./pages/ThankYou";
 
 const theme = createMuiTheme({
   palette: {
@@ -74,11 +76,17 @@ class App extends Component {
                 <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" component={Bulletin} />
                 <Route exact path="/inbox" component={InboxPage} />
+<<<<<<< HEAD
                 <Route
                   exact
                   path="/termsofservice"
                   component={TermsOfService}
                 />
+=======
+                <Route exact path="/termsofservice" component={TermsOfService}/>
+                <Route exact path="/contact-us" component={ContactUs}/>
+                <Route exact path="/thank-you" component={ThankYou}/>
+>>>>>>> 62604305416695130544b9620aab6e0fc0342b01
                 <Route component={NoMatch} />
               </Switch>
             </div>
