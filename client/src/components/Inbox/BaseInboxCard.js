@@ -6,13 +6,12 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Table from "./Table";
-// import Styled from "styled-components";
+import ReplyModal from "./ReplyModal";
 
 const styles = theme => ({
   card: {
     minWidth: "90%",
-    marginTop: 100, 
+    marginTop: 100,
   },
   bullet: {
     display: "inline-block",
@@ -33,6 +32,12 @@ class BaseInboxCard extends Component {
     name: "",
     location: "",
     messages: [],
+    recipientID: "",
+    recipientName: "",
+    messageContent: "",
+    messageSubject: "",
+    replyContent: "",
+    replySubject: "",
   };
 
   componentDidMount() {
@@ -58,7 +63,6 @@ class BaseInboxCard extends Component {
             name: result.data.name,
             location: result.data.loc,
           });
-          console.log(this.state);
           // Get the users messages and update the state
           this.getMessages();
         },
@@ -87,7 +91,6 @@ class BaseInboxCard extends Component {
       .then(
         result => {
           this.setState({ messages: result });
-          console.log(this.state.messages);
         },
         error => {
           console.log(error);
@@ -95,19 +98,82 @@ class BaseInboxCard extends Component {
       );
   };
 
+  sendReply = () => {
+    const message = {
+      senderId: this.state.id,
+      senderName: this.state.name,
+      recipientId: this.state.recipientID,
+      recipientName: this.state.recipientName,
+      subject: this.state.replySubject,
+      content: this.state.replyContent,
+    };
+    // Send a message to another user through the api
+    fetch("/api/messages", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "same-origin", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+      body: JSON.stringify(message),
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  handleInputChange = event => {
+    const {name, value} = event.target;
+    this.setState({
+      [name]: value,
+    })
+  }
+
+  updateReply = (recipientID, recipientName, content, subject) => {
+    this.setState({
+      recipientID: recipientID,
+      recipientName: recipientName,
+      messageContent: content,
+      messageSubject: subject,
+    });
+  };
+
   render() {
     const { classes } = this.props;
     // const bull = <span className={classes.bullet}>•</span>;
     return (
-      <Card className={classes.card} square="true" >
+      <Card className={classes.card}>
         <CardContent>
           <Button onClick={this.getMessages} color="primary" variant="outlined">
-            Get Inbox
+            Refresh
           </Button>
           <Typography variant="h4" color="inherit" align="center">
             Inbox
           </Typography>
-          <Table messages={this.state.messages} />
+          <ReplyModal
+            messages={this.state.messages}
+            id={this.state.id}
+            name={this.state.name}
+            recipientID={this.state.recipientID}
+            recipientName={this.state.recipientName}
+            messageContent={this.state.messageContent}
+            messageSubject={this.state.messageSubject}
+            replyContent={this.state.content}
+            replySubject={this.state.subject}
+            handleInputChange={this.handleInputChange}
+            updateReply={this.updateReply}
+            sendReply={this.sendReply}
+          />
         </CardContent>
         <CardActions>
           {/* <Button size="small">Learn More</Button> */}

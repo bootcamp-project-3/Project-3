@@ -14,7 +14,7 @@ import Styled from "styled-components";
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "100%",
+    width: "80%",
   },
   bullet: {
     display: "inline-block",
