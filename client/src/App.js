@@ -72,9 +72,21 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
-                <Route exact path="/profile" component={this.state.user ? Dashboard : HomePage} />
-                <Route exact path="/bulletin" component={this.state.user ? Bulletin : HomePage} />
-                <Route exact path="/inbox" component={this.state.user ? InboxPage : HomePage} />
+                <Route
+                  exact
+                  path="/profile"
+                  component={this.state.user ? Dashboard : HomePage}
+                />
+                <Route
+                  exact
+                  path="/bulletin"
+                  component={this.state.user ? Bulletin : HomePage}
+                />
+                <Route
+                  exact
+                  path="/inbox"
+                  component={this.state.user ? InboxPage : HomePage}
+                />
                 <Route
                   exact
                   path="/termsofservice"
