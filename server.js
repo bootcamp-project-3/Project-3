@@ -59,10 +59,11 @@ db.once("open", function() {
 
 const hour = 36000000;
 app.use(
-  session({ 
+  session({
     secret: sessionKey,
-    store: new MongoStore({mongooseConnection: mongoose.connection}), 
-    cookie: { maxAge: hour, sameSite: true} })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: hour, sameSite: true },
+  })
 );
 
 // Middleware
