@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
-import Dashboard from "./pages/Dashboard"
+import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
@@ -17,17 +17,19 @@ import ThankYou from "./pages/ThankYou";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#66bb6a',
+      main: "#66bb6a",
+    },
+    secondary: {
+      main: "#DC143C",
     },
   },
 });
 
 class App extends Component {
-
   state = {
     user: "",
     location: "",
-  }
+  };
 
   componentDidMount() {
     fetch("/api/session", {
@@ -45,8 +47,7 @@ class App extends Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result.status === 401){
-            
+          if (result.status === 401) {
           }
           console.log(result);
           console.log(result.data);
@@ -72,12 +73,15 @@ class App extends Component {
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/profile" component={Dashboard} />
-                <Route exact path="/bulletin" 
-                component={this.state.user ? Bulletin : NoMatch} />
+                <Route exact path="/bulletin" component={Bulletin} />
                 <Route exact path="/inbox" component={InboxPage} />
-                <Route exact path="/termsofservice" component={TermsOfService}/>
-                <Route exact path="/contact-us" component={ContactUs}/>
-                <Route exact path="/thank-you" component={ThankYou}/>
+                <Route
+                  exact
+                  path="/termsofservice"
+                  component={TermsOfService}
+                />
+                <Route exact path="/contact-us" component={ContactUs} />
+                <Route exact path="/thank-you" component={ThankYou} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
