@@ -1,29 +1,6 @@
-# Create React Express App
+# <a>Neighborly</a>
 
-## About This Boilerplate
+## About 
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+Neighborly is a dynamic web application that encourages relationships between neighbors. By geo-targeting local and private communities, Neighborly provides an outlet to express personal and familial needs such as shoveling a driveway, getting a babysitter, getting your kids a ride to hockey practice, finding orders for girl scout cookies, or even just letting the neighborhood know you're having a pool party next week. In the hectic world of today what we really need is to be Neighborly.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-yarn install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
