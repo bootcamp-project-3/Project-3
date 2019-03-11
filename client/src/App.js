@@ -20,8 +20,8 @@ const theme = createMuiTheme({
       main: "#66bb6a",
     },
     secondary: {
-      main: "#DC143C"
-    }
+      main: "#DC143C",
+    },
   },
 });
 
@@ -47,8 +47,7 @@ class App extends Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result.status === 401){
-            
+          if (result.status === 401) {
           }
           console.log(result);
           console.log(result.data);
@@ -76,17 +75,13 @@ class App extends Component {
                 <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" component={Bulletin} />
                 <Route exact path="/inbox" component={InboxPage} />
-<<<<<<< HEAD
                 <Route
                   exact
                   path="/termsofservice"
                   component={TermsOfService}
                 />
-=======
-                <Route exact path="/termsofservice" component={TermsOfService}/>
-                <Route exact path="/contact-us" component={ContactUs}/>
-                <Route exact path="/thank-you" component={ThankYou}/>
->>>>>>> 62604305416695130544b9620aab6e0fc0342b01
+                <Route exact path="/contact-us" component={ContactUs} />
+                <Route exact path="/thank-you" component={ThankYou} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
