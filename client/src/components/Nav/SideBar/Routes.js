@@ -1,4 +1,4 @@
-import { Home, Inbox, Mail, AccountBox, Event } from "@material-ui/icons";
+import { Home, Inbox, AccountBox } from "@material-ui/icons";
 import Bulletin from "../../../pages/Bulletin";
 import InboxPage from "../../../pages/InboxPage";
 
