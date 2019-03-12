@@ -62,7 +62,7 @@ class Bulletin extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/10", {
+          fetch("/api/posts/50", {
             method: "Get", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

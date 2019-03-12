@@ -46,6 +46,7 @@ class BaseEventCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Events")
+      .slice(0,9)
       .map((post, index) => {
         return (
           <EventCard
