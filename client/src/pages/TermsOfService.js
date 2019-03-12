@@ -1,6 +1,5 @@
 import React from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
-import BottomNav from "../components/Nav/BottomNav";
 import Styled from "styled-components";
 
 const NavWrapperDiv = Styled.div`
