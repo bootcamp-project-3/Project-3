@@ -43,9 +43,9 @@ class PageTabs extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" style={{ backgroundColor: "#4caf50" }}>
           <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Page 1" />
-            <Tab label="Page 2" />
-            <Tab label="Page 3" />
+            <Tab label="Page 1" style={{ color: "#fafafa" }} />
+            <Tab label="Page 2" style={{ color: "#fafafa" }} />
+            <Tab label="Page 3" style={{ color: "#fafafa" }} />
           </Tabs>
         </AppBar>
         {value === 0 && (
