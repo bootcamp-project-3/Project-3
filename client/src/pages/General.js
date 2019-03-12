@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../components/Nav/SideBar/SideBar";
-import BaseGeneralCard from "../components/GeneralCard/BaseGeneralCard";
+import PageTabs from "../components/GeneralPage/PageTabs";
 import Styled from "styled-components";
 
 const LargeWrapperDiv = Styled.div`
@@ -9,7 +9,7 @@ const LargeWrapperDiv = Styled.div`
   justify-content: end;
   align-items: center;
   max-width: 90%;
-  margin: 30px auto;
+  margin: 120px auto;
 `;
 
 class General extends Component {
@@ -81,11 +81,8 @@ class General extends Component {
     return (
       <main>
         <Sidebar />
-        <h1 style={{ marginTop: "100px", textAlign: "center" }}>
-          General Page
-        </h1>
         <LargeWrapperDiv>
-          <BaseGeneralCard
+          <PageTabs
             category="General"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
