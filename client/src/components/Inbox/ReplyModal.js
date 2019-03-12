@@ -8,11 +8,11 @@ import EnhancedTable from "./EnhancedTable";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import Styled from "styled-components";
-
+import LoadingCircle from "../CarPoolCard/LoadingCircle";
 
 function getModalStyle() {
   const top = 50;
-  const left = 50 ;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -130,7 +130,11 @@ class SimpleModal extends React.Component {
                 variant="outlined"
               />
               <ButtonWrapper>
-                <Button variant="outlined" color="secondary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={this.handleClose}
+                >
                   Cancel
                 </Button>
 
@@ -145,11 +149,15 @@ class SimpleModal extends React.Component {
             </div>
           </Modal>
         </ModalPosition>
-        <EnhancedTable
-          updateReply={this.props.updateReply}
-          messages={this.props.messages}
-          handleOpen={this.handleOpen}
-        />
+        {this.props.messages ? (
+          <EnhancedTable
+            updateReply={this.props.updateReply}
+            messages={this.props.messages}
+            handleOpen={this.handleOpen}
+          />
+        ) : (
+          <LoadingCircle />
+        )}
       </div>
     );
   }

@@ -13,6 +13,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import TermsOfService from "./pages/TermsOfService";
 import ContactUs from "./pages/ContactUs";
 import ThankYou from "./pages/ThankYou";
+import General from "./pages/General";
 
 const theme = createMuiTheme({
   palette: {
@@ -32,34 +33,35 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("/api/session", {
-      method: "get", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, cors, *same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "include", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        // "Content-Type": "application/x-www-form-urlencoded",
-      },
-      redirect: "follow", // manual, *follow, error
-      referrer: "client", // no-referrer, *client
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          if (result.status === 401) {
-          }
-          console.log(result);
-          console.log(result.data);
-          this.setState({
-            user: result.data.user,
-            location: result.data.loc,
-          });
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    // This method of authentication is no longer working using the react-router-links
+    // fetch("/api/session", {
+    //   method: "get", // *GET, POST, PUT, DELETE, etc.
+    //   mode: "cors", // no-cors, cors, *same-origin
+    //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    //   credentials: "include", // include, *same-origin, omit
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     // "Content-Type": "application/x-www-form-urlencoded",
+    //   },
+    //   redirect: "follow", // manual, *follow, error
+    //   referrer: "client", // no-referrer, *client
+    // })
+    //   .then(res => res.json())
+    //   .then(
+    //     result => {
+    //       if (result.status === 401) {
+    //       }
+    //       console.log(result);
+    //       console.log(result.data);
+    //       this.setState({
+    //         user: result.data.user,
+    //         location: result.data.loc,
+    //       });
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
   }
 
   render() {
@@ -72,21 +74,14 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
-                <Route
-                  exact
-                  path="/profile"
-                  component={this.state.user ? Dashboard : HomePage}
-                />
-                <Route
-                  exact
-                  path="/bulletin"
-                  component={this.state.user ? Bulletin : HomePage}
-                />
-                <Route
-                  exact
-                  path="/inbox"
-                  component={this.state.user ? InboxPage : HomePage}
-                />
+                <Route exact path="/profile" component={Dashboard} />
+                <Route exact path="/bulletin" component={Bulletin} />
+                <Route exact path="/inbox" component={InboxPage} />
+                <Route exact path="/general" component={General} />
+                {/* <Route exact path="/tools" component={Tools} />
+                <Route exact path="/carpool" component={CarPool} />
+                <Route exact path="/skills" component={Skills} />
+                <Route exact path="/events" component={Events} /> */}
                 <Route
                   exact
                   path="/termsofservice"
