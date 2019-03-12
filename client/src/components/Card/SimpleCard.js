@@ -43,7 +43,7 @@ function SimpleCard(props) {
 
   return (
     <div>
-      <Card className={classes.card}>
+      <Card className={classes.card} square>
         <ImageWrapper>
           <img className={classes.tack} alt="" src={thumbtackRed} width="50px" />
         </ImageWrapper>
