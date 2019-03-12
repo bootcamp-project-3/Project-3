@@ -1,33 +1,42 @@
 import React from "react";
+import SideBar from "../components/Nav/SideBar/SideBar";
+import Styled from "styled-components";
 
-
+const NavWrapperDiv = Styled.div`
+  margin-bottom: 100px;
+`;
 
 const TermsOfService = () => {
       return (
+        <main>
+        <NavWrapperDiv>
+          <SideBar />
+        </NavWrapperDiv>
+        <div>
         <div>
         <h3>Terms and Conditions</h3>
         
         <p>Last updated: 3/1/2019</p>
 
         <p>Please read these Terms and Conditionsn carefully before using 
-        the http://www.mywebsite.com website (the Service) operated by My Company (us, we, or our).
-        Your access to and use of the Service is conditioned on your acceptance of and compliance with
-        these Terms. These Terms apply to all visitors, users and others who access or use the Service.
-        By accessing or using the Service you agree to be bound by these Terms. If you disagree
-        with any part of the terms then you may not access the Service.</p>
+        the http://www.Neighborly.com website operated by Neighborly (us, we, or our).
+        Your access to and use of the Neighborly is conditioned on your acceptance of and compliance with
+        these Terms. These Terms apply to all visitors, users and others who access or use Neighborly.
+        By accessing or using Neighborly you agree to be bound by these Terms. If you disagree
+        with any part of the terms then you may not access Neighborly.</p>
 
 
         <h3>Content</h3>
 
-        <p>Our Service allows you to post, link, store, share and otherwise make available certain information,
+        <p>Neighborly allows you to post, link, store, share and otherwise make available certain information,
         text, graphics, videos, or other material ("Content"). </p>
 
         <h3>Links To Other Web Sites</h3>
 
-        <p>Service may contain links to third-party web sites or services that are not owned or controlled
-        by My Company. My Company has no control over, and assumes no responsibility for, the content,
+        <p>Neighborly may contain links to third-party web sites or services that are not owned or controlled
+        by Neighborly. Neighborly has no control over, and assumes no responsibility for, the content,
         privacy policies, or practices of any third party web sites or services. You further acknowledge and
-        agree that My Company shall not be responsible or liable, directly or indirectly, for any
+        agree that Neighborly shall not be responsible or liable, directly or indirectly, for any
         damage or loss caused or alleged to be caused by or in connection with use of or reliance on any
         such content, goods or services available on or through any such web sites or services.</p>
 
@@ -51,6 +60,8 @@ const TermsOfService = () => {
 
 
         </div>
+        </div>
+        </main>
         );
         }
 

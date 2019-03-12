@@ -14,6 +14,7 @@ import TermsOfService from "./pages/TermsOfService";
 import ContactUs from "./pages/ContactUs";
 import ThankYou from "./pages/ThankYou";
 import General from "./pages/General";
+import AboutUs from "./pages/AboutUs";
 
 const theme = createMuiTheme({
   palette: {
@@ -89,6 +90,7 @@ class App extends Component {
                 />
                 <Route exact path="/contact-us" component={ContactUs} />
                 <Route exact path="/thank-you" component={ThankYou} />
+                <Route exact path="/aboutus" component={AboutUs}/>
                 <Route component={NoMatch} />
               </Switch>
             </div>
