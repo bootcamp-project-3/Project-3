@@ -6,6 +6,8 @@ import Button from "../components/LandingPage/LpButton";
 import Styled from "styled-components";
 import Image from "../components/LandingPage/assets/dog.jpg";
 import BottomNav from "../components/Nav/BottomNav";
+import SignInModal from "../components/LandingPage/SignIn/SignInModal";
+import SignUpModal from "../components/LandingPage/SignUp/SignUpModal";
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;
@@ -19,6 +21,44 @@ const Spacer = Styled.div`
 `;
 
 class HomePage extends Component {
+  state = {
+    SIopen: false,
+    SUOpen: false,
+    email: "",
+  };
+
+  handleOpen = () => {
+    this.setState({ SIopen: true });
+    console.log("test")
+  };
+
+  handleClose = () => {
+    this.setState({ SIopen: false });
+  };
+
+  SUOpen = () => {
+    this.setState({ SUOpen: true });
+  };
+
+  SUClose = () => {
+    this.setState({ SUOpen: false });
+  };
+
+  changeSISU = () =>{
+    this.setState(
+      {
+        SUOpen: false,
+        SIopen: true
+    });
+  };
+
+  saveEmail = (data) => {
+    console.log(data);
+    this.setState({
+      email: data
+    })
+  } 
+
   render() {
     return (
       <Background>
@@ -27,10 +67,15 @@ class HomePage extends Component {
           <Wrapper>
             Share your lawnmower, host a cookout, sell an item.
             <h1>Be Neighborly.</h1>
-            <Button />
-            <p>Have an account? <a href="./sign-in">Sign In</a></p>
+            <Button SUOpen={this.SUOpen} />
+            <p>
+              Have an account?{" "}
+              <button onClick={this.handleOpen}>Sign In</button>
+            </p>
+            <SignInModal open={this.state.SIopen} email={this.state.email} onClose={this.handleClose} />
+            <SignUpModal SUOpen={this.state.SUOpen} changeSISU={this.changeSISU} email={this.state.email} SUClose={this.SUClose} saveEmail={this.saveEmail}/>
           </Wrapper>
-          <Spacer></Spacer>
+          <Spacer />
         </div>
         <BottomNav />
       </Background>

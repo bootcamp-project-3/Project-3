@@ -8,7 +8,7 @@ import NameForm from "../components/ProfInfo/NameForm";
 import ZipForm from "../components/ProfInfo/ZipForm";
 import DashNav from "../components/ProfInfo/dashNav"
 import LpNav from "../components/LandingPage/LpNav";
-import FordForm from "../components/ProfInfo/fordForm";
+import EmailForm from "../components/ProfInfo/EmailForm";
 
 
 const styles = theme => ({
@@ -49,10 +49,16 @@ class Dashboard extends Component {
     notName: "",
     id: "",
     location: "",
+    email: "",
+    password: "",
     nameDisabled: true,
     locationDisabled: true,
+    passDisabled: true,
+    emailDisabled: true,
     prevnotName: "",
     prevLocation: "",
+    prevPass: "",
+    prevEmail: "",
   };
 
   componentDidMount() {
@@ -71,7 +77,6 @@ class Dashboard extends Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(result.data);
           this.setState({
             id: result.data.user,
             prevLocation: result.data.loc,
@@ -100,6 +105,16 @@ class Dashboard extends Component {
 
   updateProfile = event => {
     event.preventDefault();
+    let name = this.state.notName;
+    if(!name){
+      name = this.state.prevnotName;
+    }
+    let location = this.state.location
+    if(!location){
+      location = this.state.prevLocation;
+    }
+    console.log(name)
+    console.log(location)
     //           let data = {
     //             name: this.state.name,
     //             location: this.state.location
@@ -124,7 +139,6 @@ class Dashboard extends Component {
     //           .catch(err=>{
     //             console.log(err)
     //           })
-    console.log(this.state.notName, this.state.location);
   };
 
   render() {
@@ -156,12 +170,12 @@ class Dashboard extends Component {
               className="zipInput"
             />
 
-            <FordForm 
-            className="fordForm"
-            nameDisabled={this.state.locationDisabled}
-            handleClick={this.handleClick}
-            handleChange={this.handleChange}
-            />
+            <EmailForm 
+              email={this.state.prevEmail}
+              nameDisabled={this.state.emailDisabled}
+              handleClick={this.handleClick}
+              handleChange={this.handleChange}
+              className="emailInput"/>
 
             <Button
               className="submitButton"

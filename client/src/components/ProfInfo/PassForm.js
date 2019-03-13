@@ -9,25 +9,25 @@ import "../../App.css"
 import Typography from "@material-ui/core/Typography";
 
 
-function ZipForm(props) {
-  // const name = props.name.notName;
+function PassForm(props) {
+  console.log(props);
   return (
     <div>
       <Paper className="editForm">
-      <Typography className="formTitle">Edit your zipcode here</Typography>
-      <FormControl margin="normal" className="formInput">
-        <InputLabel className="locationInput" htmlFor="zipcode" width="100">
-          {props.zip}
+      <Typography className="formTitle">Edit your password here</Typography>
+      <FormControl margin="normal" className="passInput">
+        <InputLabel className="passwordInput" htmlFor="password" width="100">
+          {props.password}
         </InputLabel>
         <Input
-          disabled={props.nameDisabled}
+          disabled={props.passDisabled}
           onChange={props.handleChange}
-          name="location"
-          id="zipcode"
-          defaultValue={props.zip}
+          name="password"
+          id="password"
+          autoComplete="password"
         />
       </FormControl>
-      <Button className="nameButton" onClick={() => props.handleClick("location")}>
+      <Button className="passButton" onClick={() => props.handleClick("password")}>
         <EditIcon />
       </Button>
       </Paper>
@@ -35,4 +35,4 @@ function ZipForm(props) {
   );
 }
 
-export default ZipForm;
+export default PassForm;

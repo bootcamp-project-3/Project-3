@@ -21,7 +21,6 @@ const theme = createMuiTheme({
 });
 
 function NameForm(props) {
-  console.log(props);
   // const name = props.name.notName;
   return (
     <div>
@@ -30,7 +29,7 @@ function NameForm(props) {
 
       <FormControl margin="normal">
         <InputLabel className="nameInput" htmlFor="name" width="100">
-          {props.name}
+         {props.name}
         </InputLabel>
         <Input
           disabled={props.nameDisabled}
@@ -38,6 +37,7 @@ function NameForm(props) {
           name="notName"
           id="name"
           autoComplete="name"
+          defaultValue={props.name}
         />
       </FormControl>
       <Button className="nameButton" onClick={()=>props.handleClick("name")}>
