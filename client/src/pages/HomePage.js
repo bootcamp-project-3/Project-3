@@ -53,7 +53,7 @@ class HomePage extends Component {
   };
 
   saveEmail = (data) => {
-    console.log(data);
+    
     this.setState({
       email: data
     })
@@ -72,8 +72,17 @@ class HomePage extends Component {
               Have an account?{" "}
               <button onClick={this.handleOpen}>Sign In</button>
             </p>
-            <SignInModal open={this.state.SIopen} email={this.state.email} onClose={this.handleClose} />
-            <SignUpModal SUOpen={this.state.SUOpen} changeSISU={this.changeSISU} email={this.state.email} SUClose={this.SUClose} saveEmail={this.saveEmail}/>
+            <SignInModal
+            open={this.state.SIopen}
+            email={this.state.email}
+            onClose={this.handleClose}
+            />
+            <SignUpModal
+             SUOpen={this.state.SUOpen}
+             changeSISU={this.changeSISU}
+             email={this.state.email}
+             SUClose={this.SUClose}
+             saveEmail={this.saveEmail}/>
           </Wrapper>
           <Spacer />
         </div>

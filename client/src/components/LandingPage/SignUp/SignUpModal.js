@@ -63,7 +63,7 @@ function SUModal(props) {
         props.saveEmail(data.email);
         props.changeSISU();
 
-      })
+        })
       .catch(err => {
         console.log(err);
       });

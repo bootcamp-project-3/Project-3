@@ -86,7 +86,7 @@ function SIModal(props) {
         <form onSubmit={getUser}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" autoComplete={props.email} autoFocus />
+            <Input id="email" name="email" defaultValue={props.email} autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
