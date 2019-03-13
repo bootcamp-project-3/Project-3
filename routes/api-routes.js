@@ -72,6 +72,7 @@ module.exports = function(app) {
               req.session.user = user._id;
               req.session.loc = user.zip;
               req.session.name = user.name;
+              req.sessoin.email = user.email;
               console.log(req.session.user);
               res.sendStatus(200);
             }
@@ -99,6 +100,7 @@ module.exports = function(app) {
   });
   // * Get session data
   app.get("/api/session", function(req, res) {
+    console.log(req.session);
     if (!req.session.user) {
       res.status(401).send("No user is signed in on this session");
     } else {

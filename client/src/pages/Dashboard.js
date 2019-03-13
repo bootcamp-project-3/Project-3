@@ -82,6 +82,7 @@ class Dashboard extends Component {
             id: result.data.user,
             prevLocation: result.data.loc,
             prevnotName: result.data.name,
+            email: result.data.email,
           });
         },
         error => {
@@ -172,8 +173,8 @@ class Dashboard extends Component {
             />
 
             <EmailForm 
-              email={this.state.prevEmail}
-              nameDisabled={this.state.emailDisabled}
+              email={this.state.email}
+              emailDisabled={this.state.emailDisabled}
               handleClick={this.handleClick}
               handleChange={this.handleChange}
               className="emailInput"/>

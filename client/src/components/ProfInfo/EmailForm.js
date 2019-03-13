@@ -10,26 +10,25 @@ import Typography from "@material-ui/core/Typography";
 function EmailForm(props) {
   return (
     <div>
-      <Paper className="editForm">
-        <Typography className="formTitle">Edit your email here</Typography>
-        <FormControl margin="normal" className="formInput">
-          <InputLabel className="emailInput" htmlFor="email" width="100">
-            {props.email}
-          </InputLabel>
-          <Input
-            disabled={props.emailDisabled}
-            onChange={props.handleChange}
-            name="email"
-            id="email"
-            defaultValue={props.email}
-          />
-          <Button
-            className="nameButton"
-            onClick={() => props.handleClick("email")}
-          >
-            <EditIcon />
-          </Button>
-        </FormControl>
+      <Paper  className="editForm">
+      <Typography className="formTitle">Edit your account's email address here</Typography>
+
+      <FormControl margin="normal">
+        <InputLabel className="nameInput" htmlFor="name" width="100">
+         {props.email}
+        </InputLabel>
+        <Input
+          disabled={props.emailDisabled}
+          onChange={props.handleChange}
+          name="email"
+          id="name"
+          autoComplete="name"
+          defaultValue={props.email}
+        />
+      </FormControl>
+      <Button className="nameButton" onClick={()=>props.handleClick("email")}>
+        <EditIcon />
+      </Button>
       </Paper>
     </div>
   );
