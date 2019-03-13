@@ -4,17 +4,18 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
 import ToolCard from "./ToolCard.js";
-import { Link } from "react-router-dom";
+import Link from '@material-ui/core/Link';
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "80%",
+    width: "100%",
   },
   bullet: {
     display: "inline-block",
@@ -22,7 +23,7 @@ const styles = theme => ({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
   },
   pos: {
     marginBottom: 12,
@@ -45,7 +46,7 @@ class BaseToolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
     return posts
-      .filter(post => post.category === "Equipment/Tools")
+      .filter(post => post.category === "Community Equipment")
       .map((post, index) => {
         return (
           <ToolCard
@@ -61,7 +62,7 @@ class BaseToolCard extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.card} square>
+      <Card className={classes.card}>
         <ImageWrapper>
           <img
             className={classes.tack}
@@ -71,7 +72,7 @@ class BaseToolCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
+            <Link to="/Equipment" style={linkStyle}>
               <Button color="primary" className={classes.button} size="large" >
                 {this.props.category}
               </Button>

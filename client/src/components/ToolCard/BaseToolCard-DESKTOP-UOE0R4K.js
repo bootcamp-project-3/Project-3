@@ -5,16 +5,16 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import EventCard from "./EventCard";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
+import ToolCard from "./ToolCard.js";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "90%",
+    width: "80%",
   },
   bullet: {
     display: "inline-block",
@@ -22,7 +22,7 @@ const styles = theme => ({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 14,
+    fontSize: 18,
   },
   pos: {
     marginBottom: 12,
@@ -41,15 +41,15 @@ const ImageWrapper = Styled.div`
   max-width: 100%;
 `;
 
-class BaseEventCard extends Component {
+class BaseToolCard extends Component {
   renderCards = () => {
     const posts = this.props.posts;
     return posts
-      .filter(post => post.category === "Events")
+      .filter(post => post.category === "Equipment/Tools")
       .slice(0,9)
       .map((post, index) => {
         return (
-          <EventCard
+          <ToolCard
             key={index}
             name={post.name}
             title={post.title}
@@ -87,8 +87,8 @@ class BaseEventCard extends Component {
   }
 }
 
-BaseEventCard.propTypes = {
+BaseToolCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BaseEventCard);
+export default withStyles(styles)(BaseToolCard);

@@ -43,6 +43,7 @@ class BaseGeneralCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "General")
+      .slice(0,9)
       .map((post, index) => {
         return (
           <GeneralCard

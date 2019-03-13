@@ -98,7 +98,7 @@ function Nav(props) {
             <img
               alt=""
               src={Image}
-              width="25%"
+              width="35%"
               onClick={() => {
                 window.location = "./bulletin";
               }}

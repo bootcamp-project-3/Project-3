@@ -107,8 +107,9 @@ module.exports = function(app) {
     }
   });
   // * Gets the last 10 posts from the db if the user is signed in
-  app.get("/api/posts", function(req, res) {
+  app.get("/api/posts/:number", function(req, res) {
     // Checks for session, if none, return 401
+    const n = Number(req.params.number);
     if (!req.session.user) {
       res.sendStatus(401);
       return;
@@ -116,7 +117,7 @@ module.exports = function(app) {
       // If signed in, return last 10 posts
       const find = Post.find()
         .sort({ createdAt: -1 })
-        .limit(10);
+        .limit(n);
       find.exec(function(err, posts) {
         if (err) {
           console.log(err);
