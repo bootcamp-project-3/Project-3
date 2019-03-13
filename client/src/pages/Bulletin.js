@@ -62,6 +62,7 @@ class Bulletin extends Component {
             location: loc,
             name: name,
           });
+          this.props.updateAuth(user);
           fetch("/api/posts/50", {
             method: "Get", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin

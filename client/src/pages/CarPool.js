@@ -12,7 +12,7 @@ const LargeWrapperDiv = Styled.div`
   margin: 120px auto;
 `;
 
-class General extends Component {
+class Tools extends Component {
   state = {
     id: "",
     location: "",
@@ -83,7 +83,7 @@ class General extends Component {
         <Sidebar />
         <LargeWrapperDiv>
           <PageTabs
-            category="General"
+            category="CarPool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
@@ -93,4 +93,4 @@ class General extends Component {
   }
 }
 
-export default General;
+export default Tools;

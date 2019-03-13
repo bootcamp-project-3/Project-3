@@ -66,9 +66,13 @@ class BaseToolCard extends Component {
             width="50px"
           />
         </ImageWrapper>
-        <Typography variant="h6" color="inherit" align="center">
-          {this.props.category}
-        </Typography>
+        <ImageWrapper>
+            <Link to="/Equipment" style={linkStyle}>
+              <Button color="primary" className={classes.button} size="large" >
+                {this.props.category}
+              </Button>
+            </Link>
+          </ImageWrapper>
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
