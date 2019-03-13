@@ -19,10 +19,14 @@ import AboutUs from "./pages/AboutUs";
 const theme = createMuiTheme({
   palette: {
     primary: {
+      light: "#e8f5e9",
       main: "#66bb6a",
+
     },
     secondary: {
+      light: "#fafafa",
       main: "#DC143C",
+      dark: "#e0e0e0",
     },
   },
 });
