@@ -3,8 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
 import Dashboard from "./pages/Dashboard";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/Signup";
 import HomePage from "./pages/HomePage";
 import InboxPage from "./pages/InboxPage";
 import NoMatch from "./pages/NoMatch";
@@ -81,8 +79,6 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/sign-in" component={SignIn} />
-                <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" component={Bulletin} />
                 <Route exact path="/inbox" component={InboxPage} />

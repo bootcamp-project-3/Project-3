@@ -29,7 +29,6 @@ class HomePage extends Component {
 
   handleOpen = () => {
     this.setState({ SIopen: true });
-    console.log("test")
   };
 
   handleClose = () => {
@@ -44,20 +43,18 @@ class HomePage extends Component {
     this.setState({ SUOpen: false });
   };
 
-  changeSISU = () =>{
-    this.setState(
-      {
-        SUOpen: false,
-        SIopen: true
+  changeSISU = () => {
+    this.setState({
+      SUOpen: false,
+      SIopen: true,
     });
   };
 
-  saveEmail = (data) => {
-    
+  saveEmail = data => {
     this.setState({
-      email: data
-    })
-  } 
+      email: data,
+    });
+  };
 
   render() {
     return (
@@ -73,16 +70,17 @@ class HomePage extends Component {
               <button onClick={this.handleOpen}>Sign In</button>
             </p>
             <SignInModal
-            open={this.state.SIopen}
-            email={this.state.email}
-            onClose={this.handleClose}
+              open={this.state.SIopen}
+              email={this.state.email}
+              onClose={this.handleClose}
             />
             <SignUpModal
-             SUOpen={this.state.SUOpen}
-             changeSISU={this.changeSISU}
-             email={this.state.email}
-             SUClose={this.SUClose}
-             saveEmail={this.saveEmail}/>
+              SUOpen={this.state.SUOpen}
+              changeSISU={this.changeSISU}
+              email={this.state.email}
+              SUClose={this.SUClose}
+              saveEmail={this.saveEmail}
+            />
           </Wrapper>
           <Spacer />
         </div>

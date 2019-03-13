@@ -9,6 +9,7 @@ import ZipForm from "../components/ProfInfo/ZipForm";
 import DashNav from "../components/ProfInfo/dashNav"
 import LpNav from "../components/LandingPage/LpNav";
 import EmailForm from "../components/ProfInfo/EmailForm";
+import PasswordForm from "../components/ProfInfo/PassForm";
 
 
 const styles = theme => ({
@@ -188,6 +189,13 @@ class Dashboard extends Component {
             </Button>
 
           </form>
+
+          <form>
+
+            <PasswordForm />
+
+          </form>
+
           </div>
       </div>
       </div>
