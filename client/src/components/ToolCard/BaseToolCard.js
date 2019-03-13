@@ -71,7 +71,7 @@ class BaseToolCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
+            <Link to="/tools" style={linkStyle}>
               <Button color="primary" className={classes.button} size="large" >
                 {this.props.category}
               </Button>

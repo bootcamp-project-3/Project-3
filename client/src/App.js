@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
@@ -15,13 +19,13 @@ import ContactUs from "./pages/ContactUs";
 import ThankYou from "./pages/ThankYou";
 import General from "./pages/General";
 import AboutUs from "./pages/AboutUs";
+import CarPool from "./pages/CarPool";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       light: "#e8f5e9",
       main: "#66bb6a",
-
     },
     secondary: {
       light: "#fafafa",
@@ -35,39 +39,43 @@ class App extends Component {
   state = {
     user: "",
     location: "",
+    name: "",
   };
-
-  componentDidMount() {
-    // This method of authentication is no longer working using the react-router-links
-    // fetch("/api/session", {
-    //   method: "get", // *GET, POST, PUT, DELETE, etc.
-    //   mode: "cors", // no-cors, cors, *same-origin
-    //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: "include", // include, *same-origin, omit
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    //   redirect: "follow", // manual, *follow, error
-    //   referrer: "client", // no-referrer, *client
-    // })
-    //   .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       if (result.status === 401) {
-    //       }
-    //       console.log(result);
-    //       console.log(result.data);
-    //       this.setState({
-    //         user: result.data.user,
-    //         location: result.data.loc,
-    //       });
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
+  componentDidUpdate() {
+    fetch("/api/session", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          const { user, loc, name } = result.data;
+          console.log(result);
+          this.setState({
+            id: user,
+            location: loc,
+            name: name,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
+
+  updateAuth = user => {
+    this.setState({
+      user: user,
+    });
+  };
 
   render() {
     return (
@@ -81,10 +89,21 @@ class App extends Component {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" component={Bulletin} />
+                {/* <Route
+                  exact
+                  path="/bulletin"
+                  component={() =>
+                    this.state.user.length ? (
+                      <Bulletin updateAuth={this.updateAuth} />
+                    ) : (
+                      <Redirect to="/" />
+                    )
+                  }
+                /> */}
                 <Route exact path="/inbox" component={InboxPage} />
                 <Route exact path="/general" component={General} />
-                {/* <Route exact path="/tools" component={Tools} />
                 <Route exact path="/carpool" component={CarPool} />
+                {/* <Route exact path="/tools" component={Tools} />
                 <Route exact path="/skills" component={Skills} />
                 <Route exact path="/events" component={Events} /> */}
                 <Route
@@ -94,7 +113,7 @@ class App extends Component {
                 />
                 <Route exact path="/contact-us" component={ContactUs} />
                 <Route exact path="/thank-you" component={ThankYou} />
-                <Route exact path="/aboutus" component={AboutUs}/>
+                <Route exact path="/aboutus" component={AboutUs} />
                 <Route component={NoMatch} />
               </Switch>
             </div>
