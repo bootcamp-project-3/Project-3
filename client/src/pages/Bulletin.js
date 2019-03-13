@@ -63,7 +63,7 @@ class Bulletin extends Component {
             name: name,
           });
           this.props.updateAuth(user);
-          fetch("/api/posts", {
+          fetch("/api/posts/50", {
             method: "Get", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

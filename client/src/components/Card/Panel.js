@@ -71,6 +71,7 @@ class Panel extends React.Component {
 
     return this.props.posts
       .filter(post => post.category === "Community Needs")
+      .slice(0, 9)
       .map((panel, index) => {
         return (
           <ExpansionPanel

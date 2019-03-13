@@ -46,6 +46,7 @@ class BaseSkillsCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Skills/Services")
+      .slice(0,10)
       .map((post, index) => {
         return (
           <SkillsCard
