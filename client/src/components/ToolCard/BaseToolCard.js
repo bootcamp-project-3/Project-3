@@ -10,6 +10,8 @@ import LoadingCircle from "../LoadingCircle/LoadingCircle";
 import thumbtackRed from "../Card/assets/thumbtackred.png";
 import Styled from "styled-components";
 import ToolCard from "./ToolCard.js";
+import Link from '@material-ui/core/Link';
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   card: {
@@ -28,6 +30,10 @@ const styles = theme => ({
     marginBottom: 12,
   },
 });
+
+const linkStyle = {
+  textDecoration: "none",
+};
 
 const ImageWrapper = Styled.div`
   display: grid;
