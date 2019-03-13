@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Bulletin from "./pages/Bulletin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
@@ -19,11 +15,7 @@ import ContactUs from "./pages/ContactUs";
 import ThankYou from "./pages/ThankYou";
 import General from "./pages/General";
 import AboutUs from "./pages/AboutUs";
-<<<<<<< HEAD
 import CarPool from "./pages/CarPool";
-=======
-import Equipment from "./pages/Equipment";
->>>>>>> 7a32341bc814f0ee17666192ee194519055dd644
 
 const theme = createMuiTheme({
   palette: {
@@ -93,24 +85,8 @@ class App extends Component {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/profile" component={Dashboard} />
                 <Route exact path="/bulletin" component={Bulletin} />
-                {/* <Route
-                  exact
-                  path="/bulletin"
-                  component={() =>
-                    this.state.user.length ? (
-                      <Bulletin updateAuth={this.updateAuth} />
-                    ) : (
-                      <Redirect to="/" />
-                    )
-                  }
-                /> */}
                 <Route exact path="/inbox" component={InboxPage} />
                 <Route exact path="/general" component={General} />
-<<<<<<< HEAD
-=======
-                <Route exact path="/equipment" component={Equipment} />
-                {/* <Route exact path="/tools" component={Tools} />
->>>>>>> 7a32341bc814f0ee17666192ee194519055dd644
                 <Route exact path="/carpool" component={CarPool} />
                 {/* <Route exact path="/tools" component={Tools} />
                 <Route exact path="/skills" component={Skills} />
