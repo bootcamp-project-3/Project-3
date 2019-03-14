@@ -10,11 +10,6 @@ import Styled from "styled-components";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
 
 const styles = theme => ({
-  card: {
-    minWidth: "200pt",
-    minHeight: "300pt",
-    width: "100%",
-  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",

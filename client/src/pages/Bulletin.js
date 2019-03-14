@@ -8,6 +8,8 @@ import BaseSkillsCard from "../components/SkillsCard/BaseSkillsCard.js";
 import BaseCarPoolCard from "../components/CarPoolCard/BaseCarPoolCard";
 import BottomNav from "../components/Nav/BottomNav";
 import MapCard from "../components/Map/MapCard";
+import SubmitModal from "../components/SubmitModal/SubmitModal";
+import Typography from "@material-ui/core/Typography";
 
 const NavWrapperDiv = Styled.div`
   margin-bottom: 100px;
@@ -25,9 +27,21 @@ const SideBarItem = Styled.div`
   grid-column-end: col-1;
   grid-row-start: row-1
   grid-row-end: span row-4
-  margin-right: 15px;
-  padding-right: 3px;
+  margin-right: 10px;
+  padding-right: 20px;
   border-right: solid rgba(189, 195, 199, 0.7) 1px;
+`;
+
+const SubmitItem = Styled.div`
+  margin: 200pt 0 0 0;
+`;
+
+const SubmitTextWrapper = Styled.div`
+  margin-left: 15px;
+`;
+
+const BottomNavSpacer = Styled.div`
+  margin-top: 100px;
 `;
 
 const ToolItem = Styled.div`
@@ -152,6 +166,16 @@ class Bulletin extends Component {
               name={this.state.name}
               id={this.state.id}
             />
+            <SubmitItem>
+              <SubmitTextWrapper>
+                <Typography color="textSecondary">
+                  Want to contribute? Just click the button to create your own
+                  post.
+                </Typography>
+              </SubmitTextWrapper>
+
+              <SubmitModal />
+            </SubmitItem>
           </SideBarItem>
           <ToolItem>
             <BaseToolCard
@@ -189,6 +213,7 @@ class Bulletin extends Component {
             />
           </SkillsItem>
         </Grid>
+        <BottomNavSpacer />
         <BottomNav />
       </main>
     );

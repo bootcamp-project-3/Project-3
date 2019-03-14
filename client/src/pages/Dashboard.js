@@ -34,10 +34,10 @@ const styles = theme => ({
 const Grid = Styled.div`
   display: grid;
   grid-template-columns: [col-1] 80%;
-  grid-template-rows: [row-1] 10% [row-2] 10% [row-3] 10% [row-4] 10%;
-  justify-content: center;
-  justify-items: center;
-  align-items: center:
+  grid-template-rows: [title] 10% [row-1] 10% [row-2] 10% [row-3] 10% [row-4] 10%;
+  justify-content: start;
+  justify-items: start;
+  align-items: start:
 `;
 
 const NameItem = Styled.div`
@@ -69,7 +69,7 @@ const ButtonItem = Styled.div`
   grid-column-end: col-1;
   grid-row-start: row-4;
   grid-row-end: row-4;
-  margin: 25px auto;
+  margin: 25px 50px;
   width: 120px;
 `;
 
@@ -163,10 +163,10 @@ class Dashboard extends Component {
         <SideBar />
         <Card className={classes.card} style={{ margin: "100px auto" }}>
           <CardContent>
+            <Typography component="h1" variant="h5" align="center">
+              Keep your account up to date here!
+            </Typography>
             <Grid>
-              <Typography component="h1" variant="h5" align="center">
-                Keep your account up to date here!
-              </Typography>
               <form className="formGrid" onSubmit={this.updateProfile}>
                 <NameItem>
                   <NameForm
@@ -204,7 +204,7 @@ class Dashboard extends Component {
             </Grid>
           </CardContent>
         </Card>
-        <div style={{marginTop: "14%"}}/>
+        <div style={{ marginTop: "14%" }} />
         <BottomNav />
       </main>
     );
