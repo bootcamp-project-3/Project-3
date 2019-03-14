@@ -27,7 +27,7 @@ const SideBarItem = Styled.div`
   grid-row-end: span row-4
   margin-right: 15px;
   padding-right: 3px;
-  border-right: solid black 1px;
+  border-right: solid rgba(189, 195, 199, 0.7) 1px;
 `;
 
 const ToolItem = Styled.div`

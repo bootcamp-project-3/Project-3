@@ -4,9 +4,9 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import "../../App.css";
+// import "../../App.css";
 // import withStyles from "@material-ui/core/styles/withStyles";
 // import { createMuiTheme } from "@material-ui/core";
 
@@ -22,7 +22,6 @@ function fordForm(props) {
   // const name = props.name.notName;
   return (
     <div>
-      <Paper className="fordGrid">
         <Typography className="formTitle">
           Please update your FORD here
         </Typography>
@@ -104,7 +103,6 @@ function fordForm(props) {
         >
           <EditIcon />
         </Button>
-      </Paper>
     </div>
   );
 }

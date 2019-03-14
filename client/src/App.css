@@ -32,7 +32,7 @@
   }
 }
 
-/* Grid for display page */
+/* Grid for display page
 .nameForm{
   grid-area: nameInput;
 }
@@ -62,19 +62,19 @@
 .dashboardHolder{
   width:85%;
   margin: 0 auto
-}
+} */
 
 /* Grid for profile edit cards */
-.editForm{
+/* .editForm{
   display: grid;
   grid-template-columns: 5fr 1fr;
   grid-template-areas: 
   'formTitle formTitle'
   'formInput editBut' 
-}
+} */
 
 /* Grid for prof dash */
-.formTitle{
+/* .formTitle{
   grid-area: formTitle;
 }
 
@@ -97,11 +97,11 @@
   'formInput editBut';
   grid-template-columns: 1fr 5fr;
   width: 80%;
-}
+} */
 
 /* FORD grid */
 
-.fordGrid{
+/* .fordGrid{
   display: grid;
   grid-template-areas: 
   'formTitle  formTitle'
@@ -137,4 +137,4 @@
 }
 .DButton{
   grid-area: DButton;
-}
+} */
