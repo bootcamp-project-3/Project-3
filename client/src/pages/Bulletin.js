@@ -126,7 +126,7 @@ class Bulletin extends Component {
   }
 
   updatePosts = () => {
-    fetch("/api/posts/50", {
+    fetch(`/api/posts/50/${this.state.location}`, {
       method: "Get", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
