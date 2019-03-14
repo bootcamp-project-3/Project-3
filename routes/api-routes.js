@@ -72,7 +72,6 @@ module.exports = function(app) {
               req.session.user = user._id;
               req.session.loc = user.zip;
               req.session.name = user.name;
-              req.sessoin.email = user.email;
               console.log(req.session.user);
               res.sendStatus(200);
             }
