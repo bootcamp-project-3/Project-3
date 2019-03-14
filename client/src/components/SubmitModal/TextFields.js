@@ -100,17 +100,12 @@ class TextFields extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state.title);
-    console.log(this.state.body);
-    console.log(this.state.category);
-    console.log(this.state.userId);
-    console.log(this.state.location);
     const newPost = {
-      userId: "testId",
+      userId: this.props.id,
       title: this.state.title,
       content: this.state.body,
-      location: "testLocation",
-      name: "testName",
+      location: this.props.location,
+      name: this.props.name,
       category: this.state.category,
     };
 
@@ -118,7 +113,7 @@ class TextFields extends React.Component {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      credentials: "include", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
         // "Content-Type": "application/x-www-form-urlencoded",
@@ -126,19 +121,15 @@ class TextFields extends React.Component {
       redirect: "follow", // manual, *follow, error
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(newPost), // body data type must match "Content-Type" header
-    }).then(response => {
-      fetch("/api/posts")
-        .then(res => res.json())
-        .then(
-          result => {
-            console.log(result);
-            this.props.updatePosts(result);
-          },
-          error => {
-            console.log(error);
-          }
-        );
-    });
+    }).then(
+      result => {
+        this.props.updatePosts();
+      },
+
+      error => {
+        console.log(error);
+      }
+    );
   };
 
   render() {

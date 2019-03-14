@@ -117,28 +117,7 @@ class Bulletin extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/50", {
-            method: "Get", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, cors, *same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: "include", // include, *same-origin, omit
-            headers: {
-              "Content-Type": "application/json",
-              // "Content-Type": "application/x-www-form-urlencoded",
-            },
-            redirect: "follow", // manual, *follow, error
-            referrer: "client", // no-referrer, *client
-          })
-            .then(res => res.json())
-            .then(
-              result => {
-                console.log(result);
-                this.updatePosts(result);
-              },
-              error => {
-                console.log(error);
-              }
-            );
+          this.updatePosts();
         },
         error => {
           console.log(error);
@@ -146,10 +125,32 @@ class Bulletin extends Component {
       );
   }
 
-  updatePosts = posts => {
-    this.setState({
-      posts: posts,
-    });
+  updatePosts = () => {
+    fetch("/api/posts/50", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          this.setState({
+            posts: result,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
   };
 
   render() {
@@ -173,8 +174,13 @@ class Bulletin extends Component {
                   post.
                 </Typography>
               </SubmitTextWrapper>
-
-              <SubmitModal />
+              <SubmitModal
+                posts={this.state.posts}
+                updatePosts={this.updatePosts}
+                id={this.state.id}
+                name={this.state.name}
+                location={this.state.location}
+              />
             </SubmitItem>
           </SideBarItem>
           <ToolItem>
