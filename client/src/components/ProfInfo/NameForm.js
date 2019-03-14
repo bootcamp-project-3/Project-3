@@ -17,7 +17,6 @@ const theme = createMuiTheme({
 });
 
 function NameForm(props) {
-  console.log(props);
   // const name = props.name.notName;
   return (
     <div>
@@ -33,6 +32,7 @@ function NameForm(props) {
           name="notName"
           id="name"
           autoComplete="name"
+          defaultValue={props.name}
           style={{ width: "120%" }}
         />
       </FormControl>

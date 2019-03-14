@@ -99,6 +99,7 @@ module.exports = function(app) {
   });
   // * Get session data
   app.get("/api/session", function(req, res) {
+    console.log(req.session);
     if (!req.session.user) {
       res.status(401).send("No user is signed in on this session");
     } else {

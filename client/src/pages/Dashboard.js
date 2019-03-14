@@ -78,10 +78,16 @@ class Dashboard extends Component {
     notName: "",
     id: "",
     location: "",
+    email: "",
+    password: "",
     nameDisabled: true,
     locationDisabled: true,
+    passDisabled: true,
+    emailDisabled: true,
     prevnotName: "",
     prevLocation: "",
+    prevPass: "",
+    prevEmail: "",
   };
 
   componentDidMount() {
@@ -100,11 +106,11 @@ class Dashboard extends Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(result.data);
           this.setState({
             id: result.data.user,
             prevLocation: result.data.loc,
             prevnotName: result.data.name,
+            email: result.data.email,
           });
         },
         error => {
@@ -129,6 +135,16 @@ class Dashboard extends Component {
 
   updateProfile = event => {
     event.preventDefault();
+    let name = this.state.notName;
+    if(!name){
+      name = this.state.prevnotName;
+    }
+    let location = this.state.location
+    if(!location){
+      location = this.state.prevLocation;
+    }
+    console.log(name)
+    console.log(location)
     //           let data = {
     //             name: this.state.name,
     //             location: this.state.location
@@ -153,7 +169,6 @@ class Dashboard extends Component {
     //           .catch(err=>{
     //             console.log(err)
     //           })
-    console.log(this.state.notName, this.state.location);
   };
 
   render() {

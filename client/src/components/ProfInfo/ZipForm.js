@@ -8,7 +8,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import Typography from "@material-ui/core/Typography";
 
 function ZipForm(props) {
-  console.log(props);
   // const name = props.name.notName;
   return (
     <div>
@@ -22,7 +21,7 @@ function ZipForm(props) {
           onChange={props.handleChange}
           name="location"
           id="zipcode"
-          autoComplete="zipcode"
+          defaultValue={props.zip}
         />
       </FormControl>
       <Button
