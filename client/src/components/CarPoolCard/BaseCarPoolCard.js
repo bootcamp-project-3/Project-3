@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "80%",
+    width: "85%",
   },
   bullet: {
     display: "inline-block",

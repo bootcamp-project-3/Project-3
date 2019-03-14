@@ -2,7 +2,6 @@ import MapContainer from "./MapContainer";
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
@@ -11,11 +10,6 @@ import Styled from "styled-components";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
 
 const styles = theme => ({
-  card: {
-    minWidth: "200pt",
-    minHeight: "300pt",
-    maxWidth: "300pt"
-  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -37,7 +31,8 @@ function MapCard(props) {
   const { classes } = props;
 
   return (
-    <Card className={classes.card} square>
+    // <Card className={classes.card} square>
+    <div>
       {props.name ? (
         <CardContent>
           <Typography
@@ -64,9 +59,9 @@ function MapCard(props) {
       ) : (
         <LoadingCircle />
       )}
-
       <CardActions />
-    </Card>
+    </div>
+    // </Card>
   );
 }
 

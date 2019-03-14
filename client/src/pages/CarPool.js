@@ -58,7 +58,10 @@ class Tools extends Component {
             .then(
               result => {
                 console.log(result);
-                this.updatePosts(result);
+                const filteredPosts = result.filter(post => {
+                  return post.category === "Carpool";
+                });
+                this.updatePosts(filteredPosts);
               },
               error => {
                 console.log(error);

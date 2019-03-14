@@ -4,16 +4,13 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
-import Paper from "@material-ui/core/Paper";
-import "../../App.css"
+// import "../../App.css";
 import Typography from "@material-ui/core/Typography";
-
 
 function ZipForm(props) {
   // const name = props.name.notName;
   return (
     <div>
-      <Paper className="editForm">
       <Typography className="formTitle">Edit your zipcode here</Typography>
       <FormControl margin="normal" className="formInput">
         <InputLabel className="locationInput" htmlFor="zipcode" width="100">
@@ -27,10 +24,12 @@ function ZipForm(props) {
           defaultValue={props.zip}
         />
       </FormControl>
-      <Button className="nameButton" onClick={() => props.handleClick("location")}>
+      <Button
+        className="nameButton"
+        onClick={() => props.handleClick("location")}
+      >
         <EditIcon />
       </Button>
-      </Paper>
     </div>
   );
 }
