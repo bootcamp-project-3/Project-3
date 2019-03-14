@@ -12,12 +12,12 @@ const LargeWrapperDiv = Styled.div`
   margin: 120px auto;
 `;
 
-class General extends Component {
+class Tools extends Component {
   state = {
     id: "",
     location: "",
     name: "",
-    posts: [],
+    posts: "",
   };
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class General extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/50", {
+          fetch("/api/posts", {
             method: "Get",
             mode: "cors",
             cache: "no-cache",
@@ -59,8 +59,8 @@ class General extends Component {
               result => {
                 console.log(result);
                 const filteredPosts = result.filter(post => {
-                  return post.category === "General";
-                })
+                  return post.category === "Carpool";
+                });
                 this.updatePosts(filteredPosts);
               },
               error => {
@@ -86,7 +86,7 @@ class General extends Component {
         <Sidebar />
         <LargeWrapperDiv>
           <PageTabs
-            category="General"
+            category="CarPool"
             posts={this.state.posts}
             updatePosts={this.updatePosts}
           />
@@ -96,4 +96,4 @@ class General extends Component {
   }
 }
 
-export default General;
+export default Tools;

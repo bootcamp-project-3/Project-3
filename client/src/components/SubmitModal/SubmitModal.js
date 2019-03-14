@@ -7,13 +7,9 @@ import Styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import TextFields from "./TextFields";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -74,10 +70,11 @@ class SubmitModal extends React.Component {
               Post
             </Typography>
             <TextFields
-              category={this.props.category}
-              posts={this.props.posts}
               closeModal={this.handleClose}
               updatePosts={this.props.updatePosts}
+              id={this.props.id}
+              name={this.props.name}
+              location={this.props.location}
             />
           </div>
         </Modal>
