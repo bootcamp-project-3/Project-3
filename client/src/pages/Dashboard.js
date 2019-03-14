@@ -7,6 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import NameForm from "../components/ProfInfo/NameForm";
 import ZipForm from "../components/ProfInfo/ZipForm";
 import SideBar from "../components/Nav/SideBar/SideBar";
+import Styled from "styled-components";
 import BottomNav from "../components/Nav/BottomNav";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
