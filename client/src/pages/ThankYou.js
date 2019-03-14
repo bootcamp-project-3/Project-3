@@ -6,6 +6,8 @@ import BottomNav from "../components/Nav/BottomNav";
 import Wrapper from "../components/LandingPage/Wrapper";
 import { withStyles } from '@material-ui/core/styles';
 // import MenuItem from '@material-ui/core/MenuItem';
+import Image from "../components/LandingPage/assets/administration-america-american-flag-1600162.jpg";
+import Styled from "styled-components";
 
 const styles = theme => ({
     container: {
@@ -29,6 +31,13 @@ const styles = theme => ({
     },
 });
 
+const Background = Styled.main`
+  background: url(${Image}) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+`;
+
 
 class OutlinedTextFields extends React.Component {
     state = {
@@ -46,7 +55,7 @@ class OutlinedTextFields extends React.Component {
     render() {
         
         return (
-            <main>
+            <Background>
                 <Nav />
                 <SideBar />
                 <Wrapper>
@@ -54,7 +63,7 @@ class OutlinedTextFields extends React.Component {
                     <p>We'll get back to you shortly. </p>
                 </Wrapper>
                 <BottomNav />
-            </main>
+            </Background>
         )
     }
     
