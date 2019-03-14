@@ -17,7 +17,7 @@ class General extends Component {
     id: "",
     location: "",
     name: "",
-    posts: "",
+    posts: [],
   };
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class General extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts", {
+          fetch("/api/posts/50", {
             method: "Get",
             mode: "cors",
             cache: "no-cache",
@@ -58,7 +58,10 @@ class General extends Component {
             .then(
               result => {
                 console.log(result);
-                this.updatePosts(result);
+                const filteredPosts = result.filter(post => {
+                  return post.category === "General";
+                })
+                this.updatePosts(filteredPosts);
               },
               error => {
                 console.log(error);
