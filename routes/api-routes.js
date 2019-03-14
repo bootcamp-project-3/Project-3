@@ -80,6 +80,87 @@ module.exports = function(app) {
       }
     });
   });
+  // * Updates user profile
+  app.put("/api/users", function(req, res) {
+    const userUpdate = {
+      name: req.body.name,
+      email: req.body.email,
+      zip: req.body.zip,
+    };
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    } else {
+      if (
+        userUpdate.name === undefined ||
+        userUpdate.email === undefined ||
+        userUpdate.zip === undefined
+      ) {
+        console.log("Empty data!");
+        res.sendStatus(401);
+      }
+      User.update({ _id: req.body.userId }, userUpdate, function(err, user) {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          console.log(user);
+          res.sendStatus(200);
+        }
+      });
+    }
+  });
+  // * Update password
+  app.put("/api/users/password", function(req, res) {
+    if (!req.session.user) {
+      res.sendStatus(401);
+      return;
+    } else {
+      User.findOne({ _id: req.body.userId }, function(err, user) {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          console.log(user);
+          bcrypt.compare(req.body.password, user.password, function(
+            err,
+            result
+          ) {
+            if (err) {
+              console.log(err);
+              res.sendStatus(500);
+            } else if (!result) {
+              console.log(result);
+              res.sendStatus(401);
+            } else if (result) {
+              let newPassword = "";
+              bcrypt.hash(req.body.newPassword, 10, function(err, hash) {
+                if (err) {
+                  console.log(err);
+                  res.sendStatus(500);
+                } else {
+                  newPassword = hash;
+                }
+              });
+              User.updateOne(
+                { _id: req.body.userId },
+                { password: newPassword },
+                function(err, result) {
+                  if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                  } else {
+                    console.log(result);
+                    res.sendStatus(200);
+                  }
+                }
+              );
+            }
+          });
+        }
+      });
+    }
+  });
   // * Adds new post to db
   app.post("/api/posts", function(req, res) {
     // Checks for a session, if none return 401
@@ -111,14 +192,14 @@ module.exports = function(app) {
   app.get("/api/posts/:number/:location", function(req, res) {
     // Checks for session, if none, return 401
     const n = Number(req.params.number);
-    const l = req.params.location
+    const l = req.params.location;
     console.log(l);
     if (!req.session.user) {
       res.sendStatus(401);
       return;
     } else {
       // If signed in, return last 10 posts
-      const find = Post.find({location: l})
+      const find = Post.find({ location: l })
         .sort({ createdAt: -1 })
         .limit(n);
       find.exec(function(err, posts) {
