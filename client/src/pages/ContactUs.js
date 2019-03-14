@@ -9,6 +9,8 @@ import { withStyles } from '@material-ui/core/styles';
 // import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '../components/ContactUs/SubmitButton'
+import Image from "../components/LandingPage/assets/pexels-photo-302186.jpeg";
+import Styled from "styled-components";
 
 const styles = theme => ({
     container: {
@@ -32,6 +34,12 @@ const styles = theme => ({
     },
 });
 
+const Background = Styled.main`
+  background: url(${Image}) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+`;
 
 class OutlinedTextFields extends React.Component {
     state = {
@@ -50,7 +58,7 @@ class OutlinedTextFields extends React.Component {
         const { classes } = this.props;
 
         return (
-            <main>
+            <Background>
                 <Nav />
                 <SideBar />
                 <Wrapper>
@@ -96,7 +104,7 @@ class OutlinedTextFields extends React.Component {
                     </FormControl>
                 </Wrapper>
                 <BottomNav />
-            </main>
+            </Background>
         )
     }
     
