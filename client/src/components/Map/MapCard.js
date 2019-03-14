@@ -14,7 +14,7 @@ const styles = theme => ({
   card: {
     minWidth: "200pt",
     minHeight: "300pt",
-    maxWidth: "300pt"
+    width: "100%",
   },
   bullet: {
     display: "inline-block",
@@ -37,7 +37,8 @@ function MapCard(props) {
   const { classes } = props;
 
   return (
-    <Card className={classes.card} square>
+    // <Card className={classes.card} square>
+    <div>
       {props.name ? (
         <CardContent>
           <Typography
@@ -64,9 +65,9 @@ function MapCard(props) {
       ) : (
         <LoadingCircle />
       )}
-
       <CardActions />
-    </Card>
+    </div>
+    // </Card>
   );
 }
 

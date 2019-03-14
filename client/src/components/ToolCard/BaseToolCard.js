@@ -15,7 +15,7 @@ import Button from "@material-ui/core/Button";
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "100%",
+    width: "85%",
   },
   bullet: {
     display: "inline-block",
@@ -62,7 +62,7 @@ class BaseToolCard extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} square>
         <ImageWrapper>
           <img
             className={classes.tack}

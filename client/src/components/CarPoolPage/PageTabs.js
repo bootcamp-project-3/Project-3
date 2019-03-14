@@ -44,15 +44,27 @@ class PageTabs extends React.Component {
         <AppBar position="static" style={{ backgroundColor: "#4caf50" }}>
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="Page 1" style={{ color: "#fafafa" }} />
-            <Tab label="Page 2" style={{ color: "#fafafa" }} />
-            <Tab label="Page 3" style={{ color: "#fafafa" }} />
+            {this.props.posts.length > 10 ? (
+              <Tab label="Page 2" style={{ color: "#fafafa" }} />
+            ) : null}
+            {this.props.posts.length > 20 ? (
+              <Tab label="Page 3" style={{ color: "#fafafa" }} />
+            ) : null}
+            {this.props.posts.length > 30 ? (
+              <Tab label="Page 4" style={{ color: "#fafafa" }} />
+            ) : null}
+            {this.props.posts.length > 40 ? (
+              <Tab label="Page 5" style={{ color: "#fafafa" }} />
+            ) : null}
           </Tabs>
         </AppBar>
         {value === 0 && (
           <TabContainer>
             <BaseCarPoolCard
-              category={this.props.category}
-              posts={this.props.posts}
+              category="General"
+              posts={this.props.posts.filter((post, index) => {
+                return index < 9;
+              })}
               updatePosts={this.props.updatePosts}
             />
           </TabContainer>
@@ -60,8 +72,10 @@ class PageTabs extends React.Component {
         {value === 1 && (
           <TabContainer>
             <BaseCarPoolCard
-              category={this.props.category}
-              posts={this.props.posts}
+              category="General"
+              posts={this.props.posts.filter((post, index) => {
+                return index > 9 && index <= 19;
+              })}
               updatePosts={this.props.updatePosts}
             />
           </TabContainer>
@@ -69,8 +83,32 @@ class PageTabs extends React.Component {
         {value === 2 && (
           <TabContainer>
             <BaseCarPoolCard
-              category={this.props.category}
-              posts={this.props.posts}
+              category="General"
+              posts={this.props.posts.filter((post, index) => {
+                return index > 19 && index <= 29;
+              })}
+              updatePosts={this.props.updatePosts}
+            />
+          </TabContainer>
+        )}
+        {value === 3 && (
+          <TabContainer>
+            <BaseCarPoolCard
+              category="General"
+              posts={this.props.posts.filter((post, index) => {
+                return index > 29 && index <= 39;
+              })}
+              updatePosts={this.props.updatePosts}
+            />
+          </TabContainer>
+        )}
+        {value === 4 && (
+          <TabContainer>
+            <BaseCarPoolCard
+              category="General"
+              posts={this.props.posts.filter((post, index) => {
+                return index > 39;
+              })}
               updatePosts={this.props.updatePosts}
             />
           </TabContainer>

@@ -13,22 +13,63 @@ const NavWrapperDiv = Styled.div`
   margin-bottom: 100px;
 `;
 
-const MediumWrapperDiv = Styled.div`
+const Grid = Styled.div`
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  justify-content: end;
-  align-items: center;
-  max-width: 85%;
-  margin: 50px auto;
+  grid-template-columns: [col-1] 20% [col-2] 40% [col-3] 40%;
+  grid-template-rows: [row-1] auto [row-2] auto [row-3] auto [row-4] auto;
+  justify-content: start;
 `;
 
-const LargeWrapperDiv = Styled.div`
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  justify-content: end;
-  align-items: center;
-  max-width: 85%;
-  margin: 30px auto;
+const SideBarItem = Styled.div`
+  grid-column-start: col-1;
+  grid-column-end: col-1;
+  grid-row-start: row-1
+  grid-row-end: span row-4
+  margin-right: 15px;
+  padding-right: 3px;
+  border-right: solid black 1px;
+`;
+
+const ToolItem = Styled.div`
+  grid-column-start: col-2;
+  grid-column-end: col-2;
+  grid-row-start: row-1;
+  grid-row-end: row-1;
+  margin: 0 5px 10px 0;
+  
+`;
+
+const CarPoolItem = Styled.div`
+  grid-column-start: col-3;
+  grid-column-end: col-3;
+  grid-row-start: row-1;
+  grid-row-end: row-1;
+  margin: 0 0 10px 5px;
+`;
+
+const GeneralItem = Styled.div`
+  grid-column-start: col-2;
+  grid-column-end: span col-3;
+  grid-row-start: row-2;
+  grid-row-end: row-2;
+  margin: 10px 0 10px 0;
+  width: 199%;
+`;
+
+const EventItem = Styled.div`
+  grid-column-start: col-2;
+  grid-column-end: col-2;
+  grid-row-start: row-3;
+  grid-row-end: row-3;
+  margin: 0 5px 10px 0;
+`;
+
+const SkillsItem = Styled.div`
+  grid-column-start: col-3;
+  grid-column-end: col-3;
+  grid-row-start: row-3;
+  grid-row-end: row-3;
+  margin: 0 5px 10px 0;
 `;
 
 class Bulletin extends Component {
@@ -62,7 +103,6 @@ class Bulletin extends Component {
             location: loc,
             name: name,
           });
-          this.props.updateAuth(user);
           fetch("/api/posts/50", {
             method: "Get", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
@@ -104,45 +144,51 @@ class Bulletin extends Component {
         <NavWrapperDiv>
           <SideBar />
         </NavWrapperDiv>
-        <MediumWrapperDiv>
-          <MapCard
-            location={this.state.location}
-            name={this.state.name}
-            id={this.state.id}
-          />
-        </MediumWrapperDiv>
-        <MediumWrapperDiv>
-          <BaseToolCard
-            category="Equipment/Tools"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-          <BaseCarPoolCard
-            category="Carpool"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-        </MediumWrapperDiv>
 
-        <LargeWrapperDiv>
-          <BaseGeneralCard
-            category="General"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-        </LargeWrapperDiv>
-        <MediumWrapperDiv>
-          <BaseEventCard
-            category="Events"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-          <BaseSkillsCard
-            category="Skills/Services"
-            posts={this.state.posts}
-            updatePosts={this.updatePosts}
-          />
-        </MediumWrapperDiv>
+        <Grid>
+          <SideBarItem>
+            <MapCard
+              location={this.state.location}
+              name={this.state.name}
+              id={this.state.id}
+            />
+          </SideBarItem>
+          <ToolItem>
+            <BaseToolCard
+              category="Equipment/Tools"
+              posts={this.state.posts}
+              updatePosts={this.updatePosts}
+            />
+          </ToolItem>
+          <CarPoolItem>
+            <BaseCarPoolCard
+              category="Carpool"
+              posts={this.state.posts}
+              updatePosts={this.updatePosts}
+            />
+          </CarPoolItem>
+          <GeneralItem>
+            <BaseGeneralCard
+              category="General"
+              posts={this.state.posts}
+              updatePosts={this.updatePosts}
+            />
+          </GeneralItem>
+          <EventItem>
+            <BaseEventCard
+              category="Events"
+              posts={this.state.posts}
+              updatePosts={this.updatePosts}
+            />
+          </EventItem>
+          <SkillsItem>
+            <BaseSkillsCard
+              category="Skills/Services"
+              posts={this.state.posts}
+              updatePosts={this.updatePosts}
+            />
+          </SkillsItem>
+        </Grid>
         <BottomNav />
       </main>
     );
