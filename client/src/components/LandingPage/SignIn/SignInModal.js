@@ -5,73 +5,86 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
+import validator from "email-validator";
 
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
 
-  function getModalStyle() {
-    const top = 50;
-    const left = 50;
-  
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 const styles = theme => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
-    outline: 'none',
+    outline: "none",
   },
 });
+
+const validEmail = input => {
+  return validator.validate(input);
+};
 
 const getUser = event => {
   event.preventDefault();
   console.log(event.target.email.value);
   console.log(event.target.password.value);
-  let data = {
-    email: event.target.email.value.toLowerCase(),
-    password: event.target.password.value,
-  };
-  fetch("/api/signin", {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "include", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  })
-    .then(function(response) {
-      console.log(response);
-      window.location = "./Bulletin";
+  if (!validEmail(event.target.email.value)) {
+    console.log("Invalid Email!");
+    return;
+  } else if (validEmail(event.target.email.value)) {
+    let data = {
+      email: event.target.email.value.toLowerCase(),
+      password: event.target.password.value,
+    };
+    fetch("/api/signin", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "no-referrer", // no-referrer, *client
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
     })
-    .catch(err => {
-      console.log(err);
-    })
-    .then(function(response) {
-      console.log(response);
-      if (response.status === 200) {
-        return(<Link to="./bulletin"/>)
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(function(response) {
+        console.log(response);
+        window.location = "./Bulletin";
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .then(function(response) {
+        console.log(response);
+        if (response.status === 200) {
+          return <Link to="./bulletin" />;
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  else{
+    console.log("ERROR!")
+    return;
+  }
 };
 
 function SIModal(props) {
-  const {classes}=props;
+  const { classes } = props;
   return (
     <Modal
       aria-labelledby="simple-modal-title"
@@ -79,14 +92,19 @@ function SIModal(props) {
       open={props.open}
       onClose={props.onClose}
     >
-    <div style={getModalStyle()} className={classes.paper}>
-    <Typography component="h1" variant="h5" align="center">
+      <div style={getModalStyle()} className={classes.paper}>
+        <Typography component="h1" variant="h5" align="center">
           Sign into your Neighborly account
         </Typography>
         <form onSubmit={getUser}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" defaultValue={props.email} autoFocus />
+            <Input
+              id="email"
+              name="email"
+              defaultValue={props.email}
+              autoFocus
+            />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
@@ -101,7 +119,7 @@ function SIModal(props) {
             Sign in
           </Button>
         </form>
-        </div>
+      </div>
     </Modal>
   );
 }

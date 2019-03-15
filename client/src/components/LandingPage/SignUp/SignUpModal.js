@@ -6,8 +6,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-
-
+import validator from "email-validator";
 
 function getModalStyle() {
   const top = 50;
@@ -31,44 +30,52 @@ const styles = theme => ({
   },
 });
 
+const validEmail = input => {
+  return validator.validate(input);
+};
+
 function SUModal(props) {
   const { classes } = props;
 
-
   const saveUser = event => {
     event.preventDefault();
-    let data = {
-      email: event.target.email.value.toLowerCase(),
-      password: event.target.password.value,
-      name: event.target.name.value,
-      zip: event.target.zipcode.value,
-    };
+    if (!validEmail(event.target.email.value)) {
+      console.log("Invalid Email!");
+      return;
+    } else if (validEmail(event.target.email.value)) {
+      let data = {
+        email: event.target.email.value.toLowerCase(),
+        password: event.target.password.value,
+        name: event.target.name.value,
+        zip: event.target.zipcode.value,
+      };
 
-    
-    fetch("/api/users", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, cors, *same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        // "Content-Type": "application/x-www-form-urlencoded",
-      },
-      redirect: "follow", // manual, *follow, error
-      referrer: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-      .then(function(response) {
-        console.log(data);
-        props.saveEmail(data.email);
-        props.changeSISU();
-
+      fetch("/api/users", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      })
+        .then(function(response) {
+          console.log(data);
+          props.saveEmail(data.email);
+          props.changeSISU();
         })
-      .catch(err => {
-        console.log(err);
-      });
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    else{
+      console.log("ERROR!");
+    }
   };
-  
 
   return (
     <Modal
