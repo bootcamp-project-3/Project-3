@@ -1,6 +1,5 @@
-import { Mail, Favorite, BusinessCenter } from "@material-ui/icons";
+import { Mail, BusinessCenter } from "@material-ui/icons";
 import TermsOfService from "../../../pages/TermsOfService";
-import ThankYou from "../../../pages/ThankYou";
 import ContactUs from "../../../pages/ContactUs";
 
 const AltRoutes = [
@@ -17,13 +16,6 @@ const AltRoutes = [
     navbarName: "Contact Us",
     icon: Mail,
     component: ContactUs,
-  },
-  {
-    path: "/thank-you",
-    sidebarName: "Thank You",
-    navbarName: "Thank You",
-    icon: Favorite,
-    component: ThankYou,
   },
 ];
 
