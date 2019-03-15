@@ -17,7 +17,11 @@ const Background = Styled.main`
 `;
 
 const Spacer = Styled.div`
-    height: 300px;
+    height: 150px;
+`;
+
+const Span = Styled.div`
+  color: #4665af;
 `;
 
 class HomePage extends Component {
@@ -67,7 +71,9 @@ class HomePage extends Component {
             <Button SUOpen={this.SUOpen} />
             <p>
               Have an account?{" "}
-              <button onClick={this.handleOpen}>Sign In</button>
+              <span>
+              <Span class="signIn" onClick={this.handleOpen}>Sign In</Span>
+              </span>
             </p>
             <SignInModal
               open={this.state.SIopen}
@@ -84,7 +90,7 @@ class HomePage extends Component {
           </Wrapper>
           <Spacer />
         </div>
-        <BottomNav />
+        <BottomNav/>
       </Background>
     );
   }
