@@ -33,9 +33,8 @@ module.exports = function(app) {
             }
           });
           // Otherwise escape
-        } else {
-          // TODO: Add functionality to send a response to the frontend if duplicate is present
-          res.end();
+        } else if (user) {
+          res.status(401).send("A user with this email already exists!");
         }
       }
     });
