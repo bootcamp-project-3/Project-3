@@ -6,7 +6,7 @@ import BottomNav from "../components/Nav/BottomNav";
 import Wrapper from "../components/LandingPage/Wrapper";
 import { withStyles } from '@material-ui/core/styles';
 // import MenuItem from '@material-ui/core/MenuItem';
-import Image from "../components/LandingPage/assets/administration-america-american-flag-1600162.jpg";
+import Image from "../components/LandingPage/assets/pexels-photo-1557549.jpeg";
 import Styled from "styled-components";
 
 const styles = theme => ({
@@ -25,6 +25,7 @@ const styles = theme => ({
     },
     dense: {
         marginTop: 16,
+        
     },
     menu: {
         width: 200,

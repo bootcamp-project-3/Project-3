@@ -1,4 +1,6 @@
 import React from "react";
+import Styled from "styled-components";
+import Image from "../LandingPage/assets/block_party.jpg";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -9,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { createMuiTheme } from "@material-ui/core";
 
+
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: ["Arvo", "serif"].join(","),
@@ -16,10 +20,17 @@ const theme = createMuiTheme({
   },
 });
 
+const Background = Styled.main`
+  background: url(${Image}) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+`;
+
 function NameForm(props) {
   // const name = props.name.notName;
   return (
-    <div>
+    <div>     
       <Typography className="formTitle">Edit your name here</Typography>
 
       <FormControl margin="normal">
@@ -43,7 +54,7 @@ function NameForm(props) {
       >
         <EditIcon />
       </Button>
-    </div>
+          </div>
   );
 }
 
