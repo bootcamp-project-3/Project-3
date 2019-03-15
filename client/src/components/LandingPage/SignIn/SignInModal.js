@@ -43,7 +43,6 @@ class SIModal extends React.Component {
   };
 
   getUser = event => {
-
     event.preventDefault();
     console.log(event.target.email.value);
     console.log(event.target.password.value);
