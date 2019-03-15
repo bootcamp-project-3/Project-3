@@ -7,6 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import validator from "email-validator";
+import { FormHelperText } from "@material-ui/core";
 
 function getModalStyle() {
   const top = 50;
@@ -30,19 +31,22 @@ const styles = theme => ({
   },
 });
 
-const validEmail = input => {
-  return validator.validate(input);
-};
+class SUModal extends React.Component {
+  state = {
+    error: false,
+    helper: "",
+  };
 
-function SUModal(props) {
-  const { classes } = props;
+  validEmail = input => {
+    return validator.validate(input);
+  };
 
-  const saveUser = event => {
+  saveUser = event => {
     event.preventDefault();
-    if (!validEmail(event.target.email.value)) {
+    if (!this.validEmail(event.target.email.value)) {
       console.log("Invalid Email!");
       return;
-    } else if (validEmail(event.target.email.value)) {
+    } else if (this.validEmail(event.target.email.value)) {
       let data = {
         email: event.target.email.value.toLowerCase(),
         password: event.target.password.value,
@@ -63,66 +67,84 @@ function SUModal(props) {
         referrer: "no-referrer", // no-referrer, *client
         body: JSON.stringify(data), // body data type must match "Content-Type" header
       })
-        .then(function(response) {
-          console.log(data);
-          props.saveEmail(data.email);
-          props.changeSISU();
+        .then(response => {
+          if (response.status === 401) {
+            this.setState({
+              error: true,
+              helper: "A user with this email already exists!",
+            });
+          } else {
+            this.props.saveEmail(data.email);
+            this.props.changeSISU();
+          }
         })
         .catch(err => {
           console.log(err);
         });
-    }
-    else{
+    } else {
       console.log("ERROR!");
     }
   };
 
-  return (
-    <Modal
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
-      open={props.SUOpen}
-      onClose={props.SUClose}
-    >
-      <div style={getModalStyle()} className={classes.paper}>
-        <Typography component="h1" variant="h5" align="center">
-          Create an account with Neighborly
-        </Typography>
-        <form className={classes.form} onSubmit={saveUser}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="name">Name</InputLabel>
-            <Input name="name" id="name" autoComplete="name" />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
-            <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
-          </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Create account
-          </Button>
-        </form>
-      </div>
-    </Modal>
-  );
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={this.props.SUOpen}
+        onClose={this.props.SUClose}
+      >
+        <div style={getModalStyle()} className={classes.paper}>
+          <Typography component="h1" variant="h5" align="center">
+            Create an account with Neighborly
+          </Typography>
+          <form className={classes.form} onSubmit={this.saveUser}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input
+                id="email"
+                name="email"
+                autoComplete="email"
+                error={this.state.error}
+                autoFocus
+              />
+              <FormHelperText error={this.state.error}>
+                {this.state.helper}
+              </FormHelperText>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                name="password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input name="name" id="name" autoComplete="name" />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="zipcode">Zipcode</InputLabel>
+              <Input name="zipcode" id="zipcode" autoComplete="zipcode" />
+            </FormControl>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Create account
+            </Button>
+          </form>
+        </div>
+      </Modal>
+    );
+  }
 }
 
 export default withStyles(styles)(SUModal);
