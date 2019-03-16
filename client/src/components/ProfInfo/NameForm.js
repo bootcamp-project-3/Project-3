@@ -20,12 +20,6 @@ const theme = createMuiTheme({
   },
 });
 
-const Background = Styled.main`
-  background: url(${Image}) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  overflow: hidden;
-`;
 
 function NameForm(props) {
   // const name = props.name.notName;
