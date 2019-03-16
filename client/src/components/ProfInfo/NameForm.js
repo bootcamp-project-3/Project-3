@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { createMuiTheme } from "@material-ui/core";
 
+
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: ["Arvo", "serif"].join(","),
@@ -16,10 +18,11 @@ const theme = createMuiTheme({
   },
 });
 
+
 function NameForm(props) {
   // const name = props.name.notName;
   return (
-    <div>
+    <div>     
       <Typography className="formTitle">Edit your name here</Typography>
 
       <FormControl margin="normal">
@@ -43,7 +46,7 @@ function NameForm(props) {
       >
         <EditIcon />
       </Button>
-    </div>
+          </div>
   );
 }
 
