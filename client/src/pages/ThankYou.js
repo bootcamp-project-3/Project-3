@@ -32,9 +32,6 @@ const styles = theme => ({
     },
 });
 
-const Spacer = Styled.div`
-    height: 300px;
-`;
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;

@@ -1,6 +1,4 @@
 import React from "react";
-import Styled from "styled-components";
-import Image from "../LandingPage/assets/block_party.jpg";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
