@@ -47,14 +47,17 @@ class BaseCarPoolCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Carpool")
-      .slice(0,9)
+      .slice(0, 9)
       .map((post, index) => {
         return (
           <CarPoolCard
             key={index}
+            id={post.userId}
             name={post.name}
             title={post.title}
             content={post.content}
+            updateReply={this.props.updateReply}
+            openModal={this.props.openModal}
           />
         );
       });
@@ -73,12 +76,12 @@ class BaseCarPoolCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large" >
-                {this.props.category}
-              </Button>
-            </Link>
-          </ImageWrapper>
+          <Link to="/inbox" style={linkStyle}>
+            <Button color="primary" className={classes.button} size="large">
+              {this.props.category}
+            </Button>
+          </Link>
+        </ImageWrapper>
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>

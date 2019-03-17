@@ -222,31 +222,30 @@ class Bulletin extends Component {
       subject: this.state.replySubject,
       content: this.state.replyContent,
     };
-    console.log(message);
-    this.openSnackBar();
+
     // Send a message to another user through the api
-    // fetch("/api/messages", {
-    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //   mode: "same-origin", // no-cors, cors, *same-origin
-    //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: "include", // include, *same-origin, omit
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    //   redirect: "follow", // manual, *follow, error
-    //   referrer: "client", // no-referrer, *client
-    //   body: JSON.stringify(message),
-    // })
-    //   .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       console.log(result);
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
+    fetch("/api/messages", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "same-origin", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+      body: JSON.stringify(message),
+    }).then(
+      result => {
+        if (result.ok) {
+          this.openSnackBar();
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   };
 
   updateReply = (name, id) => {
@@ -311,6 +310,8 @@ class Bulletin extends Component {
               category="Equipment/Tools"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </ToolItem>
           <CarPoolItem>
@@ -318,6 +319,8 @@ class Bulletin extends Component {
               category="Carpool"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </CarPoolItem>
           <GeneralItem>
@@ -325,6 +328,8 @@ class Bulletin extends Component {
               category="General"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </GeneralItem>
           <EventItem>
@@ -341,6 +346,8 @@ class Bulletin extends Component {
               category="Skills/Services"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </SkillsItem>
         </Grid>
@@ -363,8 +370,8 @@ class Bulletin extends Component {
               label="Subject"
               name="replySubject"
               className={classes.textField}
-              value={this.props.replySubject}
-              onChange={this.props.handleInputChange}
+              value={this.state.replySubject}
+              onChange={this.handleInputChange}
               margin="normal"
               variant="outlined"
             />
@@ -375,8 +382,8 @@ class Bulletin extends Component {
               label="Message"
               className={classes.textField}
               name="replyContent"
-              value={this.props.replyContent}
-              onChange={this.props.handleInputChange}
+              value={this.state.replyContent}
+              onChange={this.handleInputChange}
               margin="normal"
               variant="outlined"
             />

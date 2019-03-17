@@ -10,7 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import red from "@material-ui/core/colors/red";
 import Reply from "@material-ui/icons/Reply";
-import Styled from "styled-components";
 
 const styles = theme => ({
   card: {

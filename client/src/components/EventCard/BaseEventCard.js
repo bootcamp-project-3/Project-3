@@ -47,10 +47,10 @@ class BaseEventCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Events")
-      .slice(0,9)
+      .slice(0, 9)
       .map((post, index) => {
         console.log(post.userId);
-        console.log("posts")
+        console.log("posts");
         return (
           <EventCard
             key={index}
@@ -78,12 +78,12 @@ class BaseEventCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large" >
-                {this.props.category}
-              </Button>
-            </Link>
-          </ImageWrapper>
+          <Link to="/inbox" style={linkStyle}>
+            <Button color="primary" className={classes.button} size="large">
+              {this.props.category}
+            </Button>
+          </Link>
+        </ImageWrapper>
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>

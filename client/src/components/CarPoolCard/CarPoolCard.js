@@ -60,7 +60,12 @@ class CarPoolCard extends React.Component {
             </Avatar>
           }
           action={
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                this.props.updateReply(this.props.name, this.props.id);
+                this.props.openModal();
+              }}
+            >
               <Reply />
             </IconButton>
           }

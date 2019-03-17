@@ -39,7 +39,6 @@ const styles = theme => ({
   },
 });
 
-
 class SkillsCard extends React.Component {
   state = {
     expanded: false,
@@ -61,7 +60,12 @@ class SkillsCard extends React.Component {
             </Avatar>
           }
           action={
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                this.props.updateReply(this.props.name, this.props.id);
+                this.props.openModal();
+              }}
+            >
               <Reply />
             </IconButton>
           }
@@ -76,14 +80,11 @@ class SkillsCard extends React.Component {
         <CardContent>
           <Typography component="p">{this.props.content}</Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-        </CardActions>
+        <CardActions className={classes.actions} disableActionSpacing />
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Body:</Typography>
-            <Typography paragraph>
-            {this.props.content}
-            </Typography>
+            <Typography paragraph>{this.props.content}</Typography>
           </CardContent>
         </Collapse>
       </Card>
