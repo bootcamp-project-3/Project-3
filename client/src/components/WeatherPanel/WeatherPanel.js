@@ -34,14 +34,37 @@ class WeatherPanel extends Component {
   };
 
   componentDidMount() {
-    this.getWeather();
+    fetch("/api/session", {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          // Update the state with the users session data
+          // Get the users messages and update the state
+          const zip = result.data.loc;
+          this.getWeather(zip);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   getWeather = location => {
     // Current api request is hardcoded for portsmouth NH
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?zip=03801,us&APPID=a0e8c6ce4e039dfb38fd4b809082c416`
+        `http://api.openweathermap.org/data/2.5/weather?zip=${location},us&APPID=a0e8c6ce4e039dfb38fd4b809082c416`
       )
       .then(response => {
         console.log(response);
