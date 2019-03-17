@@ -284,7 +284,7 @@ class Bulletin extends Component {
         </NavWrapperDiv>
 
         <Grid>
-          <SideBarItem>
+          <SideBarItem style={{textAlign: "center"}}>
             <MapCard
               location={this.state.location}
               name={this.state.name}
