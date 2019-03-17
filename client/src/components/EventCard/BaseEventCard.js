@@ -15,6 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "90%",
+    backgroundColor: "#e8f5e9",
   },
   bullet: {
     display: "inline-block",
@@ -48,12 +49,17 @@ class BaseEventCard extends Component {
       .filter(post => post.category === "Events")
       .slice(0,9)
       .map((post, index) => {
+        console.log(post.userId);
+        console.log("posts")
         return (
           <EventCard
             key={index}
+            id={post.userId}
             name={post.name}
             title={post.title}
             content={post.content}
+            updateReply={this.props.updateReply}
+            openModal={this.props.openModal}
           />
         );
       });

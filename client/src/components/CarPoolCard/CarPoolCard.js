@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,14 +10,12 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import red from "@material-ui/core/colors/red";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Reply from "@material-ui/icons/Reply";
 
 const styles = theme => ({
   card: {
     minWidth: "100%",
+    margin: "5px",
   },
   media: {
     height: 0,
@@ -42,7 +39,6 @@ const styles = theme => ({
   },
 });
 
-
 class CarPoolCard extends React.Component {
   state = {
     expanded: false,
@@ -65,7 +61,7 @@ class CarPoolCard extends React.Component {
           }
           action={
             <IconButton>
-              <MoreVertIcon />
+              <Reply />
             </IconButton>
           }
           title={this.props.name}
@@ -79,30 +75,11 @@ class CarPoolCard extends React.Component {
         <CardContent>
           <Typography component="p">{this.props.content}</Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
+        <CardActions className={classes.actions} disableActionSpacing />
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Body:</Typography>
-            <Typography paragraph>
-            {this.props.content}
-            </Typography>
+            <Typography paragraph>{this.props.content}</Typography>
           </CardContent>
         </Collapse>
       </Card>

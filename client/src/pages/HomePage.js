@@ -8,7 +8,6 @@ import Image from "../components/LandingPage/assets/dog.jpg";
 import BottomNav from "../components/Nav/BottomNav";
 import SignInModal from "../components/LandingPage/SignIn/SignInModal";
 import SignUpModal from "../components/LandingPage/SignUp/SignUpModal";
-import MaterialButton from "@material-ui/core/Button";
 
 const Background = Styled.main`
   background: url(${Image}) no-repeat center center fixed;
@@ -21,7 +20,7 @@ const Spacer = Styled.div`
     height: 150px;
 `;
 
-const SignIn = Styled.a`
+const Span = Styled.div`
   color: #4665af;
 `;
 
@@ -62,7 +61,6 @@ class HomePage extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <Background>
         <div>
@@ -73,7 +71,9 @@ class HomePage extends Component {
             <Button SUOpen={this.SUOpen} />
             <p>
               Have an account?{" "}
-              <MaterialButton color="primary" onClick={this.handleOpen}>Sign In</MaterialButton>
+              <span>
+              <Span class="signIn" onClick={this.handleOpen}>Sign In</Span>
+              </span>
             </p>
             <SignInModal
               open={this.state.SIopen}
@@ -90,7 +90,7 @@ class HomePage extends Component {
           </Wrapper>
           <Spacer />
         </div>
-        <BottomNav />
+        <BottomNav/>
       </Background>
     );
   }

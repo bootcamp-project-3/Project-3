@@ -15,6 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "85%",
+    backgroundColor: "#e8f5e9",
   },
   bullet: {
     display: "inline-block",
