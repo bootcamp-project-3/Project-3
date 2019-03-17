@@ -51,7 +51,9 @@ const SideBarItem = Styled.div`
 `;
 
 const SubmitItem = Styled.div`
-  margin: 200pt 0 0 0;
+  margin: 200pt 0 30pt 0;
+  padding-top: 15pt;
+  border: 1px dashed #66bb6a;
 `;
 
 const SubmitTextWrapper = Styled.div`
@@ -68,7 +70,6 @@ const ToolItem = Styled.div`
   grid-row-start: row-1;
   grid-row-end: row-1;
   margin: 0 5px 10px 0;
-  
 `;
 
 const CarPoolItem = Styled.div`
@@ -292,7 +293,7 @@ class Bulletin extends Component {
             />
             <SubmitItem>
               <SubmitTextWrapper>
-                <Typography color="textSecondary">
+                <Typography color= "black" >
                   Want to contribute? Just click the button to create your own
                   post.
                 </Typography>
@@ -304,8 +305,8 @@ class Bulletin extends Component {
                 name={this.state.name}
                 location={this.state.location}
               />
-              <WeatherPanel />
             </SubmitItem>
+            <WeatherPanel />
           </SideBarItem>
           <ToolItem>
             <BaseToolCard
@@ -314,6 +315,7 @@ class Bulletin extends Component {
               updatePosts={this.updatePosts}
               updateReply={this.updateReply}
               openModal={this.handleOpen}
+              style={{borderRadius: "30px"}}
             />
           </ToolItem>
           <CarPoolItem>

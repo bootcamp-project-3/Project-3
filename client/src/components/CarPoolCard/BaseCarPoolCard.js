@@ -15,7 +15,8 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "85%",
-    backgroundColor: "#4db6ac",
+    backgroundColor: "#66bb6a",
+    borderRadius: "10px",
   },
   bullet: {
     display: "inline-block",
@@ -32,6 +33,8 @@ const styles = theme => ({
 
 const linkStyle = {
   textDecoration: "none",
+  backgroundColor:"white",
+  borderRadius: "10px"
 };
 
 const ImageWrapper = Styled.div`
