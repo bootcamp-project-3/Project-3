@@ -1,6 +1,7 @@
-import { Mail, BusinessCenter } from "@material-ui/icons";
+import { Mail, BusinessCenter,Face } from "@material-ui/icons";
 import TermsOfService from "../../../pages/TermsOfService";
 import ContactUs from "../../../pages/ContactUs";
+import AboutUS from "../../../pages/AboutUs";
 
 const AltRoutes = [
   {
@@ -17,6 +18,13 @@ const AltRoutes = [
     icon: Mail,
     component: ContactUs,
   },
+  {
+    path: "/AboutUS",
+    sidebarName: "About Us",
+    navbarName: "About Us",
+    icon: Face,
+    component: AboutUS,
+  }, 
 ];
 
 export default AltRoutes;
