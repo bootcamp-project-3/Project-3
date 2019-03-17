@@ -61,7 +61,7 @@ class PageTabs extends React.Component {
         {value === 0 && (
           <TabContainer>
             <BaseToolCard 
-              category="General"
+              category="Equipment/Tools"
               posts={this.props.posts.filter((post, index) => {
                 return index < 9;
               })}
@@ -72,7 +72,7 @@ class PageTabs extends React.Component {
         {value === 1 && (
           <TabContainer>
             <BaseToolCard 
-              category="General"
+              category="Equipment/Tools"
               posts={this.props.posts.filter((post, index) => {
                 return index > 9 && index <= 19;
               })}
@@ -83,7 +83,7 @@ class PageTabs extends React.Component {
         {value === 2 && (
           <TabContainer>
             <BaseToolCard 
-              category="General"
+              category="Equipment/Tools"
               posts={this.props.posts.filter((post, index) => {
                 return index > 19 && index <= 29;
               })}
@@ -94,7 +94,7 @@ class PageTabs extends React.Component {
         {value === 3 && (
           <TabContainer>
             <BaseToolCard 
-              category="General"
+              category="Equipment/Tools"
               posts={this.props.posts.filter((post, index) => {
                 return index > 29 && index <= 39;
               })}
@@ -105,7 +105,7 @@ class PageTabs extends React.Component {
         {value === 4 && (
           <TabContainer>
             <BaseToolCard 
-              category="General"
+              category="Equipment/Tools"
               posts={this.props.posts.filter((post, index) => {
                 return index > 39;
               })}

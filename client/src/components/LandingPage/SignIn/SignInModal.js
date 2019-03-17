@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import validator from "email-validator";
 import { FormHelperText } from "@material-ui/core";
+import Styled from "styled-components";
 
 function getModalStyle() {
   const top = 50;
@@ -31,6 +32,10 @@ const styles = theme => ({
     outline: "none",
   },
 });
+
+const ButtonWrapper = Styled.div`
+  margin: 10px auto;
+`;
 
 class SIModal extends React.Component {
   state = {
@@ -81,7 +86,7 @@ class SIModal extends React.Component {
           console.log(response);
           if (response.status === 200) {
             this.setState({ redirect: true });
-            console.log(this.state.redirect);
+            this.props.history.push("/bulletin");
           } else if (response.status === 401) {
             this.setState({
               error: true,

@@ -43,7 +43,7 @@ class Services extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/50", {
+          fetch(`/api/posts/50/${this.state.location}`, {
             method: "Get",
             mode: "cors",
             cache: "no-cache",
