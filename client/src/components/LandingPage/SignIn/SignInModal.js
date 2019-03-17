@@ -9,7 +9,6 @@ import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import validator from "email-validator";
 import { FormHelperText } from "@material-ui/core";
-import Styled from "styled-components";
 
 function getModalStyle() {
   const top = 50;
@@ -33,24 +32,21 @@ const styles = theme => ({
   },
 });
 
-const ButtonWrapper = Styled.div`
-  margin: 10px auto;
-`;
-
 class SIModal extends React.Component {
   state = {
     error: false,
     helper: "",
-    redirect: "",
+    redirect: false,
   };
 
   validEmail = input => {
     return validator.validate(input);
   };
 
-  redirect = () => {
-    return <Redirect to="/bulletin" />
-  }
+  renderRedirect = () => {
+    if (this.state.redirect === true)
+      return <Redirect to="/bulletin">Redirect</Redirect>;
+  };
 
   getUser = event => {
     event.preventDefault();
@@ -84,9 +80,7 @@ class SIModal extends React.Component {
         .then(response => {
           console.log(response);
           if (response.status === 200) {
-            this.setState({
-              redirect: "true",
-            })
+            this.setState({ redirect: true });
             this.props.history.push("/bulletin");
           } else if (response.status === 401) {
             this.setState({
@@ -140,17 +134,10 @@ class SIModal extends React.Component {
                 autoComplete="current-password"
               />
             </FormControl>
-            <ButtonWrapper>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Sign in
-              </Button>
-              {this.state.redirect ? this.redirect() : null}
-            </ButtonWrapper>
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              Sign in
+            </Button>
+            <div>{this.renderRedirect()}</div>
           </form>
         </div>
       </Modal>
