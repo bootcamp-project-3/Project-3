@@ -15,7 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "90%",
-    backgroundColor: "#e8f5e9",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -79,7 +79,7 @@ class BaseEventCard extends Component {
         </ImageWrapper>
         <ImageWrapper>
           <Link to="/inbox" style={linkStyle}>
-            <Button color="primary" className={classes.button} size="large">
+            <Button color="default" className={classes.button} size="large">
               {this.props.category}
             </Button>
           </Link>

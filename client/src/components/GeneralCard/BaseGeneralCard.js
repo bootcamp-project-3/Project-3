@@ -15,7 +15,7 @@ const styles = {
   card: {
     minWidth: 275,
     width: "100%",
-    backgroundColor: "#e8f5e9",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -76,7 +76,7 @@ class BaseGeneralCard extends Component {
           </ImageWrapper>
           <ImageWrapper>
             <Link to="/general" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large">
+              <Button color="default" className={classes.button} size="large">
                 {this.props.category}
               </Button>
             </Link>

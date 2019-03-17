@@ -15,7 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "85%",
-    backgroundColor: "#e8f5e9",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -76,8 +76,8 @@ class BaseCarPoolCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-          <Link to="/inbox" style={linkStyle}>
-            <Button color="primary" className={classes.button} size="large">
+          <Link to="/carpool" style={linkStyle}>
+            <Button color="default" className={classes.button} size="large">
               {this.props.category}
             </Button>
           </Link>

@@ -17,6 +17,7 @@ const styles = theme => ({
     maxWidth: "100%",
     width: "100%",
     margin: "5px",
+    backgroundColor: "#b2dfdb",
   },
   media: {
     height: 0,

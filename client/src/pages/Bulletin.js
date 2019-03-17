@@ -16,6 +16,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import SnackBar from "../components/SnackBar/SnackBar";
+import WeatherPanel from "../components/WeatherPanel/WeatherPanel";
 
 function getModalStyle() {
   const top = 50;
@@ -303,6 +304,7 @@ class Bulletin extends Component {
                 name={this.state.name}
                 location={this.state.location}
               />
+              <WeatherPanel />
             </SubmitItem>
           </SideBarItem>
           <ToolItem>

@@ -12,7 +12,7 @@ const LargeWrapperDiv = Styled.div`
   margin: 120px auto;
 `;
 
-class Event extends Component {
+class Events extends Component {
   state = {
     id: "",
     location: "",
@@ -43,7 +43,7 @@ class Event extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/50", {
+          fetch(`/api/posts/50/${this.state.location}`, {
             method: "Get",
             mode: "cors",
             cache: "no-cache",
@@ -96,4 +96,4 @@ class Event extends Component {
   }
 }
 
-export default Event;
+export default Events;
