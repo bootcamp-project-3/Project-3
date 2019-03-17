@@ -9,7 +9,6 @@ import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import validator from "email-validator";
 import { FormHelperText } from "@material-ui/core";
-import Styled from "styled-components";
 
 function getModalStyle() {
   const top = 50;
