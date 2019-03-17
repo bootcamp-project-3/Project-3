@@ -33,10 +33,6 @@ const styles = theme => ({
   },
 });
 
-const ButtonWrapper = Styled.div`
-  margin: 10px auto;
-`;
-
 class SIModal extends React.Component {
   state = {
     error: false,
