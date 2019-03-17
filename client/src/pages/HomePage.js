@@ -66,7 +66,7 @@ class HomePage extends Component {
         <div>
           <LpNav />
           <Wrapper>
-            Share your lawnmower, host a cookout, sell an item.
+            Share your lawnmower, host a cookout, give a ride.
             <h1>Be Neighborly.</h1>
             <Button SUOpen={this.SUOpen} />
             <p>
