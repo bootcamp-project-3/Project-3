@@ -15,6 +15,7 @@ const styles = {
   card: {
     minWidth: 275,
     width: "100%",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -43,14 +44,17 @@ class BaseGeneralCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "General")
-      .slice(0,9)
+      .slice(0, 9)
       .map((post, index) => {
         return (
           <GeneralCard
-            title={post.title}
-            name={post.name}
-            content={post.content}
             key={index}
+            id={post.userId}
+            name={post.name}
+            title={post.title}
+            content={post.content}
+            updateReply={this.props.updateReply}
+            openModal={this.props.openModal}
           />
         );
       });
@@ -72,7 +76,7 @@ class BaseGeneralCard extends Component {
           </ImageWrapper>
           <ImageWrapper>
             <Link to="/general" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large" >
+              <Button color="default" className={classes.button} size="large">
                 {this.props.category}
               </Button>
             </Link>

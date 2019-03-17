@@ -15,6 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "80%",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -46,14 +47,17 @@ class BaseToolCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Equipment/Tools")
-      .slice(0,9)
+      .slice(0, 9)
       .map((post, index) => {
         return (
           <ToolCard
             key={index}
+            id={post.userId}
             name={post.name}
             title={post.title}
             content={post.content}
+            updateReply={this.props.updateReply}
+            openModal={this.props.openModal}
           />
         );
       });
@@ -72,12 +76,12 @@ class BaseToolCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large" >
-                {this.props.category}
-              </Button>
-            </Link>
-          </ImageWrapper>
+          <Link to="/equipment" style={linkStyle}>
+            <Button variant="text" color="default" className={classes.button} size="large">
+              {this.props.category}
+            </Button>
+          </Link>
+        </ImageWrapper>
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>

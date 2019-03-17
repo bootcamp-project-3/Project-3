@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SideBar from "../components/Nav/SideBar/SideBar";
+import { withStyles } from "@material-ui/core/styles";
 import Styled from "styled-components";
 import BaseToolCard from "../components/ToolCard/BaseToolCard";
 import BaseEventCard from "../components/EventCard/BaseEventCard";
@@ -10,6 +11,23 @@ import BottomNav from "../components/Nav/BottomNav";
 import MapCard from "../components/Map/MapCard";
 import SubmitModal from "../components/SubmitModal/SubmitModal";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Modal from "@material-ui/core/Modal";
+import SnackBar from "../components/SnackBar/SnackBar";
+import WeatherPanel from "../components/WeatherPanel/WeatherPanel";
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 const NavWrapperDiv = Styled.div`
   margin-bottom: 100px;
@@ -86,12 +104,48 @@ const SkillsItem = Styled.div`
   margin: 0 5px 10px 0;
 `;
 
+const ButtonWrapper = Styled.div`
+  display: grid;
+  grid-template-columns: 120px 120px;
+  justify-content: end;
+  justify-items: center;
+  margin-top: 20px;
+  
+`;
+
+const styles = theme => ({
+  paper: {
+    position: "absolute",
+    width: "40%",
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    outline: "none",
+  },
+  divider: {
+    marginTop: "30px",
+    marginBottom: "30px",
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    marginTop: "10px",
+    width: "90%",
+  },
+});
+
 class Bulletin extends Component {
   state = {
     posts: [],
     id: "",
     location: "",
     name: "",
+    snackBar: false,
+    open: false,
+    recipientName: "",
+    recipientId: "",
+    replyContent: "",
+    replySubject: "",
   };
 
   componentDidMount() {
@@ -150,10 +204,79 @@ class Bulletin extends Component {
           console.log(error);
         }
       );
+  };
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  sendMessage = () => {
+    const message = {
+      senderId: this.state.id,
+      senderName: this.state.name,
+      recipientId: this.state.recipientId,
+      recipientName: this.state.recipientName,
+      subject: this.state.replySubject,
+      content: this.state.replyContent,
+    };
+
+    // Send a message to another user through the api
+    fetch("/api/messages", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "same-origin", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+      body: JSON.stringify(message),
+    }).then(
+      result => {
+        if (result.ok) {
+          this.openSnackBar();
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
+
+  updateReply = (name, id) => {
+    this.setState({
+      recipientName: name,
+      recipientId: id,
+    });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  openSnackBar = () => {
+    this.setState({ snackBar: true });
+  };
+
+  closeSnackBar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState({ snackBar: false });
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <main>
         <NavWrapperDiv>
@@ -181,6 +304,7 @@ class Bulletin extends Component {
                 name={this.state.name}
                 location={this.state.location}
               />
+              <WeatherPanel />
             </SubmitItem>
           </SideBarItem>
           <ToolItem>
@@ -188,6 +312,8 @@ class Bulletin extends Component {
               category="Equipment/Tools"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </ToolItem>
           <CarPoolItem>
@@ -195,6 +321,8 @@ class Bulletin extends Component {
               category="Carpool"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </CarPoolItem>
           <GeneralItem>
@@ -202,6 +330,8 @@ class Bulletin extends Component {
               category="General"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </GeneralItem>
           <EventItem>
@@ -209,6 +339,8 @@ class Bulletin extends Component {
               category="Events"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </EventItem>
           <SkillsItem>
@@ -216,9 +348,71 @@ class Bulletin extends Component {
               category="Skills/Services"
               posts={this.state.posts}
               updatePosts={this.updatePosts}
+              updateReply={this.updateReply}
+              openModal={this.handleOpen}
             />
           </SkillsItem>
         </Grid>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+            <Typography gutterBottom variant="h5" id="modal-title">
+              Message
+            </Typography>
+            <Divider variant="fullWidth" />
+            <Typography variant="subtitle1" id="modal-title">
+              <b>To:</b> {this.state.recipientName}
+            </Typography>
+            <TextField
+              id="standard-name"
+              label="Subject"
+              name="replySubject"
+              className={classes.textField}
+              value={this.state.replySubject}
+              onChange={this.handleInputChange}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              id="standard-multiline-flexible"
+              multiline
+              rowsMax="6"
+              label="Message"
+              className={classes.textField}
+              name="replyContent"
+              value={this.state.replyContent}
+              onChange={this.handleInputChange}
+              margin="normal"
+              variant="outlined"
+            />
+            <ButtonWrapper>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={this.handleClose}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={this.sendMessage}
+              >
+                Send
+              </Button>
+            </ButtonWrapper>
+          </div>
+        </Modal>
+        <SnackBar
+          open={this.state.snackBar}
+          openSnackBar={this.openSnackBar}
+          closeSnackBar={this.closeSnackBar}
+        />
         <BottomNavSpacer />
         <BottomNav />
       </main>
@@ -226,4 +420,4 @@ class Bulletin extends Component {
   }
 }
 
-export default Bulletin;
+export default withStyles(styles)(Bulletin);

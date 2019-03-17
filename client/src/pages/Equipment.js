@@ -17,7 +17,7 @@ class Equipment extends Component {
     id: "",
     location: "",
     name: "",
-    posts: "",
+    posts: [],
   };
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class Equipment extends Component {
             location: loc,
             name: name,
           });
-          fetch("/api/posts/50", {
+          fetch(`/api/posts/50/${this.state.location}`, {
             method: "Get",
             mode: "cors",
             cache: "no-cache",
@@ -58,10 +58,7 @@ class Equipment extends Component {
             .then(
               result => {
                 console.log(result);
-                const filteredPosts = result.filter(post => {
-                  return post.category === "Equipment/Tools";
-                });
-                this.updatePosts(filteredPosts);
+                this.updatePosts(result);
               },
               error => {
                 console.log(error);

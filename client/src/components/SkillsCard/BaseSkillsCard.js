@@ -15,6 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "100%",
+    backgroundColor: "#4db6ac",
   },
   bullet: {
     display: "inline-block",
@@ -46,14 +47,17 @@ class BaseSkillsCard extends Component {
     const posts = this.props.posts;
     return posts
       .filter(post => post.category === "Skills/Services")
-      .slice(0,10)
+      .slice(0, 10)
       .map((post, index) => {
         return (
           <SkillsCard
             key={index}
+            id={post.userId}
             name={post.name}
             title={post.title}
             content={post.content}
+            updateReply={this.props.updateReply}
+            openModal={this.props.openModal}
           />
         );
       });
@@ -72,12 +76,12 @@ class BaseSkillsCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-            <Link to="/inbox" style={linkStyle}>
-              <Button color="primary" className={classes.button} size="large" >
-                {this.props.category}
-              </Button>
-            </Link>
-          </ImageWrapper>
+          <Link to="/inbox" style={linkStyle}>
+            <Button color="default" className={classes.button} size="large">
+              {this.props.category}
+            </Button>
+          </Link>
+        </ImageWrapper>
         <CardContent>
           {this.props.posts.length ? this.renderCards() : <LoadingCircle />}
         </CardContent>
