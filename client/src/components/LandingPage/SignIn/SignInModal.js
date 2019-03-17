@@ -5,7 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import validator from "email-validator";
 import { FormHelperText } from "@material-ui/core";
@@ -36,10 +36,16 @@ class SIModal extends React.Component {
   state = {
     error: false,
     helper: "",
+    redirect: false,
   };
 
   validEmail = input => {
     return validator.validate(input);
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect === true)
+      return <Redirect to="/bulletin">Redirect</Redirect>;
   };
 
   getUser = event => {
@@ -74,7 +80,8 @@ class SIModal extends React.Component {
         .then(response => {
           console.log(response);
           if (response.status === 200) {
-            return <Link to="./bulletin" />;
+            this.setState({ redirect: true });
+            console.log(this.state.redirect);
           } else if (response.status === 401) {
             this.setState({
               error: true,
@@ -130,6 +137,7 @@ class SIModal extends React.Component {
             <Button type="submit" fullWidth variant="contained" color="primary">
               Sign in
             </Button>
+            <div>{this.renderRedirect()}</div>
           </form>
         </div>
       </Modal>
