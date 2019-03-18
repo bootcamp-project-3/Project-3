@@ -12,6 +12,7 @@ import BottomNav from "../components/Nav/BottomNav";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import Image from "../components/LandingPage/assets/pexels-photo-688835.jpeg";
 
 const styles = theme => ({
   card: {
@@ -30,6 +31,13 @@ const styles = theme => ({
     marginBottom: 12,
   },
 });
+
+const BackgroundImage = Styled.main`
+background: url(${Image}) no-repeat center center fixed;
+background-size: cover;
+height: 100%;
+overflow: hidden;
+`;
 
 const Grid = Styled.div`
   display: grid;
@@ -174,7 +182,7 @@ class Dashboard extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <main>
+      <BackgroundImage>
         <SideBar />
         <Card className={classes.card} style={{ margin: "100px auto" }}>
           <CardContent>
@@ -221,7 +229,7 @@ class Dashboard extends Component {
         </Card>
         <div style={{ marginTop: "14%" }} />
         <BottomNav />
-      </main>
+      </BackgroundImage>
     );
   }
 }

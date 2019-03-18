@@ -33,7 +33,7 @@ const styles = theme => ({
 });
 
 const ButtonWrapper = Styled.div`
-  margin: 25px 0 25px 40px;
+  margin: 25px 0 25px 10px;
 `;
 
 class SubmitModal extends React.Component {
@@ -55,7 +55,7 @@ class SubmitModal extends React.Component {
     return (
       <div>
         <ButtonWrapper>
-          <Button onClick={this.handleOpen} align="justify" color="primary" variant="outlined">
+          <Button onClick={this.handleOpen} align="justify" color="primary" variant="outlined" >
             Add Post
           </Button>
         </ButtonWrapper>
