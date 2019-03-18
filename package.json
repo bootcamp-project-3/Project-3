@@ -9,7 +9,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "build": "cd client && node --max-old-space-size=4096 && npm run build",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "lint": "eslint \"**/*.js\"",
     "fix": "eslint --fix ."
