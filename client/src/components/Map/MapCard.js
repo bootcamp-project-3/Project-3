@@ -38,7 +38,7 @@ class MapCard extends Component {
           <CardContent>
             <Typography
               className={classes.title}
-              color="textSecondary"
+              color="black"
               variant="subheading"
               gutterBottom
             >
@@ -46,7 +46,7 @@ class MapCard extends Component {
             </Typography>
             <Typography
               className={classes.title}
-              color="textSecondary"
+              color="black"
               variant="subheading"
               gutterBottom
             >
