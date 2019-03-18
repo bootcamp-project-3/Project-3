@@ -81,7 +81,7 @@ class BaseEventCard extends Component {
           />
         </ImageWrapper>
         <ImageWrapper>
-          <Link to="/inbox" style={linkStyle}>
+          <Link to="/events" style={linkStyle}>
             <Button color="default" className={classes.button} size="large">
               {this.props.category}
             </Button>
