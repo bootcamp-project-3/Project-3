@@ -1,6 +1,7 @@
 import { Home, Inbox, AccountBox } from "@material-ui/icons";
 import Bulletin from "../../../pages/Bulletin";
 import InboxPage from "../../../pages/InboxPage";
+import Dashboard from "../../../pages/Dashboard";
 
 const Routes = [
   {
@@ -22,7 +23,7 @@ const Routes = [
     sidebarName: "Profile",
     navbarName: "Profile",
     icon: AccountBox,
-    component: InboxPage,
+    component: Dashboard,
   },
 ];
 
