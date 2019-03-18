@@ -72,7 +72,7 @@ const AboutUs = (props) => {
              <br></br>
              <p>Patrick Gould - Freelance Full Stack Web Developer from Boston, MA.</p>
              <br></br>
-             Autsin Randolph
+             Autsin Randolph -Web developer by day......also web developer by night. Mostly by night.
              <br></br>
              <p>Dinah Deshane - Enthusiastic, innovative operations specialist with a consistent record of increasing operational efficiency. Expanding
                 technical proficiency to transition talents into web development.</p>

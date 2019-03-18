@@ -8,6 +8,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Styled from "styled-components";
 import LoadingCircle from "../LoadingCircle/LoadingCircle";
+import zipcodes from "zipcodes";
 
 const styles = theme => ({
   bullet: {
@@ -26,6 +27,37 @@ const styles = theme => ({
 const Spacer = Styled.div`
   margin-top: 20px;
 `;
+
+let city = "";
+
+const zipcodeLookup = () => {
+  fetch("/api/session", {
+    method: "Get", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "include", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "client", // no-referrer, *client
+  })
+    .then(res => res.json())
+    .then(
+      result => {
+        // Update the state with the users session data
+        // Get the users messages and update the state
+        const zip = result.data.loc;
+        const data = zipcodes.lookup(zip);
+        city = data.city;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}
+zipcodeLookup();
 
 class MapCard extends Component {
 
@@ -50,7 +82,7 @@ class MapCard extends Component {
               variant="subheading"
               gutterBottom
             >
-              Welcome To The Portsmouth Community
+              Welcome To The {city} Community
             </Typography>
             <Divider />
             <Spacer>
