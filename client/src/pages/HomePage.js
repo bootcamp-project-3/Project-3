@@ -20,8 +20,13 @@ const Spacer = Styled.div`
     height: 150px;
 `;
 
-const Span = Styled.div`
-  color: #4665af;
+const ButtonLink = Styled.button`
+  background:none!important;
+  color:#4665af;
+  border:none; 
+  padding:0!important;
+  font: inherit; 
+  cursor: pointer;
 `;
 
 class HomePage extends Component {
@@ -69,12 +74,14 @@ class HomePage extends Component {
             Share your lawnmower, host a cookout, give a ride.
             <h1>Be Neighborly.</h1>
             <Button SUOpen={this.SUOpen} />
-            <p>
-              Have an account?{" "}
-              <span>
-              <Span class="signIn" onClick={this.handleOpen}>Sign In</Span>
-              </span>
-            </p>
+            <span>
+              <p>
+                Have an account?{" "}
+                <ButtonLink  onClick={this.handleOpen}>
+                  Sign In
+                </ButtonLink>
+              </p>
+            </span>
             <SignInModal
               open={this.state.SIopen}
               email={this.state.email}
@@ -90,7 +97,7 @@ class HomePage extends Component {
           </Wrapper>
           <Spacer />
         </div>
-        <BottomNav/>
+        <BottomNav />
       </Background>
     );
   }

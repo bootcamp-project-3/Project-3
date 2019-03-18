@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const styles = theme => ({
   card: {
     minWidth: 600,
-    width: "85%",
+    width: "100%",
     backgroundColor: "#66bb6a",
     borderRadius: "10px",
   },

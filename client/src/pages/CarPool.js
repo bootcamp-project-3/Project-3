@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../components/Nav/SideBar/SideBar";
-import PageTabs from "../components/GeneralPage/PageTabs";
+import PageTabs from "../components/CarPoolPage/PageTabs";
 import Styled from "styled-components";
 
 const LargeWrapperDiv = Styled.div`
@@ -17,7 +17,7 @@ class Tools extends Component {
     id: "",
     location: "",
     name: "",
-    posts: "",
+    posts: [],
   };
 
   componentDidMount() {

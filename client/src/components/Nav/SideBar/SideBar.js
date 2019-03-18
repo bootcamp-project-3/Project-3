@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Routes from "./Routes";
 import AltRoutes from "./AltRoutes";
+import PageRoutes from "./PageRoutes";
 
 const styles = {
   list: {
@@ -89,6 +90,21 @@ class SideBar extends React.Component {
             );
           })}
         </MenuList>
+        <Divider />
+        <List>
+          {PageRoutes.map((prop, key) => {
+            return (
+              <Link to={prop.path} style={{ textDecoration: "none" }} key={key}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <prop.icon />
+                  </ListItemIcon>
+                  <ListItemText primary={prop.sidebarName} />
+                </MenuItem>
+              </Link>
+            );
+          })}
+        </List>
         <Divider />
         <List>
           {AltRoutes.map((prop, key) => {

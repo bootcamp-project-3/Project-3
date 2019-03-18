@@ -57,8 +57,10 @@ class Equipment extends Component {
             .then(res => res.json())
             .then(
               result => {
-                console.log(result);
-                this.updatePosts(result);
+                const filteredPosts = result.filter(post => {
+                  return post.category === "Equipment/Tools";
+                })
+                this.updatePosts(filteredPosts);
               },
               error => {
                 console.log(error);
