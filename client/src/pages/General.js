@@ -81,30 +81,7 @@ class General extends Component {
             location: loc,
             name: name,
           });
-          fetch(`/api/posts/50/${this.state.location}`, {
-            method: "Get",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrer: "client",
-          })
-            .then(res => res.json())
-            .then(
-              result => {
-                console.log(result);
-                const filteredPosts = result.filter(post => {
-                  return post.category === "General";
-                });
-                this.updatePosts(filteredPosts);
-              },
-              error => {
-                console.log(error);
-              }
-            );
+          this.updatePosts();
         },
         error => {
           console.log(error);
@@ -112,10 +89,34 @@ class General extends Component {
       );
   }
 
-  updatePosts = posts => {
-    this.setState({
-      posts: posts,
-    });
+  updatePosts = () => {
+    fetch(`/api/posts/50/${this.state.location}`, {
+      method: "Get", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "include", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "client", // no-referrer, *client
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          const filteredPosts = result.filter(post => {
+            return post.category === "General";
+          });
+          this.setState({
+            posts: filteredPosts,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
   };
 
   render() {

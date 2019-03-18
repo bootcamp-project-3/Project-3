@@ -81,30 +81,7 @@ class Events extends Component {
             location: loc,
             name: name,
           });
-          fetch(`/api/posts/50/${this.state.location}`, {
-            method: "Get",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrer: "client",
-          })
-            .then(res => res.json())
-            .then(
-              result => {
-                console.log(result);
-                const filteredPosts = result.filter(post => {
-                  return post.category === "Events";
-                });
-                this.updatePosts(filteredPosts);
-              },
-              error => {
-                console.log(error);
-              }
-            );
+          this.updatePosts();
         },
         error => {
           console.log(error);
@@ -112,10 +89,33 @@ class Events extends Component {
       );
   }
 
-  updatePosts = posts => {
-    this.setState({
-      posts: posts,
-    });
+  updatePosts = () => {
+    fetch(`/api/posts/50/${this.state.location}`, {
+      method: "Get",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrer: "client",
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+          const filteredPosts = result.filter(post => {
+            return post.category === "Events";
+          });
+          this.setState({
+            posts: filteredPosts,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
   };
 
   render() {

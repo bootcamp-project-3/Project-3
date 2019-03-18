@@ -81,29 +81,7 @@ class Equipment extends Component {
             location: loc,
             name: name,
           });
-          fetch(`/api/posts/50/${this.state.location}`, {
-            method: "Get",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrer: "client",
-          })
-            .then(res => res.json())
-            .then(
-              result => {
-                const filteredPosts = result.filter(post => {
-                  return post.category === "Equipment/Tools";
-                });
-                this.updatePosts(filteredPosts);
-              },
-              error => {
-                console.log(error);
-              }
-            );
+          this.updatePosts();
         },
         error => {
           console.log(error);
@@ -111,10 +89,32 @@ class Equipment extends Component {
       );
   }
 
-  updatePosts = posts => {
-    this.setState({
-      posts: posts,
-    });
+  updatePosts = () => {
+    fetch(`/api/posts/50/${this.state.location}`, {
+      method: "Get",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrer: "client",
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          const filteredPosts = result.filter(post => {
+            return post.category === "Equipment/Tools";
+          });
+          this.setState({
+            posts: filteredPosts,
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
   };
 
   render() {
