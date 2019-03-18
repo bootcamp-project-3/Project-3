@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import BaseCarPoolCard from "../CarPoolCard/BaseCarPoolCard";
+import BaseEventCard from "../EventCard/BaseEventCard";
 
 function TabContainer(props) {
   return (
@@ -35,6 +35,10 @@ class PageTabs extends React.Component {
     this.setState({ value });
   };
 
+  pageOne = () => {
+    return;
+  };
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -60,8 +64,8 @@ class PageTabs extends React.Component {
         </AppBar>
         {value === 0 && (
           <TabContainer>
-            <BaseCarPoolCard
-              category="CarPool"
+            <BaseEventCard
+              category="Events"
               posts={this.props.posts.filter((post, index) => {
                 return index < 9;
               })}
@@ -71,8 +75,8 @@ class PageTabs extends React.Component {
         )}
         {value === 1 && (
           <TabContainer>
-            <BaseCarPoolCard
-              category="CarPool"
+            <BaseEventCard
+              category="Events"
               posts={this.props.posts.filter((post, index) => {
                 return index > 9 && index <= 19;
               })}
@@ -82,8 +86,8 @@ class PageTabs extends React.Component {
         )}
         {value === 2 && (
           <TabContainer>
-            <BaseCarPoolCard
-              category="CarPool"
+            <BaseEventCard
+              category="Events"
               posts={this.props.posts.filter((post, index) => {
                 return index > 19 && index <= 29;
               })}
@@ -93,8 +97,8 @@ class PageTabs extends React.Component {
         )}
         {value === 3 && (
           <TabContainer>
-            <BaseCarPoolCard
-              category="CarPool"
+            <BaseEventCard
+              category="Events"
               posts={this.props.posts.filter((post, index) => {
                 return index > 29 && index <= 39;
               })}
@@ -104,8 +108,8 @@ class PageTabs extends React.Component {
         )}
         {value === 4 && (
           <TabContainer>
-            <BaseCarPoolCard
-              category="CarPool"
+            <BaseEventCard
+              category="Events"
               posts={this.props.posts.filter((post, index) => {
                 return index > 39;
               })}

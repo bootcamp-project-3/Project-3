@@ -14,9 +14,9 @@ import ThankYou from "./pages/ThankYou";
 import General from "./pages/General";
 import AboutUs from "./pages/AboutUs";
 import CarPool from "./pages/CarPool";
-// import Skills from "./pages/Skills";
+import Skills from "./pages/Skills";
 import Equipment from "./pages/Equipment";
-// import Events from "./pages/Events";
+import Events from "./pages/Events";
 
 const theme = createMuiTheme({
   palette: {
@@ -88,8 +88,8 @@ class App extends Component {
                 <Route exact path="/general" component={General} />
                 <Route exact path="/carpool" component={CarPool} />
                 <Route exact path="/equipment" component={Equipment} />
-                {/* <Route exact path="/skills" component={Skills} /> */}
-                {/* <Route exact path="/events" component={Events} /> */}
+                <Route exact path="/skills" component={Skills} />
+                <Route exact path="/events" component={Events} />
                 <Route
                   exact
                   path="/termsofservice"

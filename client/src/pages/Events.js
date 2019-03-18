@@ -59,7 +59,7 @@ class Events extends Component {
               result => {
                 console.log(result);
                 const filteredPosts = result.filter(post => {
-                  return post.category === "Event";
+                  return post.category === "Events";
                 })
                 this.updatePosts(filteredPosts);
               },

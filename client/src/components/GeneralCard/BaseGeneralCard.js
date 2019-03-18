@@ -15,7 +15,7 @@ const styles = {
   card: {
     minWidth: 275,
     width: "100%",
-    backgroundColor: "#66bb6a",
+    backgroundColor: "#81c784",
     borderRadius: "10px",
   },
   bullet: {
@@ -30,9 +30,9 @@ const styles = {
 
 const linkStyle = {
   textDecoration: "none",
-  backgroundColor:"white",
-  borderRadius: "10px"
-
+  backgroundColor: "white",
+  borderRadius: "10px",
+  marginBottom: "10px",
 };
 
 const ImageWrapper = Styled.div`

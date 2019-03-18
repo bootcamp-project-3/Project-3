@@ -59,7 +59,7 @@ class Skills extends Component {
               result => {
                 console.log(result);
                 const filteredPosts = result.filter(post => {
-                  return post.category === "Skill";
+                  return post.category === "Skills/Services";
                 })
                 this.updatePosts(filteredPosts);
               },
