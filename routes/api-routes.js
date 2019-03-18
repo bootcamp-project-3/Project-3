@@ -264,7 +264,8 @@ module.exports = function(app) {
   // *Finds all recieved messages by id
   app.get("/api/messages/inbox/:id", function(req, res) {
     const user = req.params.id;
-    Message.find({ recipientId: user }, function(err, messages) {
+    const find = Message.find({ recipientId: user }).sort({ createdAt: -1 });
+    find.exec(function(err, messages) {
       if (err) {
         console.log(err);
         res.sendStatus(500);
@@ -278,7 +279,8 @@ module.exports = function(app) {
   // *Finds all sent messages by id
   app.get("/api/messages/outbox/:id", function(req, res) {
     const user = req.params.id;
-    Message.find({ senderId: user }, function(err, messages) {
+    const find = Message.find({ senderId: user }).sort({ createdAt: -1 });
+    find.exec(function(err, messages) {
       if (err) {
         console.log(err);
         res.sendStatus(500);
