@@ -261,7 +261,7 @@ module.exports = function(app) {
       }
     });
   });
-  // *Finds all recieved messages by id
+  // *Finds all recieved messages by id.
   app.get("/api/messages/inbox/:id", function(req, res) {
     const user = req.params.id;
     const find = Message.find({ recipientId: user }).sort({ createdAt: -1 });
