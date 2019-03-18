@@ -9,7 +9,6 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import red from "@material-ui/core/colors/red";
 import Reply from "@material-ui/icons/Reply";
 
 const styles = theme => ({
@@ -37,7 +36,7 @@ const styles = theme => ({
     transform: "rotate(180deg)",
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: "#4db6ac",
   },
 });
 
@@ -56,7 +55,7 @@ class ToolCard extends React.Component {
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
+              {this.props.name.split("", 1)}
             </Avatar>
           }
           action={

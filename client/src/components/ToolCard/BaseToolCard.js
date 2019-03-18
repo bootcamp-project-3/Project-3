@@ -15,7 +15,7 @@ const styles = theme => ({
   card: {
     minWidth: 600,
     width: "100%",
-    backgroundColor: "#66bb6a",
+    backgroundColor: "#81c784",
     borderRadius: "10px",
   },
   bullet: {
